@@ -1,0 +1,174 @@
+{
+  "lessonId": "uc-m1-b1",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 8,
+      "question": "Use Case là điểm khởi đầu cho phương pháp phát triển nào?",
+      "options": [
+        "Hướng đối tượng (Object-oriented)",
+        "Hướng chức năng (Function-oriented)",
+        "Hướng cấu trúc (Structured)",
+        "Hướng dữ liệu (Data-oriented)"
+      ],
+      "answer": 0,
+      "explanation": "Use Case là điểm khởi đầu cho nhiều phương pháp phát triển hướng đối tượng, và thường là khái niệm cốt lõi xuyên suốt quá trình phân tích và thiết kế."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 9,
+      "question": "Theo Ivar Jacobson, Use Case là gì?",
+      "options": [
+        "Một chuỗi giao dịch trong System, tạo ra lợi ích có thể xác định cho Actor",
+        "Một đoạn mã nguồn thực hiện một chức năng đơn lẻ",
+        "Một bảng dữ liệu lưu trữ thông tin người dùng",
+        "Một màn hình giao diện mà Actor nhìn thấy"
+      ],
+      "answer": 0,
+      "explanation": "Định nghĩa của Ivar Jacobson: Use Case là một chuỗi các giao dịch bên trong một System, tạo ra lợi ích có thể xác định được cho các Actor cụ thể."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 8,
+      "question": "Actor trong sơ đồ Use Case được hiểu như thế nào?",
+      "options": [
+        "Một chức năng mà hệ thống cung cấp cho người dùng",
+        "Vai trò tương tác với System, nằm ngoài ranh giới hệ thống",
+        "Một bảng dữ liệu nằm bên trong System",
+        "Một bước xử lý luôn nằm bên trong Use Case"
+      ],
+      "answer": 1,
+      "explanation": "Actor là vai trò liên quan đến lĩnh vực nghiệp vụ hoặc bất cứ thứ gì tương tác với System, và luôn nằm BÊN NGOÀI ranh giới hệ thống."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 8,
+      "question": "Use Case đại diện cho điều gì trong quá trình phát triển phần mềm?",
+      "options": [
+        "Yêu cầu (requirements) của khách hàng",
+        "Mã nguồn của hệ thống",
+        "Cấu trúc cơ sở dữ liệu",
+        "Giao diện đồ họa của ứng dụng"
+      ],
+      "answer": 0,
+      "explanation": "Use Case đại diện cho các yêu cầu của khách hàng — tập trung vào việc phát triển giải pháp cho khách hàng hoặc người dùng đã yêu cầu nó."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 8,
+      "question": "Trong ví dụ Quản lý Sinh viên (Student Administration), Actor là ai?",
+      "options": [
+        "Student Administration (tên hệ thống)",
+        "Professor (giáo sư)",
+        "Query student data (Use case)",
+        "Issue certificate (Use case)"
+      ],
+      "answer": 1,
+      "explanation": "Professor là Actor của hệ thống Quản lý Sinh viên. Student Administration là tên hệ thống, còn Query student data và Issue certificate là các Use Case."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 8,
+      "question": "Đâu KHÔNG phải là Use Case trong ví dụ Quản lý Sinh viên?",
+      "options": [
+        "Query student data (truy vấn dữ liệu sinh viên)",
+        "Issue certificate (cấp chứng chỉ)",
+        "Announce exam (thông báo kỳ thi)",
+        "Print transcript (in bảng điểm)"
+      ],
+      "answer": 3,
+      "explanation": "Ba Use Case có trong ví dụ là Query student data, Issue certificate và Announce exam. 'Print transcript' không xuất hiện trong ví dụ."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 9,
+      "question": "\"Lợi ích có thể đo lường được\" (measurable benefit) trong định nghĩa Use Case có nghĩa là gì?",
+      "options": [
+        "Lợi ích tài chính rõ ràng",
+        "Tác động rõ ràng, có thể định lượng và/hoặc định tính lên những thứ nằm ngoài System, cụ thể là lên các Actor",
+        "Lợi ích lâu dài cho doanh nghiệp",
+        "Lợi ích dành cho nhà phát triển phần mềm"
+      ],
+      "answer": 1,
+      "explanation": "Lợi ích có thể đo lường được ngụ ý rằng việc thực thi một giao dịch có tác động rõ ràng, có thể định lượng và/hoặc định tính lên những thứ nằm ngoài System, cụ thể là lên các Actor."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 9,
+      "question": "Câu hỏi nào KHÔNG phải là câu hỏi ban đầu để triển khai Use case?",
+      "options": [
+        "Tại sao lại sử dụng Use case?",
+        "Các Use case trông như thế nào?",
+        "Bạn sẽ làm gì với các Use case sau khi đã xác định được chúng?",
+        "Ai là người viết code cho Use case?"
+      ],
+      "answer": 3,
+      "explanation": "Ba câu hỏi ban đầu để triển khai Use case là: (1) Tại sao sử dụng Use case? (2) Các Use case trông như thế nào? (3) Bạn sẽ làm gì với chúng sau khi xác định? Câu hỏi về người viết code không nằm trong bộ câu hỏi này."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 8,
+      "question": "Actor tương tác với System trong ngữ cảnh nào?",
+      "options": [
+        "Ngữ cảnh của các Use case",
+        "Ngữ cảnh của cơ sở dữ liệu",
+        "Ngữ cảnh của giao diện đồ họa",
+        "Ngữ cảnh của báo cáo tài chính"
+      ],
+      "answer": 0,
+      "explanation": "Các Actor tương tác với System trong ngữ cảnh của các Use case — mỗi tương tác hướng tới một mục tiêu cụ thể."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 8,
+      "question": "Trong ví dụ Quản lý Sinh viên, Professor có thể thực hiện những Use case nào?",
+      "options": [
+        "Chỉ Query student data",
+        "Query student data, Issue certificate, Announce exam",
+        "Chỉ Issue certificate",
+        "Chỉ Announce exam"
+      ],
+      "answer": 1,
+      "explanation": "Professor là Actor và có thể thực hiện cả ba Use case: Query student data (truy vấn dữ liệu sinh viên), Issue certificate (cấp chứng chỉ) và Announce exam (thông báo kỳ thi)."
+    },
+    {
+      "id": "q11",
+      "type": "mcq",
+      "points": 8,
+      "question": "Use case tập trung vào vấn đề cơ bản nào khi phát triển một System?",
+      "options": [
+        "Tối ưu hóa hiệu năng",
+        "Phát triển một giải pháp cho khách hàng hoặc người dùng đã yêu cầu nó",
+        "Giảm chi phí sản xuất",
+        "Tăng tốc độ lập trình"
+      ],
+      "answer": 1,
+      "explanation": "Use case tập trung vào vấn đề cơ bản khi phát triển một System: phát triển một giải pháp cho khách hàng hoặc người dùng đã yêu cầu nó."
+    },
+    {
+      "id": "q12",
+      "type": "mcq",
+      "points": 9,
+      "question": "Các giao dịch bên trong một System ngụ ý điều gì?",
+      "options": [
+        "Chỉ là các thao tác nhập/xuất dữ liệu",
+        "Actor được cung cấp cơ hội giao tiếp với System và tạo ra lợi ích đo lường được",
+        "Hệ thống tự động chạy không cần Actor",
+        "Chỉ là các giao dịch tài chính"
+      ],
+      "answer": 1,
+      "explanation": "Các giao dịch bên trong một System ngụ ý rằng các Actor được cung cấp một loạt các cơ hội để giao tiếp với System và một lợi ích có thể đo lường được sẽ được tạo ra thông qua chúng."
+    }
+  ]
+}

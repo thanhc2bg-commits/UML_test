@@ -1,0 +1,133 @@
+{
+  "lessonId": "uc-m1-b2",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Actor trong sơ đồ Use Case được hiểu chính xác là gì?",
+      "options": [
+        "Một chức năng mà hệ thống cung cấp cho người dùng",
+        "Một vai trò bên ngoài System tương tác với hệ thống",
+        "Một lớp dữ liệu nằm bên trong System",
+        "Một màn hình giao diện người dùng nhìn thấy"
+      ],
+      "answer": 1,
+      "explanation": "Actor là vai trò (role) mà một người, một hệ thống khác hoặc bất cứ thứ gì đảm nhận khi tương tác với System, và luôn nằm bên ngoài ranh giới hệ thống."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Vị trí của Actor trên sơ đồ Use Case là gì?",
+      "options": [
+        "Bên trong system boundary",
+        "Bên ngoài system boundary",
+        "Bên trong hình elip của Use case",
+        "Không có quy tắc về vị trí"
+      ],
+      "answer": 1,
+      "explanation": "Actor luôn nằm bên ngoài system boundary. Thành phần nằm bên trong ranh giới là Use case, không phải Actor."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 8,
+      "question": "Đâu là một Actor hệ thống ngoài trong ví dụ về hệ thống bán hàng?",
+      "options": [
+        "Cổng thanh toán ngân hàng",
+        "Bảng database sản phẩm",
+        "Hàm tính thuế",
+        "Màn hình giỏ hàng"
+      ],
+      "answer": 0,
+      "explanation": "Cổng thanh toán ngân hàng là một hệ thống bên ngoài cần tương tác với hệ thống đang mô hình hóa, nên là Actor loại hệ thống ngoài. Bảng database, hàm tính thuế và màn hình giỏ hàng đều nằm bên trong System."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 8,
+      "question": "Cách đặt tên Actor nào là ĐÚNG theo quy ước?",
+      "options": [
+        "Query student data",
+        "register",
+        "Student",
+        "System User"
+      ],
+      "answer": 2,
+      "explanation": "Actor được đặt tên bằng danh từ viết hoa chữ cái đầu, ví dụ Student. Query student data là tên Use case (động từ), register viết thường, còn System User là thành phần bên trong hệ thống."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 8,
+      "question": "Association (đường liên kết) giữa Actor và Use case có đặc điểm nào?",
+      "options": [
+        "Có mũi tên và có nhãn",
+        "Không có mũi tên và không có nhãn",
+        "Có mũi tên nhưng không có nhãn",
+        "Là một đường đứt đoạn"
+      ],
+      "answer": 1,
+      "explanation": "Association là đường thẳng nối Actor với Use case, không có mũi tên và không có nhãn trong sơ đồ Use Case chuẩn."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 8,
+      "question": "Nếu ba sinh viên cùng sử dụng hệ thống, sơ đồ Use Case nên vẽ bao nhiêu Actor?",
+      "options": [
+        "Ba Actor khác nhau",
+        "Một Actor tên là Student",
+        "Không vẽ Actor nào",
+        "Một Actor cho mỗi use case"
+      ],
+      "answer": 1,
+      "explanation": "Actor đại diện cho vai trò chứ không phải cá nhân cụ thể, nên ba sinh viên cùng giữ vai trò Student chỉ cần một Actor."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 8,
+      "question": "Trong ví dụ Student Administration, Actor là gì?",
+      "options": [
+        "Query student data",
+        "Issue certificate",
+        "Professor",
+        "Announce exam"
+      ],
+      "answer": 2,
+      "explanation": "Professor là Actor của hệ thống Quản lý Sinh viên. Query student data, Issue certificate và Announce exam là các Use case."
+    },
+    {
+      "id": "q8",
+      "type": "essay",
+      "points": 40,
+      "question": "Hệ thống bán hàng trực tuyến cần gửi email xác nhận đơn hàng cho khách hàng. Hãy liệt kê các Actor của hệ thống và giải thích vì sao mỗi thành phần đó là Actor.",
+      "modelAnswer": "Các Actor có thể gồm:\n1. Customer (khách hàng) — vai trò người dùng đặt hàng, nằm ngoài hệ thống.\n2. Payment Gateway (cổng thanh toán) — hệ thống bên ngoài cần trao đổi dữ liệu thanh toán với hệ thống.\n3. Email Service (dịch vụ gửi email) — hệ thống bên ngoài được hệ thống gọi để gửi email xác nhận.\n4. Warehouse Staff (nhân viên kho) — người cập nhật tồn kho và xác nhận đơn.\n\nLý do: các thành phần này đều nằm ngoài system boundary và cần tương tác với hệ thống để đạt được mục tiêu của họ (mua hàng, nhận tiền, nhận email, giao hàng). Các bảng database, hàm tính tổng tiền hay màn hình checkout là thành phần bên trong hệ thống nên không phải Actor.",
+      "rubric": [
+        {
+          "id": "r1",
+          "points": 8,
+          "text": "Liệt kê được Actor người (ví dụ Customer, Warehouse Staff)."
+        },
+        {
+          "id": "r2",
+          "points": 8,
+          "text": "Nhận ra dịch vụ gửi email là một Actor hệ thống ngoài."
+        },
+        {
+          "id": "r3",
+          "points": 12,
+          "text": "Giải thích đúng vì sao các thành phần đó là Actor: nằm ngoài system boundary và tương tác với hệ thống để đạt mục tiêu."
+        },
+        {
+          "id": "r4",
+          "points": 12,
+          "text": "Phân biệt được thành phần bên trong hệ thống (database, hàm, màn hình) không phải là Actor."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "courses": [
+    {
+      "id": "usecase",
+      "title": "Use Case Diagram",
+      "description": "Nắm vững Actor, Use case, các quan hệ include, extend, generalization và cách mô hình hóa đúng.",
+      "status": "active",
+      "modules": [
+        {
+          "id": "uc-m1",
+          "title": "Module 1: Nền tảng",
+          "lessons": [
+            { "id": "uc-m1-b1", "title": "Khái niệm", "slides": "2-5", "minutes": 7, "ready": true,
+              "file": "content/usecase/uc-m1-b1.html", "quiz": "content/usecase/uc-m1-b1.quiz.json" },
+            { "id": "uc-m1-b2", "title": "Actor", "slides": "6-8", "minutes": 8, "ready": true,
+              "file": "content/usecase/uc-m1-b2.html", "quiz": "content/usecase/uc-m1-b2.quiz.json" },
+            { "id": "uc-m1-b3", "title": "Ký hiệu", "slides": "9", "minutes": 4, "ready": false,
+              "file": "content/usecase/uc-m1-b3.html", "quiz": "content/usecase/uc-m1-b3.quiz.json" }
+          ]
+        },
+        {
+          "id": "uc-m2",
+          "title": "Module 2: Các mối quan hệ",
+          "lessons": [
+            { "id": "uc-m2-b1", "title": "include", "slides": "10", "minutes": 6, "ready": false,
+              "file": "content/usecase/uc-m2-b1.html", "quiz": "content/usecase/uc-m2-b1.quiz.json" },
+            { "id": "uc-m2-b2", "title": "extend và Extension point", "slides": "11-12", "minutes": 8, "ready": false,
+              "file": "content/usecase/uc-m2-b2.html", "quiz": "content/usecase/uc-m2-b2.quiz.json" },
+            { "id": "uc-m2-b3", "title": "Generalization (Use case, Actor)", "slides": "13-15", "minutes": 8, "ready": false,
+              "file": "content/usecase/uc-m2-b3.html", "quiz": "content/usecase/uc-m2-b3.quiz.json" }
+          ]
+        },
+        {
+          "id": "uc-m3",
+          "title": "Module 3: Phân tích và mô tả",
+          "lessons": [
+            { "id": "uc-m3-b1", "title": "Xác định Actor và Use case", "slides": "20-22", "minutes": 8, "ready": false,
+              "file": "content/usecase/uc-m3-b1.html", "quiz": "content/usecase/uc-m3-b1.quiz.json" },
+            { "id": "uc-m3-b2", "title": "Mô tả Use case dạng văn bản", "slides": "23-24", "minutes": 8, "ready": false,
+              "file": "content/usecase/uc-m3-b2.html", "quiz": "content/usecase/uc-m3-b2.quiz.json" },
+            { "id": "uc-m3-b3", "title": "Quy tắc mô hình hóa", "slides": "25", "minutes": 5, "ready": false,
+              "file": "content/usecase/uc-m3-b3.html", "quiz": "content/usecase/uc-m3-b3.quiz.json" }
+          ]
+        },
+        {
+          "id": "uc-m4",
+          "title": "Module 4: Lỗi thường gặp và tổng hợp",
+          "lessons": [
+            { "id": "uc-m4-b1", "title": "Các lỗi mô hình hóa (phần 1)", "slides": "26-29", "minutes": 7, "ready": false,
+              "file": "content/usecase/uc-m4-b1.html", "quiz": "content/usecase/uc-m4-b1.quiz.json" },
+            { "id": "uc-m4-b2", "title": "Các lỗi mô hình hóa (phần 2)", "slides": "30-32", "minutes": 6, "ready": false,
+              "file": "content/usecase/uc-m4-b2.html", "quiz": "content/usecase/uc-m4-b2.quiz.json" },
+            { "id": "uc-m4-b3", "title": "Ví dụ tổng hợp Student Administration", "slides": "33-39", "minutes": 12, "ready": false,
+              "file": "content/usecase/uc-m4-b3.html", "quiz": "content/usecase/uc-m4-b3.quiz.json" }
+          ]
+        }
+      ]
+    },
+    { "id": "sequence", "title": "Sơ đồ tuần tự", "description": "Lifeline, message, fragment.", "status": "coming_soon", "modules": [] },
+    { "id": "class", "title": "Sơ đồ lớp", "description": "Class, quan hệ, bản số.", "status": "coming_soon", "modules": [] }
+  ]
+}

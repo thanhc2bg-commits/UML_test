@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="quiz anim-enter">
+        <div class="breadcrumb">
+            <a href="#/lesson/{{encodedLessonId}}">← Về bài học</a>
+        </div>
+        <div class="quiz__header">
+            <h1>Bài kiểm tra</h1>
+            <span class="quiz__score" id="quiz-live-score">{{displayScore}} / 100</span>
+        </div>
+        <p class="quiz__progress">Thang điểm 100 · Đạt ≥ {{passScore}}</p>
+        <div id="quiz-form">
+            {{#each questions}}
+            <div class="question" data-qid="{{id}}">
+                <p class="question__text">Câu {{number}} <span class="text-muted">({{points}} điểm)</span>: {{question}}</p>
+                {{#if isMcq}}
+                <div class="answers">
+                    {{#each options}}
+                    <label class="{{className}}">
+                        <input type="radio" name="q_{{../id}}" value="{{index}}" {{#if selected}}checked{{/if}} {{#unless ../isAnswering}}disabled{{/unless}}>
+                        <span class="answer__text">{{text}}</span>
+                    </label>
+                    {{/each}}
+                </div>
+                {{#if explanationVisible}}
+                <div class="question__explain"><strong>Giải thích:</strong> {{explanation}}</div>
+                {{/if}}
+                {{else}}
+                <textarea class="essay-input" data-qid="{{id}}" rows="4" placeholder="Nhập câu trả lời…" {{#unless isAnswering}}disabled{{/unless}}>{{essayText}}</textarea>
+                {{#unless isAnswering}}
+                <div class="essay-model">
+                    <p class="note__title">Đáp án mẫu</p>
+                    <div class="essay-model__body">{{modelAnswer}}</div>
+                </div>
+                <div class="essay-rubric">
+                    <p class="note__title">Tự chấm điểm — tích những ý bạn đã đạt</p>
+                    {{#each rubric}}
+                    <label class="rubric-item">
+                        <input type="checkbox" data-qid="{{../id}}" data-ri="{{index}}" {{#if checked}}checked{{/if}} {{#if ../isDone}}disabled{{/if}}>
+                        <span>{{text}} <strong>({{points}} đ)</strong></span>
+                    </label>
+                    {{/each}}
+                </div>
+                {{/unless}}
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+        <div class="quiz__actions">{{{actionsHTML}}}</div>
+        {{{resultHTML}}}
+    </div>
+</div>

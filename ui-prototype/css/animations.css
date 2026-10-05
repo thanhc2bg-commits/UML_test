@@ -1,0 +1,124 @@
+/* =========================================================
+   Ôn tập UML — Animations & tiện ích chuyển động
+   Chỉ chứa @keyframes + class tiện ích, không style layout
+   Thời lượng 150–400ms
+   ========================================================= */
+
+/* ---------- 1. Vào trang: fade + trượt nhẹ ---------- */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.anim-enter {
+  animation: fadeSlideIn .28s ease-out both;
+}
+
+/* Alias tương thích với các view cũ dùng class fade-in */
+.fade-in {
+  animation: fadeSlideIn .28s ease-out both;
+}
+
+/* Biến thể trượt từ trái (dùng cho breadcrumb / nav phụ) */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.anim-slide-left {
+  animation: slideInLeft .25s ease-out both;
+}
+
+/* ---------- 2. Accordion mở/đóng mượt ----------
+   Dùng kèm .module__body { display:grid; grid-template-rows: 0fr; }
+   Khi thêm .is-open, grid-template-rows chuyển 1fr.
+   Animation ở đây chỉ bổ trợ hiệu ứng phụ (chevron, inner). */
+
+.module__body-inner {
+  transition: opacity .25s ease, transform .25s ease;
+  opacity: 0;
+  transform: translateY(-4px);
+}
+.module.is-open .module__body-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 3. Thanh tiến độ chạy từ 0 ---------- */
+@keyframes progressGrow {
+  from { width: 0; }
+  /* to: width lấy theo inline style JS set */
+}
+
+.progress__bar.anim-progress {
+  animation: progressGrow .6s ease-out both;
+}
+
+/* ---------- 4. Card nổi lên khi hover ---------- */
+.card-hover {
+  transition: transform .2s ease, box-shadow .2s ease;
+  will-change: transform;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(15, 34, 51, .12);
+}
+
+/* ---------- 5. Đáp án đúng: nháy xanh nhẹ ---------- */
+@keyframes pulseCorrect {
+  0%   { box-shadow: 0 0 0 0 rgba(22, 163, 74, .45); }
+  70%  { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+}
+.answer.is-correct.anim-pulse {
+  animation: pulseCorrect .5s ease-out;
+}
+
+/* ---------- 6. Đáp án sai: rung ngang ---------- */
+@keyframes shakeX {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-5px); }
+  40%      { transform: translateX(5px); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(3px); }
+}
+.answer.is-wrong.anim-shake {
+  animation: shakeX .35s ease-in-out;
+}
+
+/* ---------- 7. Stagger cho danh sách bài ---------- */
+@keyframes itemIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.stagger > * {
+  opacity: 0;
+  animation: itemIn .28s ease-out forwards;
+}
+/* Tạo độ trễ tăng dần cho ~12 item đầu (đủ dùng) */
+.stagger > *:nth-child(1)  { animation-delay: .02s; }
+.stagger > *:nth-child(2)  { animation-delay: .05s; }
+.stagger > *:nth-child(3)  { animation-delay: .08s; }
+.stagger > *:nth-child(4)  { animation-delay: .11s; }
+.stagger > *:nth-child(5)  { animation-delay: .14s; }
+.stagger > *:nth-child(6)  { animation-delay: .17s; }
+.stagger > *:nth-child(7)  { animation-delay: .20s; }
+.stagger > *:nth-child(8)  { animation-delay: .23s; }
+.stagger > *:nth-child(9)  { animation-delay: .26s; }
+.stagger > *:nth-child(10) { animation-delay: .29s; }
+.stagger > *:nth-child(11) { animation-delay: .32s; }
+.stagger > *:nth-child(12) { animation-delay: .35s; }
+
+/* ---------- 8. Tắt toàn bộ animation khi người dùng yêu cầu ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .stagger > * { opacity: 1 !important; }
+  .module__body-inner { opacity: 1 !important; transform: none !important; }
+}

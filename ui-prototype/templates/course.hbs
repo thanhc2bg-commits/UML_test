@@ -1,0 +1,24 @@
+<div class="container fade-in">
+    <div class="breadcrumb"><a href="#/home">← Trang chủ</a></div>
+    <div class="course-header">
+        <div><p class="eyebrow">KHÓA HỌC</p><h1>{{title}}</h1><p class="text-muted">{{description}}</p></div>
+        <div class="course-header__icon" aria-hidden="true">⌘</div>
+    </div>
+    <section class="panel lesson-list">
+        <div class="section-heading"><h2>Nội dung khóa học</h2><span class="section-count">{{lessonCount}} bài học · {{moduleCount}} module</span></div>
+        {{#each modules}}
+        <section class="course-module">
+            <div class="module-heading"><span class="module-number">{{number}}</span><h2>{{title}}</h2><span class="section-count">{{lessons.length}} bài</span></div>
+            <div class="module-lessons">
+                {{#each lessons}}
+                <a class="lesson-row {{#unless ready}}is-locked{{/unless}}" href="{{url}}" {{#unless ready}}aria-disabled="true"{{/unless}}>
+                    <span class="lesson-number">{{number}}</span>
+                    <span><strong>{{title}}</strong><small>Slide {{slides}} · {{minutes}} phút</small></span>
+                    <span class="lesson-arrow">{{#if ready}}→{{else}}🔒{{/if}}</span>
+                </a>
+                {{/each}}
+            </div>
+        </section>
+        {{/each}}
+    </section>
+</div>

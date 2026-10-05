@@ -1,0 +1,51 @@
+<div class="container fade-in admin-dashboard">
+    <div class="page-heading">
+        <div><p class="eyebrow">QUẢN LÝ HỆ THỐNG</p><h1>Tổng quan</h1><p class="text-muted">Theo dõi hoạt động học tập trên nền tảng.</p></div>
+        <div class="heading-icon heading-icon--admin" aria-hidden="true">⚙</div>
+    </div>
+    {{#if loading}}
+    <section class="panel admin-status"><span class="button-spinner" aria-hidden="true"></span><p>Đang tải dữ liệu quản lý…</p></section>
+    {{else if error}}
+    <section class="error-msg admin-status" role="alert"><strong>Không tải được dashboard</strong><p>{{error}}</p><a class="btn btn-ghost" href="#/admin">Thử lại</a></section>
+    {{else}}
+    <div class="stats-grid">
+        <div class="stat-card"><span class="stat-card__icon">♙</span><strong>{{stats.learnerCount}}</strong><span>Học viên</span></div>
+        <div class="stat-card"><span class="stat-card__icon">▣</span><strong>{{stats.quizCount}}</strong><span>Lượt nộp quiz</span></div>
+        <div class="stat-card"><span class="stat-card__icon">◷</span><strong>{{stats.studyLabel}}</strong><span>Tổng thời gian học</span></div>
+    </div>
+    <section class="panel admin-panel">
+        <div class="section-heading"><div><h2>Thống kê học viên</h2><p class="text-muted">Màu đậm hơn biểu thị giá trị cao hơn trong từng chỉ số.</p></div><span class="tag">HEATMAP</span></div>
+        {{#if users.length}}
+        <div class="admin-table-wrap">
+            <table class="admin-table">
+                <thead><tr><th>Học viên</th><th>Lượt quiz</th><th>Điểm cao nhất</th><th>Độ chính xác</th><th>Thời gian học</th><th>Hoạt động cuối</th></tr></thead>
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td><strong>{{displayName}}</strong><small>{{role}}</small></td>
+                        <td><span class="heat-cell heat-{{quizHeat}}">{{quizzes}}</span></td>
+                        <td><span class="heat-cell heat-{{scoreHeat}}">{{bestScore}}%</span></td>
+                        <td><span class="heat-cell heat-{{accuracyHeat}}">{{accuracy}}%</span></td>
+                        <td><span class="heat-cell heat-{{studyHeat}}">{{studyLabel}}</span></td>
+                        <td>{{lastActiveLabel}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{else}}
+        <p class="empty-state">Chưa có học viên hoặc dữ liệu thống kê.</p>
+        {{/if}}
+    </section>
+    <section class="panel admin-panel">
+        <div class="section-heading"><div><h2>Thời gian tham gia</h2><p class="text-muted">So sánh tổng thời gian học của từng học viên.</p></div><span class="tag">TIME SPENT</span></div>
+        {{#if users.length}}
+        <div class="admin-activity-chart">
+            {{#each users}}
+            <div class="activity-row"><div class="activity-label"><strong>{{displayName}}</strong><span>{{studyLabel}}</span></div><div class="activity-track"><span style="width: {{activityWidth}}"></span></div></div>
+            {{/each}}
+        </div>
+        {{else}}<p class="empty-state">Chưa có dữ liệu thời gian học.</p>{{/if}}
+    </section>
+    {{/if}}
+</div>

@@ -17,31 +17,25 @@ function shuffleArray(arr) {
     return a;
 }
 
-function prepareLessonContent(source, lessonId) {
+function prepareLessonContent(source) {
     const doc = new DOMParser().parseFromString(source, 'text/html');
-    const styles = [...doc.querySelectorAll('style')];
     const scripts = [...doc.querySelectorAll('script')].map(script => script.textContent || '');
 
-    styles.forEach((style, index) => {
-        const styleId = `lesson-style-${lessonId}-${index}`;
-        document.getElementById(styleId)?.remove();
-        style.id = styleId;
-        document.head.appendChild(style);
-    });
-
-    doc.querySelectorAll('style, script').forEach(element => element.remove());
+    // Giữ <style> trong content để CSS và animation có cùng vòng đời với bài học.
+    // Script vẫn phải tách ra vì script chèn qua innerHTML không được trình duyệt thực thi.
+    doc.querySelectorAll('script').forEach(element => element.remove());
     return {
         html: doc.body.innerHTML,
         scripts
     };
 }
 
-function runLessonScripts(scripts) {
+function runLessonScripts(scripts, container) {
     scripts.forEach(source => {
         if (!source.trim()) return;
         const script = document.createElement('script');
         script.textContent = source;
-        document.body.appendChild(script);
+        container.appendChild(script);
         script.remove();
     });
 }
@@ -203,7 +197,7 @@ const pages = {
 
             const contentRes = await fetch(lesson.file);
             if (!contentRes.ok) throw new Error(`Không tải được nội dung bài học (HTTP ${contentRes.status}).`);
-            const content = prepareLessonContent(await contentRes.text(), lessonId);
+            const content = prepareLessonContent(await contentRes.text());
 
             view.innerHTML = await renderTemplate('lesson', {
                 id: lessonId,
@@ -211,7 +205,7 @@ const pages = {
                contentHTML: content.html,
                 encodedId: encodeURIComponent(lessonId)
             });
-            runLessonScripts(content.scripts);
+            runLessonScripts(content.scripts, view);
         } catch (err) {
             view.innerHTML = `<div class="container"><div class="panel"><p class="error-msg">${escapeHTML(err.message)}</p><a class="btn btn-ghost" href="#/home">← Về trang chủ</a></div></div>`;
         }

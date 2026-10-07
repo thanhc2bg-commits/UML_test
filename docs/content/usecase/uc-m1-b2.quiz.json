@@ -5,129 +5,170 @@
     {
       "id": "q1",
       "type": "mcq",
-      "points": 10,
-      "question": "Actor trong sơ đồ Use Case được hiểu chính xác là gì?",
+      "points": 8,
+      "question": "Theo slide, các Actor tương tác với System bằng cách nào?",
       "options": [
-        "Một chức năng mà hệ thống cung cấp cho người dùng",
-        "Một vai trò bên ngoài System tương tác với hệ thống",
-        "Một lớp dữ liệu nằm bên trong System",
-        "Một màn hình giao diện người dùng nhìn thấy"
+        "Chỉ bằng cách sử dụng System",
+        "Chỉ bằng cách được System sử dụng",
+        "Bằng cách sử dụng System hoặc bằng cách được System sử dụng",
+        "Bằng cách nằm bên trong System và thực thi mã nguồn"
       ],
-      "answer": 1,
-      "explanation": "Actor là vai trò (role) mà một người, một hệ thống khác hoặc bất cứ thứ gì đảm nhận khi tương tác với System, và luôn nằm bên ngoài ranh giới hệ thống."
+      "answer": 2,
+      "explanation": "Actor tương tác với System bằng cách sử dụng System, hoặc bằng cách được System sử dụng. Ví dụ: Professor sử dụng System để Inform student, còn E-Mail Server được System sử dụng."
     },
     {
       "id": "q2",
       "type": "mcq",
-      "points": 10,
-      "question": "Vị trí của Actor trên sơ đồ Use Case là gì?",
+      "points": 8,
+      "question": "Actor được kết nối với các Use case thông qua gì, và liên kết đó có đặc điểm nào?",
       "options": [
-        "Bên trong system boundary",
-        "Bên ngoài system boundary",
-        "Bên trong hình elip của Use case",
-        "Không có quy tắc về vị trí"
+        "Association; là liên kết nhị phân và có thể có bản số (Multiplicities)",
+        "Generalization; Actor kế thừa hành vi của Use case",
+        "«include»; Actor được tích hợp vào Use case",
+        "Association; nối đồng thời nhiều Actor và không bao giờ có bản số"
       ],
-      "answer": 1,
-      "explanation": "Actor luôn nằm bên ngoài system boundary. Thành phần nằm bên trong ranh giới là Use case, không phải Actor."
+      "answer": 0,
+      "explanation": "Actor được kết nối với Use case thông qua Association (Liên kết), tức là người đó \"giao tiếp\" với System. Association này là nhị phân (binary) và có thể có bản số (Multiplicities)."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "points": 8,
-      "question": "Đâu là một Actor hệ thống ngoài trong ví dụ về hệ thống bán hàng?",
+      "points": 9,
+      "question": "Quy tắc nào đúng với mỗi Actor trong sơ đồ Use Case?",
       "options": [
-        "Cổng thanh toán ngân hàng",
-        "Bảng database sản phẩm",
-        "Hàm tính thuế",
-        "Màn hình giỏ hàng"
+        "Chỉ được giao tiếp với đúng một Use case",
+        "Phải giao tiếp với ít nhất một Use case",
+        "Có thể không giao tiếp với Use case nào",
+        "Phải giao tiếp với tất cả các Use case"
       ],
-      "answer": 0,
-      "explanation": "Cổng thanh toán ngân hàng là một hệ thống bên ngoài cần tương tác với hệ thống đang mô hình hóa, nên là Actor loại hệ thống ngoài. Bảng database, hàm tính thuế và màn hình giỏ hàng đều nằm bên trong System."
+      "answer": 1,
+      "explanation": "Mỗi Actor phải giao tiếp với ít nhất một Use case. Một Actor chưa nối với Use case nào thì chưa hợp lệ."
     },
     {
       "id": "q4",
       "type": "mcq",
       "points": 8,
-      "question": "Cách đặt tên Actor nào là ĐÚNG theo quy ước?",
+      "question": "Ký hiệu nào dưới đây KHÔNG phải là biến thể ký hiệu của Actor?",
       "options": [
-        "Query student data",
-        "register",
-        "Student",
-        "System User"
+        "Hình người (ví dụ Student)",
+        "Hình chữ nhật có ghi «actor» (ví dụ Professor)",
+        "Biểu tượng máy chủ (ví dụ E-Mail Server)",
+        "Hình elip có ghi tên bên trong"
       ],
-      "answer": 2,
-      "explanation": "Actor được đặt tên bằng danh từ viết hoa chữ cái đầu, ví dụ Student. Query student data là tên Use case (động từ), register viết thường, còn System User là thành phần bên trong hệ thống."
+      "answer": 3,
+      "explanation": "Ba biến thể ký hiệu của Actor là hình người, khung chữ nhật «actor» và biểu tượng máy chủ. Hình elip là ký hiệu của Use case, không phải của Actor."
     },
     {
       "id": "q5",
       "type": "mcq",
-      "points": 8,
-      "question": "Association (đường liên kết) giữa Actor và Use case có đặc điểm nào?",
+      "points": 9,
+      "question": "Actor đại diện cho các vai trò (roles) của người dùng. Một người dùng cụ thể có thể làm gì với các vai trò này?",
       "options": [
-        "Có mũi tên và có nhãn",
-        "Không có mũi tên và không có nhãn",
-        "Có mũi tên nhưng không có nhãn",
-        "Là một đường đứt đoạn"
+        "Chỉ đóng đúng một vai trò duy nhất",
+        "Chỉ nhận thêm vai trò mà không được loại bỏ",
+        "Đóng, nhận và loại bỏ nhiều vai trò cùng một lúc",
+        "Luôn đóng mọi vai trò trong System cùng lúc"
       ],
-      "answer": 1,
-      "explanation": "Association là đường thẳng nối Actor với Use case, không có mũi tên và không có nhãn trong sơ đồ Use Case chuẩn."
+      "answer": 2,
+      "explanation": "Actor là vai trò chứ không phải một con người cụ thể. Người dùng cụ thể có thể đóng, nhận và loại bỏ nhiều vai trò cùng một lúc."
     },
     {
       "id": "q6",
       "type": "mcq",
       "points": 8,
-      "question": "Nếu ba sinh viên cùng sử dụng hệ thống, sơ đồ Use Case nên vẽ bao nhiêu Actor?",
+      "question": "Actor nằm ở vị trí nào so với System Boundaries (ranh giới hệ thống)?",
       "options": [
-        "Ba Actor khác nhau",
-        "Một Actor tên là Student",
-        "Không vẽ Actor nào",
-        "Một Actor cho mỗi use case"
+        "Bên trong System Boundaries",
+        "Rõ ràng bên ngoài System Boundaries",
+        "Nằm đè lên đường biên của System",
+        "Có thể nằm bên trong hoặc bên ngoài tùy ký hiệu"
       ],
       "answer": 1,
-      "explanation": "Actor đại diện cho vai trò chứ không phải cá nhân cụ thể, nên ba sinh viên cùng giữ vai trò Student chỉ cần một Actor."
+      "explanation": "Các Actor nằm rõ ràng bên ngoài System Boundaries. Bên trong ranh giới hệ thống là các Use case."
     },
     {
       "id": "q7",
       "type": "mcq",
       "points": 8,
-      "question": "Trong ví dụ Student Administration, Actor là gì?",
+      "question": "Trong ví dụ Laboratory Assignment, Class Assistant được mô hình hóa bên trong System bao gồm gì?",
       "options": [
-        "Query student data",
-        "Issue certificate",
-        "Professor",
-        "Announce exam"
+        "Các Object chứa dữ liệu người dùng (tên, số an sinh xã hội, ...)",
+        "Use case Conduct oral exam",
+        "Các Actor Student tham gia buổi thi",
+        "Ranh giới của System Laboratory Assignment"
       ],
-      "answer": 2,
-      "explanation": "Professor là Actor của hệ thống Quản lý Sinh viên. Query student data, Issue certificate và Announce exam là các Use case."
+      "answer": 0,
+      "explanation": "Dữ liệu người dùng thường cũng được quản lý bên trong System và được mô hình hóa thành các Object hoặc Class. Class Assistant bao gồm các Object chứa dữ liệu người dùng, khác với Actor Assistant là vai trò nằm bên ngoài System."
     },
     {
       "id": "q8",
-      "type": "essay",
-      "points": 40,
-      "question": "Hệ thống bán hàng trực tuyến cần gửi email xác nhận đơn hàng cho khách hàng. Hãy liệt kê các Actor của hệ thống và giải thích vì sao mỗi thành phần đó là Actor.",
-      "modelAnswer": "Các Actor có thể gồm:\n1. Customer (khách hàng) — vai trò người dùng đặt hàng, nằm ngoài hệ thống.\n2. Payment Gateway (cổng thanh toán) — hệ thống bên ngoài cần trao đổi dữ liệu thanh toán với hệ thống.\n3. Email Service (dịch vụ gửi email) — hệ thống bên ngoài được hệ thống gọi để gửi email xác nhận.\n4. Warehouse Staff (nhân viên kho) — người cập nhật tồn kho và xác nhận đơn.\n\nLý do: các thành phần này đều nằm ngoài system boundary và cần tương tác với hệ thống để đạt được mục tiêu của họ (mua hàng, nhận tiền, nhận email, giao hàng). Các bảng database, hàm tính tổng tiền hay màn hình checkout là thành phần bên trong hệ thống nên không phải Actor.",
-      "rubric": [
-        {
-          "id": "r1",
-          "points": 8,
-          "text": "Liệt kê được Actor người (ví dụ Customer, Warehouse Staff)."
-        },
-        {
-          "id": "r2",
-          "points": 8,
-          "text": "Nhận ra dịch vụ gửi email là một Actor hệ thống ngoài."
-        },
-        {
-          "id": "r3",
-          "points": 12,
-          "text": "Giải thích đúng vì sao các thành phần đó là Actor: nằm ngoài system boundary và tương tác với hệ thống để đạt mục tiêu."
-        },
-        {
-          "id": "r4",
-          "points": 12,
-          "text": "Phân biệt được thành phần bên trong hệ thống (database, hàm, màn hình) không phải là Actor."
-        }
-      ]
+      "type": "mcq",
+      "points": 8,
+      "question": "Trong ví dụ Laboratory Assignment, bản số 1..3 ở phía Student có nghĩa là gì?",
+      "options": [
+        "Mỗi Student phải có đúng 3 Assistant",
+        "System có từ 1 đến 3 Use case",
+        "Student chỉ được thi tối đa 3 lần",
+        "Một Conduct oral exam có từ 1 đến 3 Student tham gia"
+      ],
+      "answer": 3,
+      "explanation": "Bản số (Multiplicity) 1..3 ghi ở đầu Student của Association: trong một Conduct oral exam có từ 1 đến 3 Student tham gia."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 8,
+      "question": "Trong các Actor sau, Actor nào là phi con người (Non-human)?",
+      "options": [
+        "Student",
+        "Professor",
+        "E-Mail Server",
+        "Assistant"
+      ],
+      "answer": 2,
+      "explanation": "Actor con người (Human) ví dụ như Student, Professor. Actor phi con người (Non-human) ví dụ như E-Mail Server."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 9,
+      "question": "Actor phụ (Secondary) là Actor như thế nào?",
+      "options": [
+        "Đối tượng hưởng lợi chính của ứng dụng",
+        "Actor cần thiết để System hoạt động",
+        "Actor tự khởi tạo các Use case",
+        "Actor không tự khởi tạo bất kỳ Use case nào"
+      ],
+      "answer": 1,
+      "explanation": "Actor phụ (Secondary) là Actor cần thiết để System hoạt động. Đối tượng hưởng lợi chính của ứng dụng là Actor chính (Primary)."
+    },
+    {
+      "id": "q11",
+      "type": "mcq",
+      "points": 9,
+      "question": "Actor bị động (Passive) là Actor như thế nào?",
+      "options": [
+        "Tự khởi tạo các Use case",
+        "Đối tượng hưởng lợi chính của ứng dụng",
+        "Cần thiết để System hoạt động",
+        "Không tự khởi tạo bất kỳ Use case nào"
+      ],
+      "answer": 3,
+      "explanation": "Actor bị động (Passive) không tự khởi tạo bất kỳ Use case nào. Actor chủ động (Active) mới là Actor tự khởi tạo các Use case."
+    },
+    {
+      "id": "q12",
+      "type": "mcq",
+      "points": 8,
+      "question": "Trong ví dụ Use case Inform student (slide), E-Mail Server được phân loại như thế nào?",
+      "options": [
+        "Non-human, secondary, passive",
+        "Human, primary, active",
+        "Non-human, primary, active",
+        "Human, secondary, passive"
+      ],
+      "answer": 0,
+      "explanation": "E-Mail Server là Actor phi con người (non-human), phụ (secondary, cần thiết để System hoạt động) và bị động (passive, không tự khởi tạo Use case). Còn Professor trong cùng ví dụ là human, primary, active."
     }
   ]
 }

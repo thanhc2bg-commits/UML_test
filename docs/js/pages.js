@@ -18,7 +18,14 @@ function shuffleArray(arr) {
 }
 
 function prepareLessonContent(source) {
-    const doc = new DOMParser().parseFromString(source, 'text/html');
+    // Live Server injects its reload script before closing SVG tags. When an
+    // SVG contains several script tags, that injection can make DOMParser
+    // merge the reload script with the lesson script and truncate it.
+    const cleanSource = source.replace(
+        /<!--\s*Code injected by live-server\s*-->[\s\S]*?<\/script>/gi,
+        ''
+    );
+    const doc = new DOMParser().parseFromString(cleanSource, 'text/html');
     const scripts = [...doc.querySelectorAll('script')].map(script => script.textContent || '');
 
     // Giữ <style> trong content để CSS và animation có cùng vòng đời với bài học.

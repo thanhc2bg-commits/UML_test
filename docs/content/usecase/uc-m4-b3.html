@@ -1,0 +1,340 @@
+<!-- Bắt đầu nội dung bài học uc-m4-b3 (Ví dụ tổng hợp Student Administration - slide 32-39) -->
+<div class="lesson-content" id="uc-m4b3-root">
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="tb-person" viewBox="0 0 60 100">
+                <circle cx="30" cy="14" r="11" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
+                <path d="M30 25 V62 M10 40 H50 M30 62 L12 94 M30 62 L48 94" fill="none" stroke="currentColor"
+                      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </symbol>
+            <marker id="tb-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                <path d="M1 1 L9 5 L1 9" fill="none" stroke="#4A5568" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"></path>
+            </marker>
+            <marker id="tb-ah-tri" viewBox="0 0 14 12" refX="12.5" refY="6" markerWidth="12" markerHeight="10" orient="auto">
+                <path d="M1 1 L13 6 L1 11 Z" fill="#fff" stroke="#12233e" stroke-width="1.3" stroke-linejoin="round"></path>
+            </marker>
+        </defs>
+    </svg>
+
+    <div class="uc-lesson-objectives" style="margin-top: 4rem;">
+        <h3>Mục tiêu bài học</h3>
+        <ul>
+            <li>Áp dụng toàn bộ kiến thức đã học (Actor, Use case, «include», «extend», Generalization) vào một ví dụ tổng hợp: hệ thống Student Administration.</li>
+            <li>Đọc hiểu một bản mô tả Use case hoàn chỉnh khác (Print certificate), viết hoàn toàn bằng tiếng Việt.</li>
+            <li>Nắm hai mẹo mô hình hóa cuối cùng: giữ cùng mức độ trừu tượng, và chỉ đưa vào những gì thực sự liên quan.</li>
+        </ul>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>Mục tiêu ví dụ &amp; Mô tả bằng lời <span class="tb-tag">Slide 32</span></h3>
+    <p><em>Mục tiêu: Thể hiện đơn giản hóa hệ thống "Student administration" của một trường đại học.</em></p>
+    <ul class="tb-desc">
+        <li>Nhiều hoạt động hành chính quan trọng tại một trường đại học được xử lý bởi <strong>Văn phòng Quản lý Sinh viên</strong> (Student Administration Office).</li>
+        <li><strong>Sinh viên</strong> có thể <strong>ghi danh (enrol)</strong> và <strong>đăng ký (register)</strong> tại đây, cũng như <strong>rút khỏi (withdraw)</strong> chương trình học.</li>
+        <li>Sinh viên nhận chứng chỉ tại đây. Nhân viên <strong>in chứng chỉ</strong>. <strong>Giảng viên</strong> gửi dữ liệu liên quan đến chứng chỉ cho Văn phòng. Sau đó, sinh viên tự động được thông báo bởi <strong>Notification system</strong>.</li>
+        <li>Có sự phân biệt giữa 2 loại nhân viên: a) người xử lý riêng dữ liệu sinh viên (<strong>Service employee</strong>) và b) người thực hiện tất cả các tác vụ khác (<strong>Administration employee</strong>), nhưng cả hai nhóm đều <strong>cung cấp thông tin</strong> (issue information).</li>
+        <li>Administration employee cấp chứng chỉ ngay khi sinh viên đến lấy. Họ cũng <strong>tạo các khóa học</strong> (create courses). Khi một khóa học được tạo, một <strong>giảng đường có thể được đặt trước</strong> cùng lúc.</li>
+    </ul>
+    <p class="tb-hint">Đọc kỹ đoạn mô tả này — đây chính là nguồn để xác định Actor và Use case ở phần dưới, theo đúng quy trình đã học ở bài "Xác định Actor và Use case".</p>
+
+    <hr class="uc-divider">
+
+    <h3>Xác định Actor và Use case <span class="tb-tag">Slide 33-37</span></h3>
+    <p>Áp dụng 5 câu hỏi và khái niệm Trigger đã học, ta xác định được:</p>
+    <ul>
+        <li><strong>Actor:</strong> Lecturer, Student, Employee (kế thừa bởi <em>ServEmp</em> và <em>AdminEmp</em>), và «actor» Notification System (phi con người).</li>
+        <li><strong>Use case:</strong> Issue information, {abstract} Manage student data (kế thừa bởi Register, Withdraw, Enroll), Print certificate, Transmit grade, Notify student, Create course, Reserve lecture hall.</li>
+    </ul>
+    <p>Sơ đồ Association đầy đủ bên dưới kết hợp <strong>tất cả</strong> các loại quan hệ đã học. Chạm vào một Actor để xem nó giao tiếp được với những Use case nào — trực tiếp hay kế thừa.</p>
+
+    <div class="tb-toggle" role="group" aria-label="Chọn Actor để xem các Use case liên quan">
+        <button type="button" class="tb-pill" data-tb-pick="employee" aria-pressed="false">Employee</button>
+        <button type="button" class="tb-pill" data-tb-pick="servemp" aria-pressed="false">ServEmp</button>
+        <button type="button" class="tb-pill" data-tb-pick="adminemp" aria-pressed="false">AdminEmp</button>
+        <button type="button" class="tb-pill" data-tb-pick="student" aria-pressed="false">Student</button>
+        <button type="button" class="tb-pill" data-tb-pick="lecturer" aria-pressed="false">Lecturer</button>
+        <button type="button" class="tb-pill" data-tb-pick="notif" aria-pressed="false">Notification System</button>
+        <button type="button" class="tb-pill tb-pill-ghost" data-tb-pick="reset">Đặt lại</button>
+    </div>
+
+    <div class="tb-card">
+        <svg class="tb-svg" viewBox="0 0 720 640" role="group" aria-label="Sơ đồ Association đầy đủ của hệ thống Student Administration">
+            <rect x="10" y="10" width="430" height="600" rx="8" fill="#F8FAFF" stroke="#12233e" stroke-width="2" stroke-dasharray="8 6"></rect>
+            <text x="225" y="34" text-anchor="middle" font-size="14" font-weight="700" fill="#12233e">Student Administration</text>
+
+            <g class="tb-uc" id="tb-uc-issue"><ellipse cx="150" cy="78" rx="92" ry="28"></ellipse><text x="150" y="83" text-anchor="middle" font-size="12.5" fill="#12233e">Issue information</text></g>
+            <g class="tb-uc" id="tb-uc-manage"><ellipse cx="150" cy="178" rx="100" ry="40"></ellipse><text x="150" y="172" text-anchor="middle" font-size="10.5" font-style="italic" fill="#64748B">{abstract}</text><text x="150" y="190" text-anchor="middle" font-size="12.5" fill="#12233e">Manage student data</text></g>
+            <g class="tb-uc" id="tb-uc-register"><ellipse cx="335" cy="112" rx="75" ry="26"></ellipse><text x="335" y="117" text-anchor="middle" font-size="12" fill="#12233e">Register</text></g>
+            <g class="tb-uc" id="tb-uc-withdraw"><ellipse cx="335" cy="186" rx="70" ry="24"></ellipse><text x="335" y="191" text-anchor="middle" font-size="12" fill="#12233e">Withdraw</text></g>
+            <g class="tb-uc" id="tb-uc-enroll"><ellipse cx="335" cy="256" rx="65" ry="24"></ellipse><text x="335" y="261" text-anchor="middle" font-size="12" fill="#12233e">Enroll</text></g>
+            <g class="tb-uc" id="tb-uc-print"><ellipse cx="150" cy="290" rx="88" ry="28"></ellipse><text x="150" y="295" text-anchor="middle" font-size="12.5" fill="#12233e">Print certificate</text></g>
+            <g class="tb-uc" id="tb-uc-create"><ellipse cx="150" cy="432" rx="88" ry="28"></ellipse><text x="150" y="437" text-anchor="middle" font-size="12.5" fill="#12233e">Create course</text></g>
+            <g class="tb-uc" id="tb-uc-reserve"><ellipse cx="150" cy="512" rx="88" ry="30"></ellipse><text x="150" y="508" text-anchor="middle" font-size="12" fill="#12233e">Reserve</text><text x="150" y="524" text-anchor="middle" font-size="12" fill="#12233e">lecture hall</text></g>
+            <g class="tb-uc" id="tb-uc-transmit"><ellipse cx="335" cy="432" rx="80" ry="26"></ellipse><text x="335" y="437" text-anchor="middle" font-size="12" fill="#12233e">Transmit grade</text></g>
+            <g class="tb-uc" id="tb-uc-notify"><ellipse cx="335" cy="512" rx="80" ry="28"></ellipse><text x="335" y="508" text-anchor="middle" font-size="12" fill="#12233e">Notify</text><text x="335" y="524" text-anchor="middle" font-size="12" fill="#12233e">student</text></g>
+
+            <line id="tb-gen-register" class="tb-gen" x1="298" y1="128" x2="222" y2="150" marker-end="url(#tb-ah-tri)"></line>
+            <line id="tb-gen-withdraw" class="tb-gen" x1="275" y1="186" x2="235" y2="180" marker-end="url(#tb-ah-tri)"></line>
+            <line id="tb-gen-enroll" class="tb-gen" x1="278" y1="246" x2="222" y2="202" marker-end="url(#tb-ah-tri)"></line>
+            <line id="tb-inc-reg-enroll" class="tb-dash" x1="335" y1="138" x2="335" y2="230" marker-end="url(#tb-ah)"></line>
+            <text x="348" y="186" font-size="10" font-style="italic" fill="#12233e">«include»</text>
+            <line id="tb-inc-tx-notify" class="tb-dash" x1="335" y1="458" x2="335" y2="484" marker-end="url(#tb-ah)"></line>
+            <text x="348" y="474" font-size="10" font-style="italic" fill="#12233e">«include»</text>
+            <line id="tb-ext-reserve-create" class="tb-dash" x1="150" y1="482" x2="150" y2="460" marker-end="url(#tb-ah)"></line>
+            <text x="164" y="474" font-size="10" font-style="italic" fill="#12233e">«extend»</text>
+
+            <g style="color:#12233e" id="tb-a-employee"><use href="#tb-person" x="540" y="18" width="50" height="84"></use><text x="565" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">Employee</text></g>
+            <g style="color:#12233e" id="tb-a-servemp"><use href="#tb-person" x="460" y="140" width="46" height="78"></use><text x="483" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">ServEmp</text></g>
+            <g style="color:#12233e" id="tb-a-adminemp"><use href="#tb-person" x="620" y="140" width="46" height="78"></use><text x="643" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">AdminEmp</text></g>
+            <line id="tb-gen-servemp" class="tb-gen" x1="483" y1="140" x2="552" y2="104" marker-end="url(#tb-ah-tri)"></line>
+            <line id="tb-gen-adminemp" class="tb-gen" x1="643" y1="140" x2="582" y2="104" marker-end="url(#tb-ah-tri)"></line>
+
+            <g style="color:#12233e" id="tb-a-student"><use href="#tb-person" x="540" y="258" width="50" height="84"></use><text x="565" y="356" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">Student</text></g>
+            <g style="color:#12233e" id="tb-a-lecturer"><use href="#tb-person" x="540" y="400" width="50" height="84"></use><text x="565" y="498" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">Lecturer</text></g>
+            <g id="tb-a-notif"><rect x="498" y="540" width="150" height="56" rx="4" fill="#fff" stroke="#12233e" stroke-width="1.6"></rect><text x="573" y="559" text-anchor="middle" font-size="10" font-style="italic" fill="#64748B">«actor»</text><text x="573" y="576" text-anchor="middle" font-size="11.5" font-weight="700" fill="#12233e">Notification System</text></g>
+
+            <line id="tb-as-emp-issue" class="tb-assoc" x1="540" y1="58" x2="242" y2="70" stroke="#4A5568"></line>
+            <line id="tb-as-admin-print" class="tb-assoc" x1="620" y1="200" x2="238" y2="294" stroke="#4A5568"></line>
+            <line id="tb-as-admin-create" class="tb-assoc" x1="620" y1="220" x2="238" y2="434" stroke="#4A5568"></line>
+            <line id="tb-as-stu-register" class="tb-assoc" x1="540" y1="292" x2="410" y2="118" stroke="#4A5568"></line>
+            <line id="tb-as-stu-withdraw" class="tb-assoc" x1="540" y1="308" x2="405" y2="188" stroke="#4A5568"></line>
+            <line id="tb-as-stu-enroll" class="tb-assoc" x1="540" y1="324" x2="400" y2="256" stroke="#4A5568"></line>
+            <line id="tb-as-lec-transmit" class="tb-assoc" x1="540" y1="430" x2="415" y2="432" stroke="#4A5568"></line>
+            <line id="tb-as-notif-notify" class="tb-assoc" x1="498" y1="562" x2="415" y2="515" stroke="#4A5568"></line>
+        </svg>
+        <p class="tb-caption" id="tb-caption" aria-live="polite">Chọn một Actor ở trên để khám phá sơ đồ.</p>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>Ví dụ mô tả: In chứng chỉ (Print certificate) <span class="tb-tag">Slide 38-39</span></h3>
+    <p>Một bản mô tả Use case khác, lần này viết hoàn toàn bằng tiếng Việt:</p>
+
+    <div class="tb-table" role="table" aria-label="Bản mô tả Use case In chứng chỉ">
+        <div class="tb-row" role="row"><div class="tb-cell tb-cell-label" role="rowheader">Tên</div><div class="tb-cell" role="cell">In chứng chỉ (Print certificate)</div></div>
+        <div class="tb-row" role="row"><div class="tb-cell tb-cell-label" role="rowheader">Mô tả ngắn gọn</div><div class="tb-cell" role="cell">Theo yêu cầu của sinh viên, một AdminEmp sẽ in chứng chỉ ra giấy.</div></div>
+        <div class="tb-row" role="row"><div class="tb-cell tb-cell-label" role="rowheader">Điều kiện tiên quyết</div><div class="tb-cell" role="cell">Sinh viên đã được chấm điểm và tất cả dữ liệu liên quan đã được nộp.</div></div>
+        <div class="tb-row" role="row"><div class="tb-cell tb-cell-label" role="rowheader">Điều kiện hậu</div><div class="tb-cell" role="cell">Chứng chỉ ở dạng in giấy đưa cho sinh viên.</div></div>
+        <div class="tb-row" role="row"><div class="tb-cell tb-cell-label" role="rowheader">Tình huống lỗi</div><div class="tb-cell" role="cell">Máy in không hoạt động.</div></div>
+        <div class="tb-row" role="row"><div class="tb-cell tb-cell-label" role="rowheader">Trạng thái System khi lỗi</div><div class="tb-cell" role="cell">Chứng chỉ không được in.</div></div>
+        <div class="tb-row" role="row"><div class="tb-cell tb-cell-label" role="rowheader">Các Actor giao tiếp</div><div class="tb-cell" role="cell">AdminEmp.</div></div>
+        <div class="tb-row" role="row"><div class="tb-cell tb-cell-label" role="rowheader">Trigger</div><div class="tb-cell" role="cell">Sinh viên muốn có một chứng chỉ bản in giấy.</div></div>
+    </div>
+
+    <div class="tb-flow-wrap">
+        <div class="tb-flow tb-flow-std">
+            <h4 class="tb-flow-title">Quy trình chuẩn</h4>
+            <div class="tb-step"><span class="tb-step-badge">1</span>Sinh viên đến phòng ban và yêu cầu một chứng chỉ in.</div>
+            <div class="tb-step"><span class="tb-step-badge">2</span>AdminEmp nhập mã số sinh viên.</div>
+            <div class="tb-step"><span class="tb-step-badge">3</span>AdminEmp chọn chứng chỉ.</div>
+            <div class="tb-step"><span class="tb-step-badge">4</span>AdminEmp chọn "print" (in).</div>
+            <div class="tb-step"><span class="tb-step-badge">5</span>System xác nhận rằng chứng chỉ đã được in.</div>
+            <div class="tb-step"><span class="tb-step-badge">6</span>Chứng chỉ được giao lại cho sinh viên.</div>
+        </div>
+        <div class="tb-flow tb-flow-alt">
+            <h4 class="tb-flow-title">Quy trình thay thế</h4>
+            <div class="tb-step tb-step-alt"><span class="tb-step-badge">1′</span>Sinh viên yêu cầu in chứng chỉ qua email.</div>
+            <div class="tb-step tb-step-alt"><span class="tb-step-badge">2-5</span>Tương tự như quy trình chuẩn.</div>
+            <div class="tb-step tb-step-alt"><span class="tb-step-badge">6′</span>Chứng chỉ được gửi qua đường bưu điện.</div>
+        </div>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>Hai mẹo mô hình hóa cuối cùng</h3>
+
+    <div class="tb-tip">
+        <h4>Mẹo 1: Giữ cùng một mức độ trừu tượng</h4>
+        <p>Các Use case trong cùng một sơ đồ nên nằm ở <strong>cùng một mức độ trừu tượng (level of abstraction)</strong>.</p>
+        <p class="tb-tip-bad">✗ Không nên: để "Manage student data" (quản lý cấp cao) đứng ngang hàng trực tiếp với "Select printer" (hành động vi mô, quá chi tiết) đối với Actor Employee — hai use case này chênh lệch quá nhiều về độ chi tiết.</p>
+    </div>
+
+    <div class="tb-tip">
+        <h4>Mẹo 2: Chỉ đưa vào những gì thực sự liên quan</h4>
+        <p><strong>CHỈ</strong> bao gồm các Use case và Actor thực sự <strong>liên quan (relevant)</strong>. Dĩ nhiên, có nhiều người khác có liên quan đến văn phòng sinh viên, nhưng họ <strong>CÓ THỂ BỎ QUA</strong> trong ngữ cảnh mô hình hóa này.</p>
+        <p class="tb-tip-bad">✗ Ví dụ sai lầm: vẽ Use case "Clean office" (Dọn dẹp văn phòng) và gán cho Actor "Cleaning Staff" (Nhân viên vệ sinh) trong hệ thống Student Office — không liên quan tới phạm vi quản lý sinh viên đang mô hình hóa.</p>
+    </div>
+
+    <hr class="uc-divider">
+
+    <div class="tb-summary">
+        <h3>Ghi nhớ nhanh</h3>
+        <ul>
+            <li>Một sơ đồ tổng hợp có thể kết hợp đồng thời: Association trực tiếp, Generalization (Actor lẫn Use case), «include», và «extend».</li>
+            <li>Actor con (ServEmp, AdminEmp) <strong>kế thừa</strong> mọi Use case của Actor cha (Employee), cộng thêm Use case riêng của mình.</li>
+            <li>{abstract} Manage student data không thể thực thi trực tiếp — chỉ Register, Withdraw, Enroll (các sub use case) mới thực thi được.</li>
+            <li>Hai mẹo cuối: giữ <strong>cùng mức độ trừu tượng</strong>, và chỉ đưa vào những gì <strong>thực sự liên quan</strong> đến phạm vi hệ thống.</li>
+        </ul>
+    </div>
+
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+
+    .lesson-content {
+        font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #334155; line-height: 1.75; font-size: clamp(16px, 0.9rem + 0.4vw, 18px);
+        width: 100%; max-width: 900px; margin: 0 auto; padding: 0 16px; box-sizing: border-box;
+        overflow-wrap: break-word; -webkit-text-size-adjust: 100%;
+    }
+    .lesson-content *, .lesson-content *::before, .lesson-content *::after { box-sizing: border-box; }
+    .lesson-content h2, .lesson-content h3, .lesson-content h4 { color: #1E293B; font-weight: 700; line-height: 1.35; margin-top: 1.5em; margin-bottom: 0.5em; }
+    .lesson-content h3 { font-size: clamp(19px, 1.05rem + 0.6vw, 22px); }
+    .lesson-content h4 { font-size: clamp(16px, 0.95rem + 0.3vw, 18px); }
+    .lesson-content p  { margin: 0 0 1em; }
+    .lesson-content ul { margin: 0 0 1em; padding-left: 1.4em; }
+    .lesson-content li { margin-bottom: 0.5em; }
+
+    .uc-lesson-objectives { background-color: #F8FAFC; border-left: 5px solid #3182CE; padding: clamp(14px, 3vw, 20px) clamp(16px, 3.5vw, 24px); margin-bottom: 30px; border-radius: 0 8px 8px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .uc-lesson-objectives h3 { margin-top: 0; color: #1E293B; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: 0.5px; }
+    .uc-lesson-objectives ul { margin-bottom: 0; padding-left: 20px; }
+    .uc-lesson-objectives li { color: #475569; font-weight: 500; }
+    .uc-divider { border: 0; border-top: 2px dashed #CBD5E1; margin: 30px 0; }
+    .tb-tag { display: inline-block; font-size: 13px; font-weight: 700; color: #2B6CB0; background: #EBF8FF; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
+
+    .tb-desc { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px 18px 14px 34px; }
+    .tb-desc li { font-size: 15.5px; }
+    .tb-hint { font-size: 14.5px; color: #64748B; }
+
+    .tb-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .tb-pill { min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 1.5px solid #CBD5E1; background: #fff; color: #334155; font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background-color .25s, border-color .25s, color .25s, box-shadow .25s; -webkit-tap-highlight-color: transparent; }
+    .tb-pill[aria-pressed="true"] { background: #2B6CB0; border-color: #2B6CB0; color: #fff; box-shadow: 0 3px 8px rgba(43,108,176,.3); }
+    .tb-pill-ghost { color: #475569; }
+    .tb-pill:focus-visible, .tb-uc:focus-visible { outline: 3px solid #3182CE; outline-offset: 2px; }
+
+    .tb-card { border: 1px solid #E2E8F0; border-radius: 10px; background: #fff; padding: 12px; margin: 12px 0; }
+    .tb-svg { display: block; width: 100%; height: auto; }
+    .tb-caption { margin: 10px 4px 2px; color: #475569; font-size: 15px; line-height: 1.65; min-height: 4.4em; }
+
+    .tb-uc ellipse { fill: #fff; stroke: #3182CE; stroke-width: 2; transition: fill .3s, stroke .3s, stroke-width .3s, opacity .3s; }
+    .tb-uc { transition: opacity .3s; }
+    .tb-uc.tb-hl ellipse { fill: #EBF8FF; stroke: #2B6CB0; stroke-width: 3.5; }
+    .tb-uc.tb-dim { opacity: .3; }
+    g[id^="tb-a-"] { transition: opacity .3s; }
+    g[id^="tb-a-"].tb-dim { opacity: .3; }
+    g[id^="tb-a-"].tb-hl-actor { color: #2B6CB0; }
+    #tb-a-notif.tb-dim rect { opacity: .3; }
+    #tb-a-notif.tb-hl-actor rect { stroke: #2B6CB0; stroke-width: 2.4; }
+    .tb-assoc { stroke-width: 1.6; transition: stroke .3s, opacity .3s, stroke-width .3s; }
+    .tb-assoc.tb-hl { stroke: #2B6CB0; stroke-width: 3; }
+    .tb-assoc.tb-dim { opacity: .18; }
+    .tb-gen { stroke: #12233e; stroke-width: 2; transition: stroke .3s, opacity .3s, stroke-width .3s; }
+    .tb-gen.tb-hl { stroke: #2B6CB0; stroke-width: 3; }
+    .tb-gen.tb-dim { opacity: .18; }
+    .tb-dash { stroke: #4A5568; stroke-width: 1.8; stroke-dasharray: 6 4; transition: stroke .3s, opacity .3s, stroke-width .3s; }
+    .tb-dash.tb-hl { stroke: #DD6B20; stroke-width: 3; }
+    .tb-dash.tb-dim { opacity: .18; }
+
+    .tb-table { border: 1px solid #E2E8F0; border-radius: 10px; overflow: hidden; margin: 14px 0; background: #fff; }
+    .tb-row { display: grid; grid-template-columns: minmax(140px, 0.9fr) 1.6fr; border-top: 1px solid #E2E8F0; }
+    .tb-row:first-child { border-top: none; }
+    .tb-cell { padding: 10px 14px; font-size: 14.5px; line-height: 1.55; }
+    .tb-cell-label { background: #F8FAFC; font-weight: 700; color: #1E293B; border-right: 1px solid #E2E8F0; }
+
+    .tb-flow-wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; margin: 14px 0; align-items: start; }
+    .tb-flow { border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px; background: #fff; }
+    .tb-flow-std { border-top: 4px solid #38A169; }
+    .tb-flow-alt { border-top: 4px solid #DD6B20; }
+    .tb-flow-title { margin: 0 0 10px; font-size: 14.5px; color: #64748B; text-transform: uppercase; letter-spacing: .4px; }
+    .tb-step { display: flex; align-items: flex-start; gap: 10px; padding: 9px 10px; border-radius: 8px; font-size: 14.5px; line-height: 1.5; margin-bottom: 6px; background: #F0FFF4; }
+    .tb-step-alt { background: #FFFAF0; }
+    .tb-step-badge { flex: 0 0 auto; min-width: 24px; height: 24px; padding: 0 4px; border-radius: 12px; background: #38A169; color: #fff; font-size: 11.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .tb-step-alt .tb-step-badge { background: #DD6B20; }
+
+    .tb-tip { background: #FAF5FF; border: 1px solid #E9D8FD; border-left: 5px solid #6B46C1; border-radius: 0 8px 8px 0; padding: 14px 20px; margin: 12px 0; }
+    .tb-tip h4 { margin-top: 0; color: #553C9A; }
+    .tb-tip-bad { background: #FFF5F5; border-radius: 6px; padding: 8px 12px; color: #9B2C2C; font-size: 14.5px; margin-bottom: 0; }
+
+    .tb-summary { background: #F0FFF4; border: 1px solid #C6F6D5; border-left: 5px solid #38A169; border-radius: 8px; padding: 14px 20px 6px; }
+    .tb-summary h3 { margin-top: 0; color: #276749; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: .5px; }
+
+    @media (hover: hover) { .tb-pill:hover { border-color: #2B6CB0; } .tb-pill[aria-pressed="true"]:hover { background: #2C5282; } }
+    @media (max-width: 768px) {
+        .lesson-content { padding: 0 14px; }
+        .tb-flow-wrap { grid-template-columns: 1fr; }
+        .tb-row { grid-template-columns: 1fr; }
+        .tb-cell-label { border-right: none; border-bottom: 1px solid #E2E8F0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+</style>
+
+<script>
+    (function () {
+        var root = document.getElementById('uc-m4b3-root') || document;
+        function $(sel) { return root.querySelector(sel); }
+        function $$(sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+
+        var ALL_UC = $$('.tb-uc');
+        var ALL_ACTOR = $$('g[id^="tb-a-"]');
+        var ALL_LINE = $$('.tb-assoc, .tb-gen, .tb-dash');
+
+        var TB = {
+            employee: {
+                actors: ['#tb-a-employee'], ucs: ['#tb-uc-issue'], lines: ['#tb-as-emp-issue'],
+                text: 'Employee (Actor cha) giao tiếp trực tiếp với Issue information. ServEmp và AdminEmp đều kế thừa quan hệ này.'
+            },
+            servemp: {
+                actors: ['#tb-a-servemp', '#tb-a-employee'], ucs: ['#tb-uc-issue'], lines: ['#tb-gen-servemp', '#tb-as-emp-issue'],
+                text: 'ServEmp kế thừa từ Employee, nên giao tiếp được với Issue information. Trong ví dụ này, ServEmp không có Use case riêng nào khác ngoài phần kế thừa.'
+            },
+            adminemp: {
+                actors: ['#tb-a-adminemp', '#tb-a-employee'], ucs: ['#tb-uc-issue', '#tb-uc-print', '#tb-uc-create', '#tb-uc-reserve'],
+                lines: ['#tb-gen-adminemp', '#tb-as-emp-issue', '#tb-as-admin-print', '#tb-as-admin-create', '#tb-ext-reserve-create'],
+                text: 'AdminEmp kế thừa Issue information từ Employee, cộng thêm hai Use case riêng: Print certificate và Create course. Create course còn được «extend» bởi Reserve lecture hall — AdminEmp có thể đặt thêm giảng đường khi tạo khóa học, nhưng không bắt buộc.'
+            },
+            student: {
+                actors: ['#tb-a-student'], ucs: ['#tb-uc-register', '#tb-uc-withdraw', '#tb-uc-enroll'],
+                lines: ['#tb-as-stu-register', '#tb-as-stu-withdraw', '#tb-as-stu-enroll', '#tb-inc-reg-enroll'],
+                text: 'Student giao tiếp trực tiếp với Register, Withdraw, Enroll — đều là sub use case của {abstract} Manage student data (nên Student không thực thi trực tiếp Manage student data). Ngoài ra, Register còn «include» Enroll: ghi danh được thực hiện cùng lúc khi đăng ký.'
+            },
+            lecturer: {
+                actors: ['#tb-a-lecturer'], ucs: ['#tb-uc-transmit', '#tb-uc-notify'],
+                lines: ['#tb-as-lec-transmit', '#tb-inc-tx-notify'],
+                text: 'Lecturer giao tiếp trực tiếp với Transmit grade. Vì Transmit grade «include» Notify student, sinh viên luôn được thông báo (qua Notification System) mỗi khi Lecturer gửi dữ liệu chứng chỉ.'
+            },
+            notif: {
+                actors: ['#tb-a-notif'], ucs: ['#tb-uc-notify'], lines: ['#tb-as-notif-notify'],
+                text: 'Notification System («actor» phi con người) giao tiếp với Notify student — use case này được kích hoạt bởi Trigger nội bộ (Transmit grade include nó) chứ không do Actor con người trực tiếp yêu cầu.'
+            }
+        };
+
+        var btns = $$('[data-tb-pick]');
+        var cap = $('#tb-caption');
+
+        function clearAll() {
+            ALL_UC.forEach(function (el) { el.classList.remove('tb-hl'); el.classList.remove('tb-dim'); });
+            ALL_ACTOR.forEach(function (el) { el.classList.remove('tb-hl-actor'); el.classList.remove('tb-dim'); });
+            ALL_LINE.forEach(function (el) { el.classList.remove('tb-hl'); el.classList.remove('tb-dim'); });
+            btns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        }
+        function dimEverything() {
+            ALL_UC.forEach(function (el) { el.classList.add('tb-dim'); });
+            ALL_ACTOR.forEach(function (el) { el.classList.add('tb-dim'); });
+            ALL_LINE.forEach(function (el) { el.classList.add('tb-dim'); });
+        }
+        function pick(key) {
+            clearAll();
+            if (!TB[key]) { cap.textContent = 'Chọn một Actor ở trên để khám phá sơ đồ.'; return; }
+            dimEverything();
+            var cfg = TB[key];
+            cfg.actors.forEach(function (sel) { var el = $(sel); if (el) { el.classList.remove('tb-dim'); el.classList.add('tb-hl-actor'); } });
+            cfg.ucs.forEach(function (sel) { var el = $(sel); if (el) { el.classList.remove('tb-dim'); el.classList.add('tb-hl'); } });
+            cfg.lines.forEach(function (sel) { var el = $(sel); if (el) { el.classList.remove('tb-dim'); el.classList.add('tb-hl'); } });
+            $('[data-tb-pick="' + key + '"]').setAttribute('aria-pressed', 'true');
+            cap.innerHTML = cfg.text;
+        }
+        btns.forEach(function (b) {
+            b.addEventListener('click', function () {
+                var key = b.getAttribute('data-tb-pick');
+                pick(key === 'reset' ? null : key);
+            });
+        });
+        clearAll();
+    })();
+</script>
+<!-- Kết thúc nội dung bài học uc-m4-b3 -->

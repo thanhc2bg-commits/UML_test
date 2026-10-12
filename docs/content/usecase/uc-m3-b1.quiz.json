@@ -1,0 +1,146 @@
+{
+  "lessonId": "uc-m3-b1",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Câu hỏi nào sau đây KHÔNG nằm trong 5 câu hỏi dùng để xác định Actor?",
+      "options": [
+        "Ai sử dụng các Use case chính?",
+        "Ai chịu trách nhiệm quản trị hệ thống?",
+        "Use case nên được mô tả trên tối đa bao nhiêu trang?",
+        "Ai hoặc cái gì quan tâm đến kết quả của System?"
+      ],
+      "answer": 2,
+      "explanation": "Câu hỏi về số trang mô tả Use case thuộc về quy tắc mô hình hóa Use case, không phải câu hỏi xác định Actor."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trigger (Tác nhân kích hoạt) được định nghĩa là gì?",
+      "options": [
+        "Tên của Use case",
+        "Các sự kiện phải xảy ra để khiến System tạo ra một kết quả",
+        "Điều kiện hậu của Use case",
+        "Một loại Actor đặc biệt"
+      ],
+      "answer": 1,
+      "explanation": "Trigger = các sự kiện phải xảy ra để khiến System tạo ra một kết quả."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "Khi System được một Actor gọi, điều gì xảy ra?",
+      "options": [
+        "Actor đó không liên quan gì đến Use case",
+        "Actor đó trở thành Actor của Use case",
+        "Actor đó bị loại khỏi sơ đồ",
+        "System tự động tạo một Actor mới"
+      ],
+      "answer": 1,
+      "explanation": "System thường được gọi bởi Actor, từ đó Actor này trở thành Actor của Use case."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Ba loại Trigger cần phân biệt là gì?",
+      "options": [
+        "Primary, Secondary, Abstract",
+        "Nội bộ (Internal), Bên ngoài (External), Thời gian (Temporal)",
+        "Include, Extend, Generalization",
+        "Human, Non-human, System"
+      ],
+      "answer": 1,
+      "explanation": "Ba loại Trigger: Nội bộ (Internal), Bên ngoài (External), Thời gian (Temporal)."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Một Use case được kích hoạt đúng vào một thời điểm định trước (ví dụ 00:00 mỗi ngày) thuộc loại Trigger nào?",
+      "options": [
+        "Bên ngoài (External)",
+        "Nội bộ (Internal)",
+        "Thời gian (Temporal)",
+        "Không thuộc loại nào"
+      ],
+      "answer": 2,
+      "explanation": "Trigger xảy ra tại một thời điểm hoặc theo lịch định trước là Trigger Thời gian (Temporal)."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Một Actor bên ngoài hệ thống chủ động bấm nút để khởi tạo Use case — đây là loại Trigger nào?",
+      "options": [
+        "Nội bộ (Internal)",
+        "Bên ngoài (External)",
+        "Thời gian (Temporal)",
+        "Trigger hỗn hợp"
+      ],
+      "answer": 1,
+      "explanation": "Actor ngoài hệ thống chủ động khởi tạo là Trigger Bên ngoài (External)."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Một Use case tự động được kích hoạt bởi một Use case khác trong cùng hệ thống, không do Actor ngoài yêu cầu — đây là loại Trigger nào?",
+      "options": [
+        "Bên ngoài (External)",
+        "Thời gian (Temporal)",
+        "Nội bộ (Internal)",
+        "Không có Trigger"
+      ],
+      "answer": 2,
+      "explanation": "Khi một phần khác của hệ thống (hoặc Use case khác) tự kích hoạt, đây là Trigger Nội bộ (Internal)."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Câu hỏi \"System phải có khả năng giao tiếp với những thiết bị ngoại vi / hệ thống (phần mềm) nào?\" giúp xác định loại Actor nào?",
+      "options": [
+        "Actor human, primary",
+        "Actor phi con người (non-human), ví dụ E-Mail Server",
+        "Actor chỉ tồn tại trong Use case trừu tượng",
+        "Actor luôn là Secondary và Passive"
+      ],
+      "answer": 1,
+      "explanation": "Câu hỏi này giúp tìm ra các Actor phi con người (non-human) như E-Mail Server hay Notification system."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "Bước xác định Use case (tìm Trigger) nên được thực hiện khi nào?",
+      "options": [
+        "Trước khi xác định Actor",
+        "Sau khi đã xác định các Actor",
+        "Không liên quan đến thứ tự với bước xác định Actor",
+        "Chỉ thực hiện nếu hệ thống không có Actor nào"
+      ],
+      "answer": 1,
+      "explanation": "Theo slide: \"Sau khi xác định các Actor\", bước tiếp theo là tìm kiếm Trigger cho các Use case."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "Câu hỏi \"Ai cần System để hỗ trợ công việc hằng ngày của họ?\" thường giúp tìm ra nhóm Actor nào?",
+      "options": [
+        "Actor phi con người duy nhất",
+        "Nhân viên vận hành (ví dụ AdminEmp, ServEmp) dùng System trong công việc thường nhật",
+        "Chỉ những Actor không bao giờ dùng Use case nào",
+        "Actor là hệ thống bên thứ ba duy nhất"
+      ],
+      "answer": 1,
+      "explanation": "Câu hỏi này hướng tới các Actor như nhân viên văn phòng (AdminEmp, ServEmp), những người cần System để làm việc hằng ngày."
+    }
+  ]
+}

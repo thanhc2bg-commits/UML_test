@@ -1,0 +1,146 @@
+{
+  "lessonId": "uc-m2-b2",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong quan hệ «extend», ai quyết định liệu B có được thực thi hay không?",
+      "options": [
+        "Actor",
+        "A (base use case)",
+        "B (extending use case)",
+        "Luôn luôn được thực thi, không ai quyết định"
+      ],
+      "answer": 1,
+      "explanation": "Hành vi của B có thể được đưa vào A; A quyết định liệu B có được thực thi hay không."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Với A «extend» B (A là base, B là extending), mũi tên đi theo chiều nào?",
+      "options": [
+        "Từ A tới B",
+        "Từ B tới A",
+        "Hai chiều giữa A và B",
+        "Không có mũi tên, chỉ có đường thẳng"
+      ],
+      "answer": 1,
+      "explanation": "Mũi tên nét đứt «extend» đi từ B (extending use case) tới A (base use case) — ngược chiều với «include»."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "Extension point dùng để trả lời câu hỏi nào?",
+      "options": [
+        "Ai thực thi Use case?",
+        "Ở đâu trong A thì B được chèn vào?",
+        "Khi nào Use case kết thúc?",
+        "Bao nhiêu Actor tham gia?"
+      ],
+      "answer": 1,
+      "explanation": "Chỉ định \"Ở đâu\" bằng các Extension point (Điểm mở rộng) trong A."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Condition trong quan hệ «extend» dùng để trả lời câu hỏi nào?",
+      "options": [
+        "Ở đâu B được chèn vào A?",
+        "Khi nào B được chèn vào A?",
+        "Ai là Actor của B?",
+        "B có bao nhiêu bước?"
+      ],
+      "answer": 1,
+      "explanation": "Chỉ định \"Khi nào\" bằng điều kiện (Condition) trong A hoặc như một phần của relationship «extend»."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Tên của các Extension point trong một Use case phải như thế nào?",
+      "options": [
+        "Có thể trùng nhau nếu khác Use case",
+        "Phải là duy nhất",
+        "Phải đặt theo số thứ tự 1, 2, 3...",
+        "Không cần đặt tên"
+      ],
+      "answer": 1,
+      "explanation": "Tên của các Extension point phải là duy nhất; có thể có nhiều Extension point cho mỗi ứng dụng."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Student Administration, đâu là base use case?",
+      "options": [
+        "Reserve lecture hall",
+        "Announce course",
+        "Professor",
+        "Assign lecturer"
+      ],
+      "answer": 1,
+      "explanation": "Reserve lecture hall «extend» Announce course, nên Announce course là base use case."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Extension points (Announce lecture), Use case nào là base, chứa các Extension point?",
+      "options": [
+        "Reserve lecture hall",
+        "Announce exam",
+        "Announce lecture",
+        "Professor"
+      ],
+      "answer": 2,
+      "explanation": "Announce lecture là base use case, có hai extension points: Enter exam và Select lecture hall."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo ví dụ Extension points, Reserve lecture hall được chèn vào Announce lecture khi nào?",
+      "options": [
+        "Condition {Data entered}",
+        "Condition {Lecture hall free}",
+        "Không có điều kiện nào",
+        "Chỉ khi Announce exam đã chạy xong"
+      ],
+      "answer": 1,
+      "explanation": "Reserve lecture hall có Condition {Lecture hall free} và Extension point Select lecture hall."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "Phát biểu nào đúng về A và B trong quan hệ «extend»?",
+      "options": [
+        "B luôn phải chạy cùng A, không thể tách rời",
+        "A và B cũng có thể được thực thi riêng biệt",
+        "A không bao giờ được Actor sử dụng trực tiếp",
+        "B quyết định A có chạy hay không"
+      ],
+      "answer": 1,
+      "explanation": "Giống «include», A và B trong quan hệ «extend» cũng có thể được thực thi riêng biệt."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "Khác biệt cốt lõi giữa «include» và «extend» là gì?",
+      "options": [
+        "«include» dùng ellipse, «extend» dùng hình chữ nhật",
+        "«include»: B luôn bắt buộc với A; «extend»: A quyết định B có chạy hay không",
+        "«include» chỉ dùng cho Actor con người, «extend» chỉ dùng cho hệ thống",
+        "Không có khác biệt, hai ký hiệu dùng thay thế nhau"
+      ],
+      "answer": 1,
+      "explanation": "Với «include», Base use case yêu cầu B để đảm bảo chức năng (bắt buộc). Với «extend», A quyết định liệu B có được thực thi hay không (tùy chọn)."
+    }
+  ]
+}

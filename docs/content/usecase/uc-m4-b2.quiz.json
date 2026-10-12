@@ -1,0 +1,146 @@
+{
+  "lessonId": "uc-m4-b2",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Lỗi \"Và/Hoặc\" xảy ra khi nào?",
+      "options": [
+        "Khi chỉ có một Actor duy nhất trong sơ đồ",
+        "Khi nhiều Actor được nối trực tiếp, chồng chéo vào cùng một Use case thay vì dùng Abstract actor",
+        "Khi Use case không có Postcondition",
+        "Khi quên vẽ System Boundary"
+      ],
+      "answer": 1,
+      "explanation": "Lỗi xảy ra khi nối trực tiếp cả hai Actor vào Use case một cách chồng chéo, thay vì dùng Abstract actor làm cầu nối Generalization."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Giải pháp đúng cho lỗi \"Và/Hoặc\" là gì?",
+      "options": [
+        "Xóa bớt một trong hai Actor",
+        "Dùng Abstract actor (ví dụ Research Associate) làm cầu nối Generalization",
+        "Nối cả hai Actor bằng «include»",
+        "Đặt cả hai Actor vào bên trong System Boundary"
+      ],
+      "answer": 1,
+      "explanation": "Giải pháp đúng: Dùng Abstract actor (Research Associate) làm cầu nối Generalization thay vì nối trực tiếp cả hai vào Use case một cách chồng chéo."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo lỗi Mức độ chi tiết (Granularity), ba Use case Create course, Update course, Delete course nên được xử lý như thế nào?",
+      "options": [
+        "Giữ nguyên ba Use case riêng biệt để rõ ràng hơn",
+        "Kết hợp thành một Use case duy nhất, ví dụ Manage course",
+        "Xóa bỏ hoàn toàn, không cần Use case nào",
+        "Tách thành sáu Use case nhỏ hơn nữa"
+      ],
+      "answer": 1,
+      "explanation": "Nhiều Use case nhỏ (Create/Update/Delete course) nên được kết hợp thành MỘT Use case duy nhất (Manage course)."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Lỗi Phân rã chức năng (Functional Decomposition) là gì?",
+      "options": [
+        "Gộp quá nhiều chức năng vào một Use case",
+        "Tách các bước luôn thực thi cùng nhau theo trình tự cố định (như Log in, Enter data, Log out) thành các Use case riêng bằng «include»",
+        "Quên đặt tên cho Use case",
+        "Vẽ Actor bên ngoài System Boundary"
+      ],
+      "answer": 1,
+      "explanation": "Nếu các bước riêng lẻ luôn được thực thi cùng nhau theo một trình tự xác định trước, đây chỉ là một Use case duy nhất — không thực hiện phân rã chức năng."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ lỗi Phân rã chức năng, các bước Log in, Enter data, Send data, Log out nên được xử lý ra sao?",
+      "options": [
+        "Giữ làm bốn Use case riêng, nối bằng «include» vào Issue certificate",
+        "Gộp lại, chỉ cần một Use case: Issue certificate",
+        "Chuyển thành bốn Actor mới",
+        "Xóa bỏ hoàn toàn các bước này"
+      ],
+      "answer": 1,
+      "explanation": "Lỗi: Tách Log in, Enter data, Send data, Log out thành các Use case riêng bằng «include». Chỉ cần một Use case: Issue certificate."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Điểm khác nhau giữa lỗi Mức độ chi tiết (Granularity) và lỗi Phân rã chức năng là gì?",
+      "options": [
+        "Không có khác biệt, đây là cùng một lỗi với hai tên gọi",
+        "Granularity liên quan tới các thao tác cùng mức trên cùng đối tượng (CRUD); Phân rã chức năng liên quan tới tách các bước kỹ thuật nội bộ luôn đi cùng nhau",
+        "Granularity chỉ áp dụng cho Actor, Phân rã chức năng chỉ áp dụng cho System Boundary",
+        "Granularity dùng «extend», Phân rã chức năng dùng Generalization"
+      ],
+      "answer": 1,
+      "explanation": "Granularity là về việc gộp các thao tác cùng mức, cùng đối tượng (Create/Update/Delete course); Phân rã chức năng là về việc không tách các bước kỹ thuật nội bộ (Log in, Enter data...) luôn thực thi cùng nhau thành use case riêng."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Lỗi \"Và/Hoặc\" có liên hệ trực tiếp với khái niệm nào đã học ở bài Generalization của Actor?",
+      "options": [
+        "Đa kế thừa (Multiple inheritance)",
+        "Hai đường riêng biệt (A và B) so với qua Abstract actor (A hoặc B)",
+        "Use case trừu tượng {abstract}",
+        "Trigger nội bộ"
+      ],
+      "answer": 1,
+      "explanation": "Lỗi Và/Hoặc chính là ví dụ thực tế của vấn đề đã đặt ra ở bài Generalization của Actor: phân biệt \"hai đường riêng biệt\" với \"qua Abstract actor\"."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ đúng của lỗi Và/Hoặc, Research Associate nối trực tiếp với Use case nào?",
+      "options": [
+        "Create course",
+        "Manage student data",
+        "Issue information",
+        "Không nối với Use case nào"
+      ],
+      "answer": 2,
+      "explanation": "Research Associate (abstract) nối trực tiếp với Issue information; Professor nối với Create course; Assistant nối với Manage student data."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "Hệ quả chung của cả ba lỗi \"Và/Hoặc\", Mức độ chi tiết, và Phân rã chức năng là gì?",
+      "options": [
+        "Sơ đồ thiếu Actor",
+        "Sơ đồ bị vụn thành quá nhiều thành phần nhỏ, thay vì giữ ở mức trừu tượng phù hợp",
+        "Sơ đồ không có System Boundary",
+        "Sơ đồ chỉ có một Use case duy nhất"
+      ],
+      "answer": 1,
+      "explanation": "Cả ba lỗi đều dẫn đến cùng một hệ quả: sơ đồ bị vụn thành quá nhiều Use case nhỏ, thay vì giữ ở mức trừu tượng phù hợp."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "So với lỗi Mô hình hóa Quy trình (bài trước), lỗi Phân rã chức năng khác ở điểm nhấn nào?",
+      "options": [
+        "Phân rã chức năng không liên quan gì đến «include»",
+        "Mô hình hóa Quy trình nhấn mạnh việc nối tiếp các bước theo trình tự như lưu đồ; Phân rã chức năng nhấn mạnh việc tách rời các bước kỹ thuật nội bộ luôn đi cùng nhau",
+        "Phân rã chức năng chỉ xảy ra khi có trên 10 Actor",
+        "Không có điểm khác biệt nào, đây là hai tên gọi của cùng một khái niệm duy nhất"
+      ],
+      "answer": 1,
+      "explanation": "Cả hai lỗi liên quan chặt chẽ với nhau, nhưng Mô hình hóa Quy trình nhấn mạnh việc vẽ các bước nối tiếp như lưu đồ; Phân rã chức năng nhấn mạnh việc tách nhỏ các bước kỹ thuật nội bộ luôn thực thi cùng nhau."
+    }
+  ]
+}

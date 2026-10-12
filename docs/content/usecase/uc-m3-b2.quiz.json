@@ -1,0 +1,146 @@
+{
+  "lessonId": "uc-m3-b2",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Precondition (Điều kiện tiên quyết) trong bản mô tả Use case là gì?",
+      "options": [
+        "Trạng thái System sau khi thực thi thành công",
+        "Điều kiện bắt buộc để thực thi thành công",
+        "Danh sách các Actor giao tiếp",
+        "Các bước của quy trình thay thế"
+      ],
+      "answer": 1,
+      "explanation": "Precondition: Điều kiện bắt buộc để thực thi thành công."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Postcondition (Điều kiện hậu) trong bản mô tả Use case là gì?",
+      "options": [
+        "Điều kiện bắt buộc trước khi thực thi",
+        "Trạng thái System sau khi thực thi thành công",
+        "Tên của Use case",
+        "Loại Trigger kích hoạt Use case"
+      ],
+      "answer": 1,
+      "explanation": "Postcondition: Trạng thái System sau khi thực thi thành công."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Reserve lecture hall, Precondition gồm những gì?",
+      "options": [
+        "A lecture hall is reserved",
+        "There is no free lecture hall",
+        "The employee is authorized to reserve lecture halls; Employee is logged in to the system",
+        "Employee requires a lecture hall"
+      ],
+      "answer": 2,
+      "explanation": "Precondition: The employee is authorized to reserve lecture halls. Employee is logged in to the system."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Reserve lecture hall, Postcondition là gì?",
+      "options": [
+        "A lecture hall is reserved",
+        "There is no free lecture hall",
+        "Employee requires a lecture hall",
+        "The employee has not reserved a lecture hall"
+      ],
+      "answer": 0,
+      "explanation": "Postcondition: A lecture hall is reserved."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Reserve lecture hall, Error situation là gì?",
+      "options": [
+        "Employee requires a lecture hall",
+        "There is no free lecture hall",
+        "A lecture hall is reserved",
+        "Employee selects the date"
+      ],
+      "answer": 1,
+      "explanation": "Error situations: There is no free lecture hall."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trigger của Use case Reserve lecture hall là gì?",
+      "options": [
+        "System confirms that the lecture hall is free",
+        "Employee requires a lecture hall",
+        "A lecture hall is reserved",
+        "Employee is logged in to the system"
+      ],
+      "answer": 1,
+      "explanation": "Trigger: Employee requires a lecture hall."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Alternative processes (Các quy trình thay thế) mô tả điều gì?",
+      "options": [
+        "Danh sách Actor dự phòng",
+        "Sự sai lệch so với quy trình chuẩn",
+        "Điều kiện tiên quyết bổ sung",
+        "Tên gọi khác của Use case"
+      ],
+      "answer": 1,
+      "explanation": "Các quy trình thay thế (Alternative processes): Sự sai lệch so với quy trình chuẩn."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Reserve lecture hall, quy trình thay thế rẽ nhánh bắt đầu từ bước nào của quy trình chuẩn?",
+      "options": [
+        "Bước (1)",
+        "Bước (2)",
+        "Bước (3)",
+        "Bước (4)"
+      ],
+      "answer": 2,
+      "explanation": "Quy trình thay thế được đánh số (3′), (4′), (5′) — rẽ nhánh từ bước (3) \"System confirms that the lecture hall is free\" khi giảng đường không còn trống."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo ví dụ, khi Error situation \"There is no free lecture hall\" xảy ra, hệ thống làm gì theo quy trình thay thế?",
+      "options": [
+        "Hủy toàn bộ yêu cầu, không đề xuất gì thêm",
+        "System proposes an alternative lecture hall",
+        "Tự động hủy tài khoản Employee",
+        "Bỏ qua lỗi và xác nhận đặt phòng cũ"
+      ],
+      "answer": 1,
+      "explanation": "(4′) System proposes an alternative lecture hall."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trường nào trong bản mô tả Use case liệt kê những Actor tham gia vào Use case đó?",
+      "options": [
+        "Trigger",
+        "Các Actor giao tiếp (Actors)",
+        "Điều kiện hậu (Postcondition)",
+        "Mô tả ngắn gọn (Short description)"
+      ],
+      "answer": 1,
+      "explanation": "Trường \"Các Actor giao tiếp với Use case\" liệt kê các Actor tham gia; trong ví dụ là Employee."
+    }
+  ]
+}

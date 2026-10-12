@@ -1,0 +1,146 @@
+{
+  "lessonId": "uc-m2-b3",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong Generalization của Use case, B (sub use case) kế thừa gì từ A (base use case)?",
+      "options": [
+        "Chỉ tên gọi của A",
+        "Hành vi và tất cả relationship của A",
+        "Chỉ Actor liên kết với A, không kế thừa hành vi",
+        "Không kế thừa gì, chỉ liên kết tượng trưng"
+      ],
+      "answer": 1,
+      "explanation": "B kế thừa hành vi của A và có thể ghi đè hoặc bổ sung nó; B cũng kế thừa tất cả các relationship của A."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Ký hiệu của Generalization khác với «include»/«extend» ở điểm nào?",
+      "options": [
+        "Generalization dùng đường nét liền với mũi tên tam giác rỗng, không có nhãn stereotype",
+        "Generalization luôn vẽ bằng màu đỏ",
+        "Generalization không bao giờ dùng mũi tên",
+        "Generalization chỉ áp dụng cho Actor, không áp dụng cho Use case"
+      ],
+      "answer": 0,
+      "explanation": "Generalization dùng đường thẳng nét liền với mũi tên tam giác rỗng trỏ vào use case cha, khác với mũi tên nét đứt có nhãn «include»/«extend»."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "Use case trừu tượng ({abstract}) có đặc điểm gì?",
+      "options": [
+        "Có thể được thực thi như bất kỳ use case nào khác",
+        "Không thể được thực thi",
+        "Chỉ Actor trừu tượng mới gọi được nó",
+        "Luôn luôn include một use case khác"
+      ],
+      "answer": 1,
+      "explanation": "Có thể mô hình hóa các Abstract use case ({abstract}); các Abstract use case không thể được thực thi."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Announce event, Announce talk và Announce lecture liên hệ với Announce event bằng quan hệ nào?",
+      "options": [
+        "«include»",
+        "«extend»",
+        "Generalization (kế thừa)",
+        "Association thông thường"
+      ],
+      "answer": 2,
+      "explanation": "Announce talk và Announce lecture là sub use case, kế thừa (generalization) từ {abstract} Announce event."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Announce event, Announce exam liên hệ với Announce lecture bằng quan hệ nào?",
+      "options": [
+        "Generalization",
+        "«extend»",
+        "«include»",
+        "Không có quan hệ nào"
+      ],
+      "answer": 1,
+      "explanation": "Announce exam «extend» Announce lecture — một quan hệ extend, không phải generalization."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Generalization của Actor: nếu Actor B kế thừa từ Actor A, B có thể giao tiếp với Use case nào?",
+      "options": [
+        "Chỉ các Use case riêng của B",
+        "Chỉ các Use case của A",
+        "Cả Use case riêng của B lẫn Use case mà A giao tiếp được",
+        "Không Use case nào, Actor không kế thừa quan hệ"
+      ],
+      "answer": 2,
+      "explanation": "B có thể giao tiếp với các Use case X (riêng của B) và Y (A chỉ giao tiếp được Y) — B kế thừa Y từ A."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Đa kế thừa (Multiple inheritance) đối với Actor được slide quy định như thế nào?",
+      "options": [
+        "Không được phép, mỗi Actor chỉ kế thừa từ một Actor cha",
+        "Được cho phép",
+        "Chỉ được phép với Actor phi con người",
+        "Chỉ được phép trong Use case, không áp dụng cho Actor"
+      ],
+      "answer": 1,
+      "explanation": "Đa kế thừa (Multiple inheritance) được cho phép đối với Actor."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Cách mô hình hóa \"A và B giao tiếp với X qua hai đường riêng biệt\" khác gì với \"qua Abstract actor C\"?",
+      "options": [
+        "Hai cách hoàn toàn tương đương nhau, chỉ khác cách vẽ",
+        "\"Hai đường riêng biệt\" không hợp lệ trong UML",
+        "Đây là hai cách mô hình hóa khác nhau, không tương đương nhau",
+        "\"Qua Abstract actor C\" chỉ dùng được khi có trên 5 Actor"
+      ],
+      "answer": 2,
+      "explanation": "Slide phân biệt rõ: cần xác định liệu các Actor có thể/phải giao tiếp cùng nhau với một Use case — hai cách vẽ này không tương đương nhau."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Research Associate, Professor giao tiếp trực tiếp với Use case nào?",
+      "options": [
+        "Chỉ Query student data",
+        "Create course và Issue certificate",
+        "Chỉ Publish task",
+        "Không giao tiếp trực tiếp với Use case nào"
+      ],
+      "answer": 1,
+      "explanation": "Professor giao tiếp trực tiếp với Create course và Issue certificate, và còn kế thừa Query student data từ Research Associate."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Research Associate, Use case nào được cả Professor và Assistant cùng giao tiếp được, nhờ kế thừa?",
+      "options": [
+        "Create course",
+        "Publish task",
+        "Query student data",
+        "Issue certificate"
+      ],
+      "answer": 2,
+      "explanation": "Research Associate giao tiếp trực tiếp với Query student data; vì cả Professor và Assistant đều kế thừa từ Research Associate, cả hai đều giao tiếp được với Query student data."
+    }
+  ]
+}

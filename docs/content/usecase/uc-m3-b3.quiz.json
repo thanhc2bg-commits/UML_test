@@ -1,0 +1,142 @@
+{
+  "lessonId": "uc-m3-b3",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo quy tắc mô hình hóa, một Use case nên mô tả bao nhiêu trường hợp sử dụng của System?",
+      "options": [
+        "Nhiều trường hợp cùng lúc, càng nhiều càng tốt",
+        "Một trường hợp sử dụng tiêu biểu, và không nhiều hơn thế",
+        "Toàn bộ các trường hợp có thể xảy ra trong hệ thống",
+        "Không trường hợp nào, chỉ mô tả cấu trúc dữ liệu"
+      ],
+      "answer": 1,
+      "explanation": "Một Use case mô tả một trường hợp sử dụng tiêu biểu của một System và không nhiều hơn thế."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Bản mô tả Use case được ví như điều gì?",
+      "options": [
+        "Một bảng dữ liệu",
+        "Một vở kịch, chứa đựng kịch bản (choreography)",
+        "Một sơ đồ mạng máy tính",
+        "Một bảng tính Excel"
+      ],
+      "answer": 1,
+      "explanation": "Một Use case giống như một vở kịch — bản mô tả Use case chứa đựng kịch bản (choreography)."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "Một Use case nên có cấu trúc gồm những phần nào?",
+      "options": [
+        "Chỉ phần thân, không cần mở đầu hay kết luận",
+        "Phần mở đầu, phần thân và phần kết luận",
+        "Chỉ cần tiêu đề và một dòng mô tả",
+        "Phần mã nguồn và phần kiểm thử"
+      ],
+      "answer": 1,
+      "explanation": "Một Use case có phần mở đầu, phần thân và phần kết luận."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Use case nên được mô tả như thế nào?",
+      "options": [
+        "Càng phức tạp, chi tiết kỹ thuật càng tốt",
+        "Càng đơn giản càng tốt, nhưng vẫn phải chính xác",
+        "Chỉ cần sơ lược, không cần chính xác",
+        "Chỉ dùng hình ảnh, không dùng chữ"
+      ],
+      "answer": 1,
+      "explanation": "Một Use case nên được mô tả càng đơn giản càng tốt, và phải được định nghĩa chính xác."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Một Use case chỉ được xem là mô tả đầy đủ khi nào?",
+      "options": [
+        "Khi lập trình viên viết xong code",
+        "Khi khách hàng, người dùng và nhà phát triển phần mềm chấp nhận nó",
+        "Khi được vẽ bằng công cụ UML chuyên dụng",
+        "Khi không còn Actor nào phản đối"
+      ],
+      "answer": 1,
+      "explanation": "Một Use case chỉ được mô tả đầy đủ khi khách hàng, người dùng và nhà phát triển phần mềm chấp nhận nó."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Bản mô tả Use case cung cấp cơ sở cho hoạt động nào sau đây?",
+      "options": [
+        "Thiết kế cơ sở dữ liệu vật lý",
+        "Quá trình kiểm thử hệ thống (system test)",
+        "Tính lương nhân viên",
+        "Thiết kế giao diện màu sắc"
+      ],
+      "answer": 1,
+      "explanation": "Một Use case cung cấp cơ sở cho quá trình kiểm thử hệ thống (system test)."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo quy tắc, một Use case nên được mô tả trong giới hạn bao nhiêu trang tài liệu?",
+      "options": [
+        "Không giới hạn",
+        "Tối đa một trang",
+        "Tối đa hai trang",
+        "Tối đa năm trang"
+      ],
+      "answer": 2,
+      "explanation": "Một Use case nên được mô tả trên tối đa hai trang tài liệu."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Phát biểu nào đúng với quy tắc mô hình hóa Use case?",
+      "options": [
+        "Các yêu cầu chức năng quan trọng nhất phải được định nghĩa trong các Use case",
+        "Use case không cần liên quan gì đến yêu cầu chức năng",
+        "Yêu cầu chức năng chỉ nên nằm trong tài liệu riêng, tách biệt hoàn toàn khỏi Use case",
+        "Use case chỉ dùng để trang trí tài liệu, không có giá trị kỹ thuật"
+      ],
+      "answer": 0,
+      "explanation": "Các yêu cầu chức năng quan trọng nhất phải được định nghĩa trong các Use case."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "\"Use case nên được mô tả càng dài, càng chi tiết từng thao tác nhỏ càng tốt, không giới hạn số trang\" — phát biểu này đúng hay sai so với quy tắc đã học?",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "answer": 1,
+      "explanation": "Sai — quy tắc nêu rõ Use case nên đơn giản và tối đa hai trang, không phải càng dài càng tốt."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "\"Use case chỉ cần nêu ý tưởng chung chung, không cần định nghĩa chính xác\" — phát biểu này đúng hay sai?",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "answer": 1,
+      "explanation": "Sai — quy tắc yêu cầu Use case phải được định nghĩa chính xác."
+    }
+  ]
+}

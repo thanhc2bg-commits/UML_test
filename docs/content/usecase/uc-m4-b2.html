@@ -1,0 +1,231 @@
+<!-- Bắt đầu nội dung bài học uc-m4-b2 (Các lỗi mô hình hóa thường gặp - phần 2 - slide 29-31) -->
+<div class="lesson-content" id="uc-m4b2-root">
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="l2-person" viewBox="0 0 60 100">
+                <circle cx="30" cy="14" r="11" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
+                <path d="M30 25 V62 M10 40 H50 M30 62 L12 94 M30 62 L48 94" fill="none" stroke="currentColor"
+                      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </symbol>
+            <marker id="l2-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                <path d="M1 1 L9 5 L1 9" fill="none" stroke="#4A5568" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"></path>
+            </marker>
+            <marker id="l2-ah-tri" viewBox="0 0 14 12" refX="12.5" refY="6" markerWidth="12" markerHeight="10" orient="auto">
+                <path d="M1 1 L13 6 L1 11 Z" fill="#fff" stroke="#12233e" stroke-width="1.3" stroke-linejoin="round"></path>
+            </marker>
+        </defs>
+    </svg>
+
+    <div class="uc-lesson-objectives" style="margin-top: 4rem;">
+        <h3>Mục tiêu bài học</h3>
+        <ul>
+            <li>Nhận diện lỗi "Và/Hoặc": nối trực tiếp nhiều Actor vào cùng Use case một cách chồng chéo, thay vì dùng Abstract actor.</li>
+            <li>Hiểu lỗi Mức độ chi tiết (Granularity): tách các thao tác liên quan (CRUD) thành nhiều Use case nhỏ thay vì gộp lại.</li>
+            <li>Hiểu lỗi Phân rã chức năng (Functional Decomposition): tách các bước kỹ thuật nội bộ thành Use case riêng bằng «include».</li>
+            <li>Phân biệt rõ ba lỗi này với nhau, và với lỗi Mô hình hóa Quy trình đã học ở bài trước.</li>
+        </ul>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>1. Lỗi "Và" (And) hoặc "Hoặc" (Either or) <span class="l2-tag">Slide 29</span></h3>
+    <p>Tình huống: <strong>Hoặc</strong> Assistant <strong>hoặc</strong> Professor tham gia vào Issue information — tức chỉ cần MỘT trong hai, không phải cả hai cùng lúc một cách chồng chéo. Đây chính là tình huống đã được đặt vấn đề ở bài Generalization của Actor.</p>
+
+    <div class="l2-cmp-grid">
+        <figure class="l2-card l2-fig">
+            <figcaption><span class="l2-badge bad">✗ Lỗi hay gặp — chồng chéo</span></figcaption>
+            <svg class="l2-svg" viewBox="0 0 260 280" role="img" aria-label="Professor và Assistant đều nối trực tiếp, chồng chéo vào cả Issue information và Create course">
+                <rect x="70" y="8" width="180" height="200" rx="6" fill="#FFF5F5" stroke="#C53030" stroke-width="2" stroke-dasharray="6 5"></rect>
+                <ellipse cx="170" cy="45" rx="68" ry="26" fill="#fff" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="170" y="49" text-anchor="middle" font-size="10.5" fill="#12233e">Issue information</text>
+                <ellipse cx="170" cy="112" rx="68" ry="26" fill="#fff" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="170" y="116" text-anchor="middle" font-size="10.5" fill="#12233e">Create course</text>
+                <g style="color:#12233e"><use href="#l2-person" x="6" y="18" width="30" height="50"></use><text x="21" y="76" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">Professor</text></g>
+                <g style="color:#12233e"><use href="#l2-person" x="6" y="108" width="30" height="50"></use><text x="21" y="166" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">Assistant</text></g>
+                <line x1="38" y1="42" x2="100" y2="44" stroke="#C53030" stroke-width="1.4"></line>
+                <line x1="38" y1="58" x2="100" y2="106" stroke="#C53030" stroke-width="1.4"></line>
+                <line x1="38" y1="124" x2="100" y2="52" stroke="#C53030" stroke-width="1.4"></line>
+                <line x1="38" y1="138" x2="100" y2="114" stroke="#C53030" stroke-width="1.4"></line>
+                <text x="100" y="86" text-anchor="middle" font-size="22" font-weight="700" fill="#C53030">✗</text>
+            </svg>
+            <p class="l2-fig-note">Cả Professor và Assistant đều nối trực tiếp vào cả hai Use case — chồng chéo, không rõ ai bắt buộc phải tham gia cùng ai.</p>
+        </figure>
+        <figure class="l2-card l2-fig">
+            <figcaption><span class="l2-badge ok">✓ Đúng — qua Abstract actor</span></figcaption>
+            <svg class="l2-svg" viewBox="0 0 260 280" role="img" aria-label="Research Associate làm cầu nối Generalization cho Professor và Assistant">
+                <rect x="60" y="8" width="190" height="258" rx="6" fill="#F8FAFF" stroke="#12233e" stroke-width="2" stroke-dasharray="6 5"></rect>
+                <ellipse cx="175" cy="46" rx="68" ry="24" fill="#fff" stroke="#3182CE" stroke-width="1.6"></ellipse>
+                <text x="175" y="50" text-anchor="middle" font-size="10.5" fill="#12233e">Issue information</text>
+                <ellipse cx="175" cy="112" rx="68" ry="24" fill="#fff" stroke="#3182CE" stroke-width="1.6"></ellipse>
+                <text x="175" y="116" text-anchor="middle" font-size="10.5" fill="#12233e">Create course</text>
+                <ellipse cx="175" cy="178" rx="68" ry="26" fill="#fff" stroke="#3182CE" stroke-width="1.6"></ellipse>
+                <text x="175" y="174" text-anchor="middle" font-size="10" fill="#12233e">Manage</text>
+                <text x="175" y="186" text-anchor="middle" font-size="10" fill="#12233e">student data</text>
+                <g style="color:#12233e"><use href="#l2-person" x="4" y="10" width="28" height="46"></use><text x="18" y="60" text-anchor="middle" font-size="8.5" font-weight="700" fill="currentColor">Research</text><text x="18" y="70" text-anchor="middle" font-size="8.5" font-weight="700" fill="currentColor">Associate</text></g>
+                <g style="color:#12233e"><use href="#l2-person" x="4" y="98" width="28" height="46"></use><text x="18" y="148" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor">Professor</text></g>
+                <g style="color:#12233e"><use href="#l2-person" x="4" y="180" width="28" height="46"></use><text x="18" y="230" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor">Assistant</text></g>
+                <line x1="18" y1="98" x2="18" y2="60" stroke="#12233e" stroke-width="1.6" marker-end="url(#l2-ah-tri)"></line>
+                <line x1="18" y1="180" x2="18" y2="66" stroke="#12233e" stroke-width="1.6" marker-end="url(#l2-ah-tri)"></line>
+                <line x1="32" y1="36" x2="107" y2="44" stroke="#4A5568" stroke-width="1.4"></line>
+                <line x1="32" y1="118" x2="107" y2="112" stroke="#4A5568" stroke-width="1.4"></line>
+                <line x1="32" y1="200" x2="107" y2="180" stroke="#4A5568" stroke-width="1.4"></line>
+            </svg>
+            <p class="l2-fig-note">Professor và Assistant kế thừa từ Research Associate (abstract); chỉ Research Associate nối vào Issue information — mỗi Actor còn có Use case riêng của mình.</p>
+        </figure>
+    </div>
+    <p class="l2-callout"><strong>Giải pháp đúng:</strong> dùng Abstract actor (Research Associate) làm cầu nối Generalization, thay vì nối trực tiếp cả hai Actor vào cùng một Use case một cách chồng chéo.</p>
+
+    <hr class="uc-divider">
+
+    <h3>2. Lỗi Mức độ chi tiết (Level of Granularity) <span class="l2-tag">Slide 30</span></h3>
+    <p>Nhiều Use case nhỏ (Create course, Update course, Delete course) <strong>nên được kết hợp</strong> thành <strong>MỘT</strong> Use case duy nhất chứa đựng các khả năng khác nhau (Manage course).</p>
+
+    <div class="l2-cmp-grid">
+        <figure class="l2-card l2-fig">
+            <figcaption><span class="l2-badge bad">✗ Lỗi hay gặp — quá vụn</span></figcaption>
+            <svg class="l2-svg" viewBox="0 0 260 240" role="img" aria-label="Research Associate nối riêng vào ba use case Create/Update/Delete course">
+                <rect x="66" y="8" width="186" height="224" rx="6" fill="#FFF5F5" stroke="#C53030" stroke-width="2" stroke-dasharray="6 5"></rect>
+                <ellipse cx="172" cy="42" rx="70" ry="22" fill="#fff" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="172" y="46" text-anchor="middle" font-size="10.5" fill="#12233e">Create course</text>
+                <ellipse cx="172" cy="110" rx="70" ry="22" fill="#fff" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="172" y="114" text-anchor="middle" font-size="10.5" fill="#12233e">Update course</text>
+                <ellipse cx="172" cy="178" rx="70" ry="22" fill="#fff" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="172" y="182" text-anchor="middle" font-size="10.5" fill="#12233e">Delete course</text>
+                <g style="color:#12233e"><use href="#l2-person" x="4" y="86" width="30" height="50"></use><text x="19" y="148" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor">Research</text><text x="19" y="160" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor">Associate</text></g>
+                <line x1="36" y1="98" x2="102" y2="44" stroke="#C53030" stroke-width="1.4"></line>
+                <line x1="36" y1="110" x2="102" y2="110" stroke="#C53030" stroke-width="1.4"></line>
+                <line x1="36" y1="122" x2="102" y2="176" stroke="#C53030" stroke-width="1.4"></line>
+            </svg>
+            <p class="l2-fig-note">Ba Use case quá nhỏ, cùng mức thao tác CRUD trên "course" — nên gộp lại.</p>
+        </figure>
+        <figure class="l2-card l2-fig">
+            <figcaption><span class="l2-badge ok">✓ Đúng — gộp lại</span></figcaption>
+            <svg class="l2-svg" viewBox="0 0 260 240" role="img" aria-label="Research Associate chỉ nối vào một use case Manage course duy nhất">
+                <rect x="66" y="8" width="186" height="224" rx="6" fill="#F8FAFF" stroke="#12233e" stroke-width="2" stroke-dasharray="6 5"></rect>
+                <ellipse cx="172" cy="118" rx="76" ry="34" fill="#fff" stroke="#3182CE" stroke-width="1.8"></ellipse>
+                <text x="172" y="123" text-anchor="middle" font-size="12.5" fill="#12233e">Manage course</text>
+                <g style="color:#12233e"><use href="#l2-person" x="4" y="92" width="30" height="50"></use><text x="19" y="154" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor">Research</text><text x="19" y="166" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor">Associate</text></g>
+                <line x1="36" y1="110" x2="96" y2="114" stroke="#4A5568" stroke-width="1.6"></line>
+            </svg>
+            <p class="l2-fig-note">Gộp thành một Use case "Manage course" duy nhất, chứa đựng các khả năng tạo/sửa/xóa bên trong kịch bản của chính nó.</p>
+        </figure>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>3. Lỗi Phân rã chức năng (Functional Decomposition) <span class="l2-tag">Slide 31</span></h3>
+    <p>Nếu các bước riêng lẻ <strong>luôn được thực thi cùng nhau</strong> theo một trình tự xác định trước, thì đây chỉ là <strong>một Use case duy nhất</strong> → không thực hiện phân rã chức năng.</p>
+
+    <div class="l2-cmp-grid">
+        <figure class="l2-card l2-fig">
+            <figcaption><span class="l2-badge bad">✗ Lỗi hay gặp</span></figcaption>
+            <svg class="l2-svg" viewBox="0 0 260 260" role="img" aria-label="Issue certificate bị tách thành include Log in, Enter data, Send data, Log out">
+                <ellipse cx="130" cy="130" rx="56" ry="24" fill="#fff" stroke="#C53030" stroke-width="1.8"></ellipse>
+                <text x="130" y="134" text-anchor="middle" font-size="10.5" fill="#12233e">Issue certificate</text>
+                <ellipse cx="58" cy="40" rx="42" ry="20" fill="#fff" stroke="#C53030" stroke-width="1.4"></ellipse>
+                <text x="58" y="44" text-anchor="middle" font-size="9.5" fill="#12233e">Log in</text>
+                <ellipse cx="202" cy="40" rx="48" ry="20" fill="#fff" stroke="#C53030" stroke-width="1.4"></ellipse>
+                <text x="202" y="44" text-anchor="middle" font-size="9.5" fill="#12233e">Enter data</text>
+                <ellipse cx="202" cy="220" rx="48" ry="20" fill="#fff" stroke="#C53030" stroke-width="1.4"></ellipse>
+                <text x="202" y="224" text-anchor="middle" font-size="9.5" fill="#12233e">Send data</text>
+                <ellipse cx="58" cy="220" rx="42" ry="20" fill="#fff" stroke="#C53030" stroke-width="1.4"></ellipse>
+                <text x="58" y="224" text-anchor="middle" font-size="9.5" fill="#12233e">Log out</text>
+                <line x1="100" y1="112" x2="76" y2="58" stroke="#4A5568" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#l2-ah)"></line>
+                <line x1="160" y1="112" x2="184" y2="58" stroke="#4A5568" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#l2-ah)"></line>
+                <line x1="160" y1="148" x2="184" y2="202" stroke="#4A5568" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#l2-ah)"></line>
+                <line x1="100" y1="148" x2="76" y2="202" stroke="#4A5568" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#l2-ah)"></line>
+                <g style="color:#12233e"><use href="#l2-person" x="2" y="106" width="26" height="46"></use><text x="15" y="158" text-anchor="middle" font-size="8.5" font-weight="700" fill="currentColor">Lecturer</text></g>
+                <line x1="28" y1="122" x2="74" y2="126" stroke="#4A5568" stroke-width="1.4"></line>
+                <text x="130" y="192" text-anchor="middle" font-size="22" font-weight="700" fill="#C53030">✗</text>
+            </svg>
+            <p class="l2-fig-note">Log in, Enter data, Send data, Log out bị tách thành Use case riêng, nối vào Issue certificate bằng «include» — quá vụn, đây chỉ là các thao tác kỹ thuật nội bộ.</p>
+        </figure>
+        <figure class="l2-card l2-fig">
+            <figcaption><span class="l2-badge ok">✓ Đúng</span></figcaption>
+            <svg class="l2-svg" viewBox="0 0 260 260" role="img" aria-label="Chỉ còn một use case Issue certificate, nối với Lecturer">
+                <g style="color:#12233e"><use href="#l2-person" x="90" y="70" width="30" height="50"></use><text x="105" y="132" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">Lecturer</text></g>
+                <ellipse cx="170" cy="100" rx="72" ry="30" fill="#fff" stroke="#3182CE" stroke-width="1.8"></ellipse>
+                <text x="170" y="105" text-anchor="middle" font-size="12" fill="#12233e">Issue certificate</text>
+                <line x1="120" y1="90" x2="98" y2="92" stroke="#4A5568" stroke-width="1.6"></line>
+            </svg>
+            <p class="l2-fig-note">Chỉ một Use case "Issue certificate" — không tách các thao tác kỹ thuật như Log in/Log out thành use case riêng.</p>
+        </figure>
+    </div>
+
+    <hr class="uc-divider">
+
+    <div class="l2-distinguish">
+        <h4>Phân biệt ba lỗi "gộp/tách" dễ nhầm</h4>
+        <ul>
+            <li><strong>Mô hình hóa Quy trình</strong> (bài trước): sai khi vẽ các bước <em>nối tiếp nhau theo trình tự</em> (A → B → C) như một lưu đồ.</li>
+            <li><strong>Mức độ chi tiết (Granularity)</strong>: sai khi tách các thao tác <em>cùng mức, cùng đối tượng</em> (Create/Update/Delete course) thành nhiều Use case thay vì gộp theo khả năng (Manage course).</li>
+            <li><strong>Phân rã chức năng</strong>: sai khi tách các <em>bước kỹ thuật nội bộ, luôn đi cùng nhau</em> (Log in, Enter data, Log out) thành Use case riêng bằng «include».</li>
+        </ul>
+        <p>Cả ba đều dẫn đến cùng một hệ quả: sơ đồ bị vụn thành quá nhiều Use case nhỏ, thay vì giữ ở mức trừu tượng phù hợp.</p>
+    </div>
+
+    <hr class="uc-divider">
+
+    <div class="l2-summary">
+        <h3>Ghi nhớ nhanh</h3>
+        <ul>
+            <li><strong>Lỗi Và/Hoặc:</strong> dùng Abstract actor làm cầu nối Generalization, thay vì nối trực tiếp nhiều Actor vào cùng Use case một cách chồng chéo.</li>
+            <li><strong>Mức độ chi tiết:</strong> gộp các thao tác liên quan (CRUD) thành một Use case duy nhất (vd. Manage course).</li>
+            <li><strong>Phân rã chức năng:</strong> nếu các bước luôn thực thi cùng nhau theo trình tự cố định, đó chỉ là một Use case — không tách nhỏ bằng «include».</li>
+        </ul>
+    </div>
+
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+
+    .lesson-content {
+        font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #334155; line-height: 1.75; font-size: clamp(16px, 0.9rem + 0.4vw, 18px);
+        width: 100%; max-width: 860px; margin: 0 auto; padding: 0 16px; box-sizing: border-box;
+        overflow-wrap: break-word; -webkit-text-size-adjust: 100%;
+    }
+    .lesson-content *, .lesson-content *::before, .lesson-content *::after { box-sizing: border-box; }
+    .lesson-content h2, .lesson-content h3, .lesson-content h4 { color: #1E293B; font-weight: 700; line-height: 1.35; margin-top: 1.5em; margin-bottom: 0.5em; }
+    .lesson-content h3 { font-size: clamp(19px, 1.05rem + 0.6vw, 22px); }
+    .lesson-content h4 { font-size: clamp(16px, 0.95rem + 0.3vw, 18px); color: #6B46C1; }
+    .lesson-content p  { margin: 0 0 1em; }
+    .lesson-content ul { margin: 0 0 1em; padding-left: 1.4em; }
+    .lesson-content li { margin-bottom: 0.5em; }
+
+    .uc-lesson-objectives { background-color: #F8FAFC; border-left: 5px solid #3182CE; padding: clamp(14px, 3vw, 20px) clamp(16px, 3.5vw, 24px); margin-bottom: 30px; border-radius: 0 8px 8px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .uc-lesson-objectives h3 { margin-top: 0; color: #1E293B; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: 0.5px; }
+    .uc-lesson-objectives ul { margin-bottom: 0; padding-left: 20px; }
+    .uc-lesson-objectives li { color: #475569; font-weight: 500; }
+    .uc-divider { border: 0; border-top: 2px dashed #CBD5E1; margin: 30px 0; }
+    .l2-tag { display: inline-block; font-size: 13px; font-weight: 700; color: #C53030; background: #FFF5F5; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
+
+    .l2-cmp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 14px 0; }
+    .l2-card { border: 1px solid #E2E8F0; border-radius: 10px; background: #fff; padding: 12px; }
+    .l2-fig { margin: 0; min-width: 0; }
+    .l2-fig figcaption { margin: 0 0 8px; }
+    .l2-badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+    .l2-badge.ok  { background: #F0FFF4; color: #276749; }
+    .l2-badge.bad { background: #FFF5F5; color: #C53030; }
+    .l2-svg { display: block; width: 100%; height: auto; }
+    .l2-fig-note { margin: 8px 0 0; font-size: 13.5px; color: #64748B; line-height: 1.55; }
+    .l2-callout { background: #FFFAF0; border-left: 4px solid #DD6B20; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 4px 0 16px; font-size: 15.5px; }
+
+    .l2-distinguish { background: #FAF5FF; border: 1px solid #E9D8FD; border-left: 5px solid #6B46C1; border-radius: 0 8px 8px 0; padding: 14px 20px; }
+    .l2-distinguish h4 { margin-top: 0; }
+    .l2-distinguish p:last-child { margin-bottom: 0; color: #553C9A; font-size: 14.5px; }
+
+    .l2-summary { background: #F0FFF4; border: 1px solid #C6F6D5; border-left: 5px solid #38A169; border-radius: 8px; padding: 14px 20px 6px; }
+    .l2-summary h3 { margin-top: 0; color: #276749; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: .5px; }
+
+    @media (max-width: 768px) {
+        .lesson-content { padding: 0 14px; }
+        .l2-cmp-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+</style>
+<!-- Kết thúc nội dung bài học uc-m4-b2 -->

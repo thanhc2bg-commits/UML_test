@@ -1,0 +1,146 @@
+{
+  "lessonId": "uc-m4-b1",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Lỗi thường gặp với «extend» là gì?",
+      "options": [
+        "Quên vẽ Actor",
+        "Không rõ ai là người có thể tự thực thi độc lập Extending use case",
+        "Dùng sai màu cho mũi tên",
+        "Đặt tên Use case quá ngắn"
+      ],
+      "answer": 1,
+      "explanation": "Lỗi hay gặp là để lại sự mơ hồ về việc ai thực sự có thể tự mình kích hoạt Extending use case một cách độc lập."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo đúng chuẩn UML trong ví dụ Reserve lecture hall «extend» Announce course, ai nối trực tiếp với Reserve lecture hall?",
+      "options": [
+        "Cả Lecturer và Tutor",
+        "Chỉ Lecturer",
+        "Chỉ Tutor",
+        "Không Actor nào"
+      ],
+      "answer": 2,
+      "explanation": "Chỉ Tutor nối trực tiếp với Reserve lecture hall, thể hiện rõ Tutor là người đặt giảng đường, độc lập với Lecturer."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "Lỗi thường gặp với «include» là gì?",
+      "options": [
+        "Quên ghi nhãn «include»",
+        "Để một Actor khác giao tiếp ngắt ngang trực tiếp vào Included use case đang được gọi",
+        "Dùng «include» cho quá nhiều use case",
+        "Vẽ «include» bằng đường nét liền thay vì nét đứt"
+      ],
+      "answer": 1,
+      "explanation": "Không để một Actor khác giao tiếp ngắt ngang trực tiếp vào Included use case đang được gọi."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Biểu đồ Use case có được dùng để mô hình hóa các quy trình tuần tự (như lưu đồ) không?",
+      "options": [
+        "Có, đây chính là mục đích chính của Use case diagram",
+        "Không — Use case diagram KHÔNG dùng để mô hình hóa quy trình tuần tự",
+        "Chỉ được phép nếu có dưới 3 bước",
+        "Chỉ được phép khi dùng «extend» thay vì «include»"
+      ],
+      "answer": 1,
+      "explanation": "Biểu đồ Use case KHÔNG dùng để mô hình hóa các quy trình tuần tự."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Nếu các bước riêng lẻ luôn được thực thi cùng nhau theo một trình tự xác định trước, nên mô hình hóa như thế nào?",
+      "options": [
+        "Tách thành nhiều Use case nối bằng «include» như một chuỗi",
+        "Đây chỉ là MỘT Use case duy nhất — không thực hiện phân rã chức năng",
+        "Tách thành nhiều Use case nối bằng «extend»",
+        "Bỏ qua, không mô hình hóa"
+      ],
+      "answer": 1,
+      "explanation": "Nếu các bước riêng lẻ luôn được thực thi cùng nhau theo trình tự xác định trước, đây chỉ là một Use case duy nhất — không thực hiện phân rã chức năng."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ lỗi \"Transmit grade → Issue certificate → Notification → Get certificate\", cách sửa đúng là gì?",
+      "options": [
+        "Thêm nhiều «extend» hơn nữa cho rõ ràng",
+        "Gộp lại chỉ còn một Use case, ví dụ \"Issue certificate\"",
+        "Đổi tất cả «include» thành Generalization",
+        "Xóa hết Actor khỏi sơ đồ"
+      ],
+      "answer": 1,
+      "explanation": "Cách sửa đúng: chỉ cần một Use case duy nhất, ví dụ \"Issue certificate\", thay vì tách thành chuỗi nhiều use case."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo quy tắc System Boundaries, Actor nên được đặt ở đâu trên sơ đồ?",
+      "options": [
+        "Luôn luôn bên trong ranh giới hệ thống",
+        "Luôn luôn bên ngoài ranh giới hệ thống",
+        "Ở bất kỳ đâu, không quan trọng",
+        "Ngay trên đường ranh giới hệ thống"
+      ],
+      "answer": 1,
+      "explanation": "Các Actor luôn luôn nằm BÊN NGOÀI ranh giới hệ thống."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Lỗi System Boundary trong ví dụ Student Administration là gì?",
+      "options": [
+        "Đặt Actor Employee hoặc Student bên trong hộp System Student Administration",
+        "Đặt Use case \"Issue information\" bên ngoài hệ thống",
+        "Không có Actor nào trong sơ đồ",
+        "Dùng sai ký hiệu ellipse cho Use case"
+      ],
+      "answer": 0,
+      "explanation": "Sai lầm: Đặt Actor Employee hoặc Student bên trong hộp System Student Administration."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "Một sơ đồ vẽ Actor \"Nhân viên kho\" có đường nối cắt ngang trực tiếp vào Use case được include bởi Use case khác — đây là lỗi gì?",
+      "options": [
+        "Lỗi System Boundary",
+        "Lỗi mô hình hóa Quy trình",
+        "Lỗi «include»",
+        "Không phải lỗi, đây là cách vẽ hợp lệ"
+      ],
+      "answer": 2,
+      "explanation": "Actor nối thẳng, ngắt ngang vào Included use case đang được gọi là lỗi «include»."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "Điểm chung giữa lỗi «extend» và lỗi «include» đã học trong bài này là gì?",
+      "options": [
+        "Cả hai đều liên quan đến việc đặt sai System Boundary",
+        "Cả hai đều liên quan đến việc không rõ ràng khi một Actor khác giao tiếp với Use case phụ (extending/included) của một quan hệ",
+        "Cả hai đều là lỗi về cách đặt tên Use case",
+        "Cả hai đều chỉ xảy ra khi có nhiều hơn 5 Actor"
+      ],
+      "answer": 1,
+      "explanation": "Cả hai lỗi đều xoay quanh việc để một Actor khác giao tiếp không rõ ràng với Use case phụ (Extending hoặc Included) thay vì có một đường Association tường minh, riêng biệt."
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "lessonId": "uc-m4-b3",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ tổng hợp Student Administration, Actor nào là Actor cha, được ServEmp và AdminEmp kế thừa?",
+      "options": [
+        "Student",
+        "Employee",
+        "Lecturer",
+        "Notification System"
+      ],
+      "answer": 1,
+      "explanation": "Employee là Actor cha; ServEmp và AdminEmp kế thừa từ Employee qua Generalization."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Use case nào cả ServEmp và AdminEmp đều giao tiếp được, nhờ kế thừa từ Employee?",
+      "options": [
+        "Print certificate",
+        "Create course",
+        "Issue information",
+        "Reserve lecture hall"
+      ],
+      "answer": 2,
+      "explanation": "Employee giao tiếp trực tiếp với Issue information; ServEmp và AdminEmp đều kế thừa quan hệ này."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "AdminEmp có những Use case riêng nào (không tính phần kế thừa từ Employee)?",
+      "options": [
+        "Register và Withdraw",
+        "Print certificate và Create course",
+        "Transmit grade và Notify student",
+        "Chỉ Issue information"
+      ],
+      "answer": 1,
+      "explanation": "AdminEmp giao tiếp trực tiếp với Print certificate và Create course, ngoài phần kế thừa Issue information."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong sơ đồ, Reserve lecture hall có quan hệ gì với Create course?",
+      "options": [
+        "Generalization",
+        "«include»",
+        "«extend»",
+        "Không có quan hệ nào"
+      ],
+      "answer": 2,
+      "explanation": "Reserve lecture hall «extend» Create course: khi tạo khóa học, AdminEmp có thể đặt thêm giảng đường, nhưng không bắt buộc."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Student giao tiếp trực tiếp với những Use case nào?",
+      "options": [
+        "Chỉ Manage student data",
+        "Register, Withdraw, Enroll",
+        "Issue information, Print certificate",
+        "Transmit grade, Notify student"
+      ],
+      "answer": 1,
+      "explanation": "Student giao tiếp trực tiếp với Register, Withdraw, Enroll — các sub use case của {abstract} Manage student data."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Vì sao Student không giao tiếp trực tiếp với Manage student data?",
+      "options": [
+        "Vì Student không được phép quản lý dữ liệu của mình",
+        "Vì Manage student data là Use case trừu tượng ({abstract}), không thể thực thi trực tiếp",
+        "Vì Manage student data đã bị xóa khỏi sơ đồ",
+        "Vì chỉ AdminEmp mới được giao tiếp với Manage student data"
+      ],
+      "answer": 1,
+      "explanation": "Manage student data là {abstract} nên không thể được thực thi trực tiếp — chỉ các sub use case (Register, Withdraw, Enroll) mới thực thi được."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Register có quan hệ «include» với Use case nào?",
+      "options": [
+        "Withdraw",
+        "Enroll",
+        "Manage student data",
+        "Issue information"
+      ],
+      "answer": 1,
+      "explanation": "Register «include» Enroll: đăng ký sẽ tự động bao gồm việc ghi danh."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Notify student được kích hoạt như thế nào trong ví dụ?",
+      "options": [
+        "Do Student trực tiếp yêu cầu",
+        "Do Lecturer trực tiếp yêu cầu",
+        "Thông qua quan hệ «include» từ Transmit grade (Trigger nội bộ)",
+        "Notify student không bao giờ được kích hoạt"
+      ],
+      "answer": 2,
+      "explanation": "Transmit grade «include» Notify student — đây là Trigger nội bộ (Internal), không phải do Actor con người trực tiếp yêu cầu."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo mẹo mô hình hóa \"cùng mức độ trừu tượng\", vì sao không nên để \"Manage student data\" đứng ngang hàng trực tiếp với \"Select printer\"?",
+      "options": [
+        "Vì cả hai đều là Use case trừu tượng",
+        "Vì hai use case này chênh lệch quá nhiều về độ chi tiết (một cấp cao, một quá vi mô)",
+        "Vì \"Select printer\" không tồn tại trong UML",
+        "Vì Actor Employee không được phép dùng \"Select printer\""
+      ],
+      "answer": 1,
+      "explanation": "\"Manage student data\" (quản lý cấp cao) và \"Select printer\" (hành động vi mô quá chi tiết) chênh lệch mức độ trừu tượng — không nên đặt ngang hàng."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo mẹo mô hình hóa \"chỉ đưa vào những gì liên quan\", ví dụ nào sau đây là sai lầm?",
+      "options": [
+        "Vẽ Use case \"Issue information\" cho Employee",
+        "Vẽ Use case \"Clean office\" và gán cho Actor \"Cleaning Staff\" trong hệ thống Student Office",
+        "Vẽ Use case \"Register\" cho Student",
+        "Vẽ quan hệ «include» giữa Register và Enroll"
+      ],
+      "answer": 1,
+      "explanation": "Ví dụ sai lầm: vẽ Use case \"Clean office\" và gán cho Actor \"Cleaning Staff\" — không liên quan đến phạm vi quản lý sinh viên đang mô hình hóa, nên có thể bỏ qua."
+    }
+  ]
+}

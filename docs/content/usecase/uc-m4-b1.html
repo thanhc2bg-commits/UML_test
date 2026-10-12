@@ -1,0 +1,338 @@
+<!-- Bắt đầu nội dung bài học uc-m4-b1 (Các lỗi mô hình hóa thường gặp - phần 1 - slide 25-28) -->
+<div class="lesson-content" id="uc-m4b1-root">
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="l1-person" viewBox="0 0 60 100">
+                <circle cx="30" cy="14" r="11" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
+                <path d="M30 25 V62 M10 40 H50 M30 62 L12 94 M30 62 L48 94" fill="none" stroke="currentColor"
+                      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </symbol>
+            <marker id="l1-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                <path d="M1 1 L9 5 L1 9" fill="none" stroke="#4A5568" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"></path>
+            </marker>
+        </defs>
+    </svg>
+
+    <div class="uc-lesson-objectives" style="margin-top: 4rem;">
+        <h3>Mục tiêu bài học</h3>
+        <ul>
+            <li>Nhận diện 4 lỗi mô hình hóa thường gặp: mơ hồ trong «extend», Actor cắt ngang vào «include», dùng sơ đồ Use case để vẽ quy trình tuần tự, và đặt Actor sai vị trí so với System Boundary.</li>
+            <li>Biết cách sửa từng lỗi theo đúng chuẩn UML.</li>
+        </ul>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>1. Lỗi với «extend»: không rõ ai thực thi độc lập <span class="l1-tag">Slide 25</span></h3>
+    <p>Trong thực tế, người mới học thường để lại sự <strong>mơ hồ</strong>: không rõ liệu Actor của Base use case có thể tự mình kích hoạt Extending use case hay không, nếu không có một đường Association riêng, rõ ràng.</p>
+
+    <div class="l1-cmp-grid">
+        <figure class="l1-card l1-fig">
+            <figcaption><span class="l1-badge ok">✓ Đúng chuẩn UML</span></figcaption>
+            <svg class="l1-svg" viewBox="0 0 240 200" role="img" aria-label="Lecturer nối Announce course, Tutor nối Reserve lecture hall, không có đường nào giữa hai Actor">
+                <g style="color:#12233e"><use href="#l1-person" x="14" y="12" width="34" height="56"></use><text x="31" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">Lecturer</text></g>
+                <g style="color:#12233e"><use href="#l1-person" x="14" y="122" width="34" height="56"></use><text x="31" y="190" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">Tutor</text></g>
+                <ellipse cx="165" cy="45" rx="68" ry="28" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="165" y="49" text-anchor="middle" font-size="10.5" fill="#12233e">Announce course</text>
+                <ellipse cx="165" cy="150" rx="68" ry="30" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="165" y="146" text-anchor="middle" font-size="10.5" fill="#12233e">Reserve</text>
+                <text x="165" y="160" text-anchor="middle" font-size="10.5" fill="#12233e">lecture hall</text>
+                <line x1="50" y1="40" x2="97" y2="45" stroke="#4A5568" stroke-width="1.6"></line>
+                <line x1="50" y1="145" x2="97" y2="150" stroke="#4A5568" stroke-width="1.6"></line>
+                <line x1="165" y1="120" x2="165" y2="75" stroke="#4A5568" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#l1-ah)"></line>
+                <text x="178" y="100" font-size="9" font-style="italic" fill="#12233e">«extend»</text>
+            </svg>
+            <p class="l1-fig-note">Chỉ Tutor nối trực tiếp với Reserve lecture hall — rõ ràng Tutor là người đặt giảng đường, độc lập với Lecturer.</p>
+        </figure>
+        <figure class="l1-card l1-fig">
+            <figcaption><span class="l1-badge bad">✗ Lỗi hay gặp</span></figcaption>
+            <svg class="l1-svg" viewBox="0 0 240 200" role="img" aria-label="Giống sơ đồ trên, nhưng có một đường chấm hỏi mơ hồ giữa Lecturer và Tutor">
+                <g style="color:#12233e"><use href="#l1-person" x="14" y="12" width="34" height="56"></use><text x="31" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">Lecturer</text></g>
+                <g style="color:#12233e"><use href="#l1-person" x="14" y="122" width="34" height="56"></use><text x="31" y="190" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">Tutor</text></g>
+                <ellipse cx="165" cy="45" rx="68" ry="28" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="165" y="49" text-anchor="middle" font-size="10.5" fill="#12233e">Announce course</text>
+                <ellipse cx="165" cy="150" rx="68" ry="30" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="165" y="146" text-anchor="middle" font-size="10.5" fill="#12233e">Reserve</text>
+                <text x="165" y="160" text-anchor="middle" font-size="10.5" fill="#12233e">lecture hall</text>
+                <line x1="50" y1="40" x2="97" y2="45" stroke="#4A5568" stroke-width="1.6"></line>
+                <line x1="50" y1="145" x2="97" y2="150" stroke="#4A5568" stroke-width="1.6"></line>
+                <line x1="165" y1="120" x2="165" y2="75" stroke="#4A5568" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#l1-ah)"></line>
+                <line x1="31" y1="70" x2="31" y2="120" stroke="#C53030" stroke-width="2" stroke-dasharray="3 3"></line>
+                <circle cx="31" cy="95" r="10" fill="#FFF5F5" stroke="#C53030" stroke-width="1.5"></circle>
+                <text x="31" y="99" text-anchor="middle" font-size="12" font-weight="700" fill="#C53030">?</text>
+            </svg>
+            <p class="l1-fig-note">Đường mơ hồ giữa hai Actor khiến không rõ: Lecturer có tự đặt được giảng đường không, hay chỉ Tutor mới làm được việc này?</p>
+        </figure>
+    </div>
+    <p class="l1-callout"><strong>Cách sửa:</strong> chỉ Actor có đường Association riêng, tường minh tới Extending use case mới được xem là có thể tự thực thi nó độc lập — không suy diễn qua quan hệ «extend».</p>
+
+    <hr class="uc-divider">
+
+    <h3>2. Lỗi với «include»: Actor cắt ngang vào use case đang được gọi <span class="l1-tag">Slide 26</span></h3>
+    <p>Tương tự lỗi với «extend». Không để một Actor khác giao tiếp <strong>ngắt ngang trực tiếp</strong> vào Included use case đang được gọi bởi Base use case.</p>
+
+    <div class="l1-cmp-grid">
+        <figure class="l1-card l1-fig">
+            <figcaption><span class="l1-badge ok">✓ Đúng chuẩn UML</span></figcaption>
+            <svg class="l1-svg" viewBox="0 0 240 200" role="img" aria-label="Actor A chỉ nối với X, X include Y">
+                <g style="color:#12233e"><use href="#l1-person" x="14" y="72" width="34" height="56"></use><text x="31" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">A</text></g>
+                <ellipse cx="135" cy="60" rx="58" ry="28" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="135" y="65" text-anchor="middle" font-size="14" fill="#12233e">X</text>
+                <ellipse cx="135" cy="150" rx="58" ry="28" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="135" y="155" text-anchor="middle" font-size="14" fill="#12233e">Y</text>
+                <line x1="50" y1="92" x2="80" y2="72" stroke="#4A5568" stroke-width="1.6"></line>
+                <line x1="135" y1="88" x2="135" y2="122" stroke="#4A5568" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#l1-ah)"></line>
+                <text x="148" y="108" font-size="9" font-style="italic" fill="#12233e">«include»</text>
+            </svg>
+            <p class="l1-fig-note">A chỉ có một đường Association duy nhất, nối vào X. Y chỉ được tới thông qua quan hệ «include».</p>
+        </figure>
+        <figure class="l1-card l1-fig">
+            <figcaption><span class="l1-badge bad">✗ Lỗi hay gặp</span></figcaption>
+            <svg class="l1-svg" viewBox="0 0 240 200" role="img" aria-label="Actor A có thêm một đường cắt ngang qua X, nối thẳng vào Y">
+                <g style="color:#12233e"><use href="#l1-person" x="14" y="72" width="34" height="56"></use><text x="31" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">A</text></g>
+                <ellipse cx="135" cy="60" rx="58" ry="28" fill="#FFF5F5" stroke="#C53030" stroke-width="2"></ellipse>
+                <text x="135" y="65" text-anchor="middle" font-size="14" fill="#12233e">X</text>
+                <ellipse cx="135" cy="150" rx="58" ry="28" fill="#FFF5F5" stroke="#C53030" stroke-width="2"></ellipse>
+                <text x="135" y="155" text-anchor="middle" font-size="14" fill="#12233e">Y</text>
+                <line x1="50" y1="92" x2="80" y2="72" stroke="#4A5568" stroke-width="1.6"></line>
+                <line x1="135" y1="88" x2="135" y2="122" stroke="#4A5568" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#l1-ah)"></line>
+                <line x1="48" y1="105" x2="112" y2="148" stroke="#C53030" stroke-width="2"></line>
+                <text x="60" y="130" font-size="16" font-weight="700" fill="#C53030">✗</text>
+            </svg>
+            <p class="l1-fig-note">A có thêm một đường nối thẳng, cắt ngang qua X để vào Y — khiến ranh giới "ai gọi trực tiếp, ai chỉ được include" bị phá vỡ.</p>
+        </figure>
+    </div>
+    <p class="l1-callout"><strong>Cách sửa:</strong> nếu một Actor thật sự cần thực thi Y độc lập, Y phải trở thành một Use case riêng mà Actor đó nối trực tiếp — không "ngắt ngang" vào Included use case của một quan hệ «include» đã có.</p>
+
+    <hr class="uc-divider">
+
+    <h3>3. Lỗi mô hình hóa Quy trình (Processes) <span class="l1-tag">Slide 27</span></h3>
+    <p><strong>Biểu đồ Use case KHÔNG dùng để mô hình hóa các quy trình tuần tự</strong> (như lưu đồ / flowchart)! Nếu các bước luôn được thực thi cùng nhau theo một trình tự cố định, đó chỉ là <strong>một</strong> Use case duy nhất.</p>
+
+    <div class="l1-cmp-grid">
+        <figure class="l1-card l1-fig">
+            <figcaption><span class="l1-badge bad">✗ Lỗi hay gặp</span></figcaption>
+            <svg class="l1-svg" viewBox="0 0 240 330" role="img" aria-label="Bốn use case nối liên tiếp bằng include như một lưu đồ">
+                <g style="color:#12233e"><use href="#l1-person" x="92" y="6" width="32" height="50"></use><text x="108" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">User</text></g>
+                <line x1="108" y1="56" x2="108" y2="86" stroke="#4A5568" stroke-width="1.6"></line>
+                <g stroke="#C53030" stroke-width="2" fill="none"><line x1="30" y1="85" x2="200" y2="300"></line></g>
+                <ellipse cx="120" cy="106" rx="76" ry="20" fill="#FFF5F5" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="120" y="110" text-anchor="middle" font-size="10" fill="#12233e">Transmit grade</text>
+                <line x1="120" y1="126" x2="120" y2="146" stroke="#4A5568" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#l1-ah)"></line>
+                <ellipse cx="120" cy="166" rx="76" ry="20" fill="#FFF5F5" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="120" y="170" text-anchor="middle" font-size="10" fill="#12233e">Issue certificate</text>
+                <line x1="120" y1="186" x2="120" y2="206" stroke="#4A5568" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#l1-ah)"></line>
+                <ellipse cx="120" cy="228" rx="76" ry="24" fill="#FFF5F5" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="120" y="224" text-anchor="middle" font-size="9.5" fill="#12233e">Notification about</text>
+                <text x="120" y="236" text-anchor="middle" font-size="9.5" fill="#12233e">new certificate</text>
+                <line x1="120" y1="252" x2="120" y2="272" stroke="#4A5568" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#l1-ah)"></line>
+                <ellipse cx="120" cy="292" rx="76" ry="20" fill="#FFF5F5" stroke="#C53030" stroke-width="1.6"></ellipse>
+                <text x="120" y="296" text-anchor="middle" font-size="10" fill="#12233e">Get certificate</text>
+            </svg>
+            <p class="l1-fig-note">«include» bị dùng liên tục từ bước này sang bước khác, giống hệt một lưu đồ xử lý tuần tự.</p>
+        </figure>
+        <figure class="l1-card l1-fig">
+            <figcaption><span class="l1-badge ok">✓ Đúng chuẩn UML</span></figcaption>
+            <svg class="l1-svg" viewBox="0 0 240 330" role="img" aria-label="Chỉ một use case Issue certificate, nối với Lecturer">
+                <g style="color:#12233e"><use href="#l1-person" x="92" y="120" width="32" height="50"></use><text x="108" y="182" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">Lecturer</text></g>
+                <ellipse cx="108" cy="90" rx="78" ry="30" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="108" y="94" text-anchor="middle" font-size="11" fill="#12233e">Issue certificate</text>
+                <line x1="108" y1="118" x2="108" y2="140" stroke="#4A5568" stroke-width="1.6"></line>
+            </svg>
+            <p class="l1-fig-note">Chỉ cần MỘT Use case "Issue certificate" — các bước nội bộ (nhận điểm, in, thông báo…) nằm trong kịch bản chi tiết của chính nó, không tách thành chuỗi use case riêng.</p>
+        </figure>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>4. Lỗi System Boundaries (Ranh giới hệ thống) <span class="l1-tag">Slide 28</span></h3>
+    <p>Các Actor <strong>luôn luôn nằm BÊN NGOÀI</strong> ranh giới hệ thống!</p>
+
+    <div class="l1-cmp-grid">
+        <figure class="l1-card l1-fig">
+            <figcaption><span class="l1-badge bad">✗ Lỗi hay gặp</span></figcaption>
+            <svg class="l1-svg" viewBox="0 0 240 200" role="img" aria-label="Employee và Student bị đặt lọt vào bên trong khung hệ thống">
+                <rect x="8" y="8" width="224" height="184" rx="6" fill="#FFF5F5" stroke="#C53030" stroke-width="2" stroke-dasharray="6 5"></rect>
+                <text x="120" y="26" text-anchor="middle" font-size="10" font-weight="700" fill="#C53030">Student Administration</text>
+                <g style="color:#12233e"><use href="#l1-person" x="22" y="40" width="30" height="50"></use><text x="37" y="98" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">Employee</text></g>
+                <g style="color:#12233e"><use href="#l1-person" x="22" y="116" width="30" height="50"></use><text x="37" y="174" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">Student</text></g>
+                <ellipse cx="155" cy="100" rx="62" ry="46" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="155" y="96" text-anchor="middle" font-size="10.5" fill="#12233e">Issue</text>
+                <text x="155" y="110" text-anchor="middle" font-size="10.5" fill="#12233e">information</text>
+                <line x1="54" y1="60" x2="97" y2="85" stroke="#4A5568" stroke-width="1.6"></line>
+                <line x1="54" y1="140" x2="97" y2="115" stroke="#4A5568" stroke-width="1.6"></line>
+            </svg>
+            <p class="l1-fig-note">Employee và Student bị vẽ lọt hẳn vào bên trong hộp hệ thống — sai vị trí.</p>
+        </figure>
+        <figure class="l1-card l1-fig">
+            <figcaption><span class="l1-badge ok">✓ Đúng chuẩn UML</span></figcaption>
+            <svg class="l1-svg" viewBox="0 0 240 200" role="img" aria-label="Employee và Student nằm ngoài khung hệ thống, nối vào use case bên trong">
+                <rect x="88" y="8" width="144" height="184" rx="6" fill="#F8FAFF" stroke="#12233e" stroke-width="2" stroke-dasharray="6 5"></rect>
+                <text x="160" y="26" text-anchor="middle" font-size="9.5" font-weight="700" fill="#12233e">Student Administration</text>
+                <g style="color:#12233e"><use href="#l1-person" x="8" y="30" width="30" height="50"></use><text x="23" y="88" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">Employee</text></g>
+                <g style="color:#12233e"><use href="#l1-person" x="8" y="120" width="30" height="50"></use><text x="23" y="178" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor">Student</text></g>
+                <ellipse cx="165" cy="100" rx="56" ry="46" fill="#fff" stroke="#3182CE" stroke-width="2"></ellipse>
+                <text x="165" y="96" text-anchor="middle" font-size="10.5" fill="#12233e">Issue</text>
+                <text x="165" y="110" text-anchor="middle" font-size="10.5" fill="#12233e">information</text>
+                <line x1="40" y1="50" x2="110" y2="88" stroke="#4A5568" stroke-width="1.6"></line>
+                <line x1="40" y1="140" x2="110" y2="112" stroke="#4A5568" stroke-width="1.6"></line>
+            </svg>
+            <p class="l1-fig-note">Employee và Student nằm ngoài ranh giới hệ thống, chỉ có đường Association đi qua ranh giới để vào Use case.</p>
+        </figure>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>Nhận diện lỗi</h3>
+    <p>Mỗi tình huống dưới đây là một ví dụ mới (không trích từ slide) để bạn luyện tập nhận diện đúng loại lỗi.</p>
+
+    <div class="l1-scenario">
+        <p class="l1-sc-text">1. Một sơ đồ vẽ liên tiếp bằng «include»: Đăng nhập → Nhập dữ liệu → Gửi dữ liệu → Đăng xuất, nối thành một chuỗi từ Actor, giống như các bước của một lưu đồ.</p>
+        <div class="l1-sc-choices">
+            <button type="button" data-ls="1" data-v="extend">Lỗi «extend»</button>
+            <button type="button" data-ls="1" data-v="include">Lỗi «include»</button>
+            <button type="button" data-ls="1" data-v="process">Lỗi mô hình hóa Quy trình</button>
+            <button type="button" data-ls="1" data-v="boundary">Lỗi System Boundary</button>
+        </div>
+        <p class="l1-sc-fb" id="l1-sc-1-fb" aria-live="polite"></p>
+    </div>
+
+    <div class="l1-scenario">
+        <p class="l1-sc-text">2. Trong sơ đồ hệ thống "Online Shop", Actor "Khách hàng" được vẽ nằm lọt hẳn vào bên trong khung hệ thống, cạnh các Use case.</p>
+        <div class="l1-sc-choices">
+            <button type="button" data-ls="2" data-v="extend">Lỗi «extend»</button>
+            <button type="button" data-ls="2" data-v="include">Lỗi «include»</button>
+            <button type="button" data-ls="2" data-v="process">Lỗi mô hình hóa Quy trình</button>
+            <button type="button" data-ls="2" data-v="boundary">Lỗi System Boundary</button>
+        </div>
+        <p class="l1-sc-fb" id="l1-sc-2-fb" aria-live="polite"></p>
+    </div>
+
+    <div class="l1-scenario">
+        <p class="l1-sc-text">3. Actor "Nhân viên kho" có một đường nối thẳng, cắt ngang qua Use case "Nhập hàng" (base), đi thẳng vào Use case "Kiểm tra tồn kho" (Use case được include bởi Nhập hàng).</p>
+        <div class="l1-sc-choices">
+            <button type="button" data-ls="3" data-v="extend">Lỗi «extend»</button>
+            <button type="button" data-ls="3" data-v="include">Lỗi «include»</button>
+            <button type="button" data-ls="3" data-v="process">Lỗi mô hình hóa Quy trình</button>
+            <button type="button" data-ls="3" data-v="boundary">Lỗi System Boundary</button>
+        </div>
+        <p class="l1-sc-fb" id="l1-sc-3-fb" aria-live="polite"></p>
+    </div>
+
+    <div class="l1-scenario">
+        <p class="l1-sc-text">4. Actor "Giám sát viên" nối với Use case "Duyệt đơn" (base, được extend bởi "Ưu tiên đơn gấp"). Sơ đồ còn có một đường nét đứt có dấu "?" nối "Giám sát viên" với Actor "Trưởng phòng", khiến không rõ ai thực sự có quyền tự đánh dấu đơn gấp.</p>
+        <div class="l1-sc-choices">
+            <button type="button" data-ls="4" data-v="extend">Lỗi «extend»</button>
+            <button type="button" data-ls="4" data-v="include">Lỗi «include»</button>
+            <button type="button" data-ls="4" data-v="process">Lỗi mô hình hóa Quy trình</button>
+            <button type="button" data-ls="4" data-v="boundary">Lỗi System Boundary</button>
+        </div>
+        <p class="l1-sc-fb" id="l1-sc-4-fb" aria-live="polite"></p>
+    </div>
+
+    <hr class="uc-divider">
+
+    <div class="l1-summary">
+        <h3>Ghi nhớ nhanh</h3>
+        <ul>
+            <li><strong>«extend» mơ hồ:</strong> chỉ Actor có đường Association riêng, rõ ràng mới được xem là thực thi độc lập Extending use case.</li>
+            <li><strong>«include» cắt ngang:</strong> không để Actor khác nối thẳng, ngắt ngang vào Included use case.</li>
+            <li><strong>Quy trình (Processes):</strong> Use case diagram không phải lưu đồ — đừng xâu chuỗi «include» qua nhiều bước tuần tự.</li>
+            <li><strong>System Boundaries:</strong> Actor luôn nằm bên ngoài ranh giới hệ thống, không bao giờ đặt bên trong.</li>
+        </ul>
+    </div>
+
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+
+    .lesson-content {
+        font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #334155; line-height: 1.75; font-size: clamp(16px, 0.9rem + 0.4vw, 18px);
+        width: 100%; max-width: 860px; margin: 0 auto; padding: 0 16px; box-sizing: border-box;
+        overflow-wrap: break-word; -webkit-text-size-adjust: 100%;
+    }
+    .lesson-content *, .lesson-content *::before, .lesson-content *::after { box-sizing: border-box; }
+    .lesson-content h2, .lesson-content h3 { color: #1E293B; font-weight: 700; line-height: 1.35; margin-top: 1.5em; margin-bottom: 0.5em; }
+    .lesson-content h3 { font-size: clamp(19px, 1.05rem + 0.6vw, 22px); }
+    .lesson-content p  { margin: 0 0 1em; }
+
+    .uc-lesson-objectives { background-color: #F8FAFC; border-left: 5px solid #3182CE; padding: clamp(14px, 3vw, 20px) clamp(16px, 3.5vw, 24px); margin-bottom: 30px; border-radius: 0 8px 8px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .uc-lesson-objectives h3 { margin-top: 0; color: #1E293B; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: 0.5px; }
+    .uc-lesson-objectives ul { margin-bottom: 0; padding-left: 20px; }
+    .uc-lesson-objectives li { color: #475569; font-weight: 500; }
+    .uc-divider { border: 0; border-top: 2px dashed #CBD5E1; margin: 30px 0; }
+    .l1-tag { display: inline-block; font-size: 13px; font-weight: 700; color: #C53030; background: #FFF5F5; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
+
+    .l1-cmp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 14px 0; }
+    .l1-card { border: 1px solid #E2E8F0; border-radius: 10px; background: #fff; padding: 12px; }
+    .l1-fig { margin: 0; min-width: 0; }
+    .l1-fig figcaption { margin: 0 0 8px; }
+    .l1-badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+    .l1-badge.ok  { background: #F0FFF4; color: #276749; }
+    .l1-badge.bad { background: #FFF5F5; color: #C53030; }
+    .l1-svg { display: block; width: 100%; height: auto; }
+    .l1-fig-note { margin: 8px 0 0; font-size: 13.5px; color: #64748B; line-height: 1.55; }
+    .l1-callout { background: #FFFAF0; border-left: 4px solid #DD6B20; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 4px 0 16px; font-size: 15.5px; }
+
+    .l1-scenario { border: 1px solid #E2E8F0; border-radius: 10px; background: #fff; padding: 14px 16px; margin: 10px 0; }
+    .l1-sc-text { margin: 0 0 10px; font-size: 15px; line-height: 1.6; }
+    .l1-sc-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+    .l1-sc-choices button {
+        min-height: 42px; padding: 7px 14px; border-radius: 999px; border: 1.5px solid #CBD5E1; background: #fff; color: #334155;
+        font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all .2s; -webkit-tap-highlight-color: transparent;
+    }
+    .l1-sc-choices button:focus-visible { outline: 3px solid #3182CE; outline-offset: 2px; }
+    .l1-sc-choices button.correct { background: #C6F6D5; border-color: #38A169; color: #276749; }
+    .l1-sc-choices button.wrong { background: #FED7D7; border-color: #E53E3E; color: #9B2C2C; }
+    .l1-sc-choices button:disabled { cursor: default; opacity: .85; }
+    .l1-sc-fb { margin: 10px 0 0; font-size: 14.5px; line-height: 1.6; color: #475569; min-height: 1.4em; }
+
+    .l1-summary { background: #F0FFF4; border: 1px solid #C6F6D5; border-left: 5px solid #38A169; border-radius: 8px; padding: 14px 20px 6px; }
+    .l1-summary h3 { margin-top: 0; color: #276749; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: .5px; }
+    .l1-summary ul { padding-left: 20px; }
+    .l1-summary li { margin-bottom: 0.5em; }
+
+    @media (hover: hover) { .l1-sc-choices button:not(:disabled):hover { border-color: #3182CE; } }
+    @media (max-width: 768px) {
+        .lesson-content { padding: 0 14px; }
+        .l1-cmp-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+</style>
+
+<script>
+    (function () {
+        var root = document.getElementById('uc-m4b1-root') || document;
+        function $(sel) { return root.querySelector(sel); }
+        var LS_ANSWER = { '1': 'process', '2': 'boundary', '3': 'include', '4': 'extend' };
+        var LS_EXPLAIN = {
+            '1': 'Đây là Lỗi mô hình hóa Quy trình: xâu chuỗi «include» qua nhiều bước tuần tự như một lưu đồ, thay vì gộp thành một Use case duy nhất.',
+            '2': 'Đây là Lỗi System Boundary: Actor "Khách hàng" bị đặt lọt vào bên trong hộp hệ thống, trong khi Actor luôn phải nằm bên ngoài.',
+            '3': 'Đây là Lỗi «include»: Actor "Nhân viên kho" có đường nối cắt ngang trực tiếp vào Included use case đang được gọi.',
+            '4': 'Đây là Lỗi «extend»: đường nét đứt có dấu "?" cho thấy sự mơ hồ về việc ai thực sự có thể tự thực thi Extending use case một cách độc lập.'
+        };
+        Array.prototype.slice.call(root.querySelectorAll('.l1-sc-choices')).forEach(function (group) {
+            var key = group.querySelector('button').getAttribute('data-ls');
+            var fb = $('#l1-sc-' + key + '-fb');
+            group.querySelectorAll('button').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var correct = btn.getAttribute('data-v') === LS_ANSWER[key];
+                    group.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+                    if (correct) {
+                        btn.classList.add('correct');
+                    } else {
+                        btn.classList.add('wrong');
+                        group.querySelector('[data-v="' + LS_ANSWER[key] + '"]').classList.add('correct');
+                    }
+                    fb.textContent = (correct ? '✓ ' : '✗ ') + LS_EXPLAIN[key];
+                });
+            });
+        });
+    })();
+</script>
+<!-- Kết thúc nội dung bài học uc-m4-b1 -->

@@ -1,0 +1,288 @@
+<!-- Bắt đầu nội dung bài học uc-m3-b1 (Xác định Actor và Use case - slide 20-21) -->
+<div class="lesson-content" id="uc-m3b1-root">
+
+    <div class="uc-lesson-objectives" style="margin-top: 4rem;">
+        <h3>Mục tiêu bài học</h3>
+        <ul>
+            <li>Nắm 5 câu hỏi dùng để xác định Actor của một System.</li>
+            <li>Hiểu Trigger (Tác nhân kích hoạt) là gì, và cách Actor gọi System trở thành Actor của Use case.</li>
+            <li>Phân biệt ba loại Trigger: Nội bộ (Internal), Bên ngoài (External), Thời gian (Temporal).</li>
+        </ul>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>1. Xác định các Actor <span class="xd-tag">Slide 20</span></h3>
+    <p>Trước khi vẽ sơ đồ, hãy tự hỏi năm câu hỏi sau để tìm ra các Actor của hệ thống. Chạm vào từng câu hỏi để xem một ví dụ minh họa dựa trên hệ thống Student Administration đã học ở các bài trước.</p>
+
+    <div class="xd-qlist" role="list">
+        <div class="xd-qitem">
+            <button type="button" class="xd-qhead" data-xdq="1" aria-expanded="false">
+                <span class="xd-qnum">1</span>
+                <span class="xd-qtext">Ai <strong>sử dụng</strong> các Use case chính?</span>
+                <span class="xd-qchevron" aria-hidden="true">›</span>
+            </button>
+            <div class="xd-qbody" data-xdq-body="1" hidden>Ví dụ: <strong>Student</strong> và <strong>Professor</strong> — hai Actor trực tiếp dùng các Use case cốt lõi như Enroll, Register, Query student data.</div>
+        </div>
+        <div class="xd-qitem">
+            <button type="button" class="xd-qhead" data-xdq="2" aria-expanded="false">
+                <span class="xd-qnum">2</span>
+                <span class="xd-qtext">Ai cần System để hỗ trợ <strong>công việc hằng ngày</strong> của họ?</span>
+                <span class="xd-qchevron" aria-hidden="true">›</span>
+            </button>
+            <div class="xd-qbody" data-xdq-body="2" hidden>Ví dụ: <strong>AdminEmp</strong>, <strong>ServEmp</strong> — nhân viên văn phòng xử lý hồ sơ, in chứng chỉ, trả lời yêu cầu mỗi ngày.</div>
+        </div>
+        <div class="xd-qitem">
+            <button type="button" class="xd-qhead" data-xdq="3" aria-expanded="false">
+                <span class="xd-qnum">3</span>
+                <span class="xd-qtext">Ai chịu trách nhiệm <strong>quản trị hệ thống</strong> (system administration)?</span>
+                <span class="xd-qchevron" aria-hidden="true">›</span>
+            </button>
+            <div class="xd-qbody" data-xdq-body="3" hidden>Ví dụ: một Actor quản trị viên hệ thống — thường là Actor phụ (secondary), ít khi xuất hiện trong các Use case nghiệp vụ chính như Enroll hay Issue certificate.</div>
+        </div>
+        <div class="xd-qitem">
+            <button type="button" class="xd-qhead" data-xdq="4" aria-expanded="false">
+                <span class="xd-qnum">4</span>
+                <span class="xd-qtext">System phải giao tiếp với <strong>thiết bị ngoại vi / hệ thống (phần mềm)</strong> nào?</span>
+                <span class="xd-qchevron" aria-hidden="true">›</span>
+            </button>
+            <div class="xd-qbody" data-xdq-body="4" hidden>Ví dụ: <strong>E-Mail Server</strong> hoặc <strong>Notification system</strong> — Actor phi con người (non-human) mà bạn đã gặp ở bài Actor.</div>
+        </div>
+        <div class="xd-qitem">
+            <button type="button" class="xd-qhead" data-xdq="5" aria-expanded="false">
+                <span class="xd-qnum">5</span>
+                <span class="xd-qtext">Ai hoặc cái gì <strong>quan tâm đến kết quả</strong> của System?</span>
+                <span class="xd-qchevron" aria-hidden="true">›</span>
+            </button>
+            <div class="xd-qbody" data-xdq-body="5" hidden>Ví dụ minh họa: một hệ thống báo cáo tổng hợp của nhà trường nhận số liệu từ Student Administration — có thể không thao tác trực tiếp nhưng vẫn quan tâm tới đầu ra của System.</div>
+        </div>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>2. Xác định các Use Case: Trigger <span class="xd-tag">Slide 21</span></h3>
+    <p>Sau khi đã xác định các Actor, bước tiếp theo là tìm kiếm <strong>Trigger (Tác nhân kích hoạt)</strong> cho các Use case.</p>
+
+    <div class="xd-def">
+        <strong>Trigger</strong> = các sự kiện <em>phải xảy ra</em> để khiến System tạo ra một kết quả. System thường được gọi bởi một Actor — từ đó, Actor này trở thành Actor của Use case đó.
+    </div>
+
+    <p>Có ba loại Trigger cần phân biệt. Chạm vào từng loại để xem giải thích.</p>
+
+    <div class="xd-trig-grid" role="group" aria-label="Ba loại Trigger">
+        <button type="button" class="xd-trig" data-trig="external" aria-pressed="false">
+            <span class="xd-trig-icon">👤</span>
+            <strong>Bên ngoài</strong>
+            <span>External</span>
+        </button>
+        <button type="button" class="xd-trig" data-trig="temporal" aria-pressed="false">
+            <span class="xd-trig-icon">🕒</span>
+            <strong>Thời gian</strong>
+            <span>Temporal</span>
+        </button>
+        <button type="button" class="xd-trig" data-trig="internal" aria-pressed="false">
+            <span class="xd-trig-icon">⚙️</span>
+            <strong>Nội bộ</strong>
+            <span>Internal</span>
+        </button>
+    </div>
+    <div class="xd-info" id="xd-trig-info" aria-live="polite">Chạm vào một loại Trigger ở trên để xem giải thích.</div>
+
+    <hr class="uc-divider">
+
+    <h4>Thử phân loại: đâu là Internal, External, Temporal?</h4>
+    <p>Dưới đây là ba tình huống minh họa (không trích từ slide, do bài học tự xây dựng để bạn luyện tập). Với mỗi tình huống, chọn loại Trigger phù hợp.</p>
+
+    <div class="xd-scenario" id="xd-sc-1">
+        <p class="xd-sc-text">1. Sinh viên bấm nút <strong>"Đăng ký môn học"</strong> trên hệ thống.</p>
+        <div class="xd-sc-choices">
+            <button type="button" data-sc="1" data-choice="external">Bên ngoài</button>
+            <button type="button" data-sc="1" data-choice="temporal">Thời gian</button>
+            <button type="button" data-sc="1" data-choice="internal">Nội bộ</button>
+        </div>
+        <p class="xd-sc-feedback" id="xd-sc-1-fb" aria-live="polite"></p>
+    </div>
+
+    <div class="xd-scenario" id="xd-sc-2">
+        <p class="xd-sc-text">2. Đúng <strong>00:00 ngày khai giảng mỗi học kỳ</strong>, hệ thống tự động mở cổng đăng ký.</p>
+        <div class="xd-sc-choices">
+            <button type="button" data-sc="2" data-choice="external">Bên ngoài</button>
+            <button type="button" data-sc="2" data-choice="temporal">Thời gian</button>
+            <button type="button" data-sc="2" data-choice="internal">Nội bộ</button>
+        </div>
+        <p class="xd-sc-feedback" id="xd-sc-2-fb" aria-live="polite"></p>
+    </div>
+
+    <div class="xd-scenario" id="xd-sc-3">
+        <p class="xd-sc-text">3. Ngay sau khi Use case <strong>"Cấp chứng chỉ"</strong> hoàn tất, bản thân hệ thống tự kích hoạt Use case <strong>"Notify student"</strong> để gửi thông báo — không có Actor nào trực tiếp yêu cầu điều này.</p>
+        <div class="xd-sc-choices">
+            <button type="button" data-sc="3" data-choice="external">Bên ngoài</button>
+            <button type="button" data-sc="3" data-choice="temporal">Thời gian</button>
+            <button type="button" data-sc="3" data-choice="internal">Nội bộ</button>
+        </div>
+        <p class="xd-sc-feedback" id="xd-sc-3-fb" aria-live="polite"></p>
+    </div>
+
+    <hr class="uc-divider">
+
+    <div class="xd-summary">
+        <h3>Ghi nhớ nhanh</h3>
+        <ul>
+            <li>Năm câu hỏi xác định Actor: ai dùng Use case chính, ai cần System cho công việc hằng ngày, ai quản trị hệ thống, System giao tiếp thiết bị/hệ thống nào, ai hoặc cái gì quan tâm kết quả.</li>
+            <li><strong>Trigger</strong> là sự kiện phải xảy ra để System tạo ra kết quả; Actor gọi System trở thành Actor của Use case đó.</li>
+            <li>Ba loại Trigger: <strong>Nội bộ (Internal)</strong>, <strong>Bên ngoài (External)</strong>, <strong>Thời gian (Temporal)</strong>.</li>
+        </ul>
+    </div>
+
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+
+    .lesson-content {
+        font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #334155; line-height: 1.75; font-size: clamp(16px, 0.9rem + 0.4vw, 18px);
+        width: 100%; max-width: 860px; margin: 0 auto; padding: 0 16px; box-sizing: border-box;
+        overflow-wrap: break-word; -webkit-text-size-adjust: 100%;
+    }
+    .lesson-content *, .lesson-content *::before, .lesson-content *::after { box-sizing: border-box; }
+    .lesson-content h2, .lesson-content h3, .lesson-content h4 { color: #1E293B; font-weight: 700; line-height: 1.35; margin-top: 1.5em; margin-bottom: 0.5em; }
+    .lesson-content h3 { font-size: clamp(19px, 1.05rem + 0.6vw, 22px); }
+    .lesson-content h4 { font-size: clamp(17px, 1rem + 0.3vw, 19px); color: #2B6CB0; margin-top: 1.8em; }
+    .lesson-content p  { margin: 0 0 1em; }
+    .lesson-content ul { margin: 0 0 1em; padding-left: 1.4em; }
+    .lesson-content li { margin-bottom: 0.5em; }
+
+    .uc-lesson-objectives { background-color: #F8FAFC; border-left: 5px solid #3182CE; padding: clamp(14px, 3vw, 20px) clamp(16px, 3.5vw, 24px); margin-bottom: 30px; border-radius: 0 8px 8px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .uc-lesson-objectives h3 { margin-top: 0; color: #1E293B; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: 0.5px; }
+    .uc-lesson-objectives ul { margin-bottom: 0; padding-left: 20px; }
+    .uc-lesson-objectives li { color: #475569; font-weight: 500; }
+    .uc-divider { border: 0; border-top: 2px dashed #CBD5E1; margin: 30px 0; }
+    .xd-tag { display: inline-block; font-size: 13px; font-weight: 700; color: #2B6CB0; background: #EBF8FF; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
+
+    /* Danh sách câu hỏi xác định Actor */
+    .xd-qlist { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+    .xd-qitem { border: 1px solid #E2E8F0; border-radius: 10px; background: #fff; overflow: hidden; }
+    .xd-qhead {
+        width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; padding: 14px 16px; min-height: 52px;
+        background: #fff; border: none; cursor: pointer; font: inherit; color: #1E293B;
+        transition: background-color .2s; -webkit-tap-highlight-color: transparent;
+    }
+    .xd-qnum { flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; background: #EBF8FF; color: #2B6CB0; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .xd-qtext { flex: 1 1 auto; font-size: 15.5px; line-height: 1.5; }
+    .xd-qchevron { flex: 0 0 auto; font-size: 22px; color: #94A3B8; transition: transform .25s; }
+    .xd-qhead[aria-expanded="true"] .xd-qchevron { transform: rotate(90deg); color: #3182CE; }
+    .xd-qhead[aria-expanded="true"] { background: #F8FAFF; }
+    .xd-qbody { padding: 0 16px 16px 56px; font-size: 15px; line-height: 1.65; color: #475569; }
+    .xd-qhead:focus-visible { outline: 3px solid #3182CE; outline-offset: -3px; }
+
+    .xd-def { background: #F8FAFC; border-left: 4px solid #3182CE; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 14px 0; font-size: 15.5px; line-height: 1.65; }
+
+    .xd-trig-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
+    .xd-trig {
+        display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 16px 10px; min-height: 96px;
+        border: 2px solid #E2E8F0; border-radius: 10px; background: #fff; cursor: pointer; font: inherit; color: #334155;
+        transition: border-color .25s, background-color .25s, box-shadow .25s; -webkit-tap-highlight-color: transparent;
+    }
+    .xd-trig-icon { font-size: 26px; line-height: 1; margin-bottom: 4px; }
+    .xd-trig strong { font-size: 15px; color: #1E293B; }
+    .xd-trig span:last-child { font-size: 12.5px; color: #64748B; }
+    .xd-trig[aria-pressed="true"] { border-color: #3182CE; background: #EBF8FF; box-shadow: 0 4px 10px rgba(49,130,206,.18); }
+    .xd-trig:focus-visible { outline: 3px solid #3182CE; outline-offset: 2px; }
+
+    .xd-info { background: #F8FAFC; border-left: 4px solid #3182CE; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 10px 0 18px; font-size: 15.5px; line-height: 1.65; color: #334155; min-height: 3em; }
+
+    .xd-scenario { border: 1px solid #E2E8F0; border-radius: 10px; background: #fff; padding: 14px 16px; margin: 10px 0; }
+    .xd-sc-text { margin: 0 0 10px; font-size: 15.5px; }
+    .xd-sc-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+    .xd-sc-choices button {
+        min-height: 42px; padding: 7px 14px; border-radius: 999px; border: 1.5px solid #CBD5E1; background: #fff; color: #334155;
+        font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: all .2s; -webkit-tap-highlight-color: transparent;
+    }
+    .xd-sc-choices button:focus-visible { outline: 3px solid #3182CE; outline-offset: 2px; }
+    .xd-sc-choices button.correct { background: #C6F6D5; border-color: #38A169; color: #276749; }
+    .xd-sc-choices button.wrong { background: #FED7D7; border-color: #E53E3E; color: #9B2C2C; }
+    .xd-sc-choices button:disabled { cursor: default; opacity: .85; }
+    .xd-sc-feedback { margin: 10px 0 0; font-size: 14.5px; line-height: 1.6; color: #475569; min-height: 1.4em; }
+
+    .xd-summary { background: #F0FFF4; border: 1px solid #C6F6D5; border-left: 5px solid #38A169; border-radius: 8px; padding: 14px 20px 6px; }
+    .xd-summary h3 { margin-top: 0; color: #276749; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: .5px; }
+
+    @media (hover: hover) {
+        .xd-qhead:hover { background: #F8FAFF; }
+        .xd-trig:hover { border-color: #3182CE; }
+        .xd-sc-choices button:not(:disabled):hover { border-color: #3182CE; }
+    }
+    @media (max-width: 768px) {
+        .lesson-content { padding: 0 14px; }
+    }
+    @media (max-width: 560px) {
+        .xd-trig-grid { grid-template-columns: 1fr; }
+        .xd-trig { flex-direction: row; justify-content: flex-start; min-height: 56px; }
+        .xd-trig-icon { margin-bottom: 0; margin-right: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+</style>
+
+<script>
+    (function () {
+        var root = document.getElementById('uc-m3b1-root') || document;
+        function $(sel) { return root.querySelector(sel); }
+        function $$(sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+
+        /* 1. Accordion 5 câu hỏi */
+        $$('.xd-qhead').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var key = btn.getAttribute('data-xdq');
+                var body = $('[data-xdq-body="' + key + '"]');
+                var open = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+                body.hidden = open;
+            });
+        });
+
+        /* 2. Ba loại Trigger */
+        var TRIG_TEXT = {
+            external: '<strong>Bên ngoài (External):</strong> một Actor ở ngoài hệ thống chủ động khởi tạo — ví dụ Student bấm nút đăng ký. Đây là loại Trigger phổ biến nhất, và Actor đó trở thành Actor của Use case.',
+            temporal: '<strong>Thời gian (Temporal):</strong> Use case được khởi tạo khi đến một thời điểm hoặc theo lịch định trước — ví dụ đến đúng 00:00 ngày khai giảng.',
+            internal: '<strong>Nội bộ (Internal):</strong> được khởi tạo bởi chính một phần khác của hệ thống hoặc một Use case khác, không phải do Actor bên ngoài trực tiếp yêu cầu.'
+        };
+        var trigBtns = $$('[data-trig]');
+        var trigInfo = $('#xd-trig-info');
+        trigBtns.forEach(function (b) {
+            b.addEventListener('click', function () {
+                trigBtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+                trigInfo.innerHTML = TRIG_TEXT[b.getAttribute('data-trig')];
+            });
+        });
+
+        /* 3. Bài tập phân loại */
+        var SC_ANSWER = { '1': 'external', '2': 'temporal', '3': 'internal' };
+        var SC_EXPLAIN = {
+            '1': 'Đúng hướng: Student (Actor bên ngoài) chủ động bấm nút — đây là Trigger bên ngoài (External).',
+            '2': 'Đúng hướng: sự kiện xảy ra tại một thời điểm định trước (00:00 ngày khai giảng) — đây là Trigger thời gian (Temporal).',
+            '3': 'Đúng hướng: không Actor nào trực tiếp yêu cầu, chính hệ thống (một Use case khác) tự kích hoạt — đây là Trigger nội bộ (Internal).'
+        };
+        $$('.xd-sc-choices').forEach(function (group) {
+            var sc = group.querySelector('button').getAttribute('data-sc');
+            var fb = $('#xd-sc-' + sc + '-fb');
+            group.querySelectorAll('button').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var isCorrect = btn.getAttribute('data-choice') === SC_ANSWER[sc];
+                    group.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+                    if (isCorrect) {
+                        btn.classList.add('correct');
+                        fb.textContent = '✓ ' + SC_EXPLAIN[sc];
+                    } else {
+                        btn.classList.add('wrong');
+                        group.querySelector('[data-choice="' + SC_ANSWER[sc] + '"]').classList.add('correct');
+                        fb.textContent = '✗ Chưa đúng. ' + SC_EXPLAIN[sc];
+                    }
+                });
+            });
+        });
+    })();
+</script>
+<!-- Kết thúc nội dung bài học uc-m3-b1 -->

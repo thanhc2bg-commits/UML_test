@@ -1,0 +1,211 @@
+<!-- Bắt đầu nội dung bài học uc-m3-b2 (Mô tả Use case dạng văn bản - slide 22-23) -->
+<div class="lesson-content" id="uc-m3b2-root">
+
+    <div class="uc-lesson-objectives" style="margin-top: 4rem;">
+        <h3>Mục tiêu bài học</h3>
+        <ul>
+            <li>Nắm được 10 trường thông tin dùng để mô tả một Use case bằng văn bản.</li>
+            <li>Đọc hiểu một bản mô tả Use case hoàn chỉnh (ví dụ Reserve lecture hall).</li>
+            <li>Phân biệt Quy trình chuẩn (Standard process) và Quy trình thay thế (Alternative processes), hiểu điểm rẽ nhánh giữa hai luồng.</li>
+        </ul>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>1. Mười trường mô tả Use Case <span class="mt-tag">Slide 22</span></h3>
+    <p>Một bản mô tả Use case dạng văn bản thường có đủ các trường sau. Chạm vào từng trường để xem giải thích.</p>
+
+    <div class="mt-field-grid" role="list">
+        <button type="button" class="mt-field" data-mt="name" aria-pressed="false"><span class="mt-fnum">1</span>Tên (Name)</button>
+        <button type="button" class="mt-field" data-mt="desc" aria-pressed="false"><span class="mt-fnum">2</span>Mô tả ngắn gọn</button>
+        <button type="button" class="mt-field" data-mt="pre" aria-pressed="false"><span class="mt-fnum">3</span>Điều kiện tiên quyết</button>
+        <button type="button" class="mt-field" data-mt="post" aria-pressed="false"><span class="mt-fnum">4</span>Điều kiện hậu</button>
+        <button type="button" class="mt-field" data-mt="err" aria-pressed="false"><span class="mt-fnum">5</span>Các tình huống lỗi</button>
+        <button type="button" class="mt-field" data-mt="errstate" aria-pressed="false"><span class="mt-fnum">6</span>Trạng thái System khi lỗi</button>
+        <button type="button" class="mt-field" data-mt="actors" aria-pressed="false"><span class="mt-fnum">7</span>Các Actor giao tiếp</button>
+        <button type="button" class="mt-field" data-mt="trigger" aria-pressed="false"><span class="mt-fnum">8</span>Trigger</button>
+        <button type="button" class="mt-field" data-mt="standard" aria-pressed="false"><span class="mt-fnum">9</span>Quy trình chuẩn</button>
+        <button type="button" class="mt-field" data-mt="alt" aria-pressed="false"><span class="mt-fnum">10</span>Quy trình thay thế</button>
+    </div>
+    <div class="mt-info" id="mt-field-info" aria-live="polite">Chạm vào một trường ở trên để xem giải thích.</div>
+
+    <hr class="uc-divider">
+
+    <h3>2. Ví dụ hoàn chỉnh: Reserve lecture hall <span class="mt-tag">Slide 23</span></h3>
+    <p>Dưới đây là bản mô tả đầy đủ cho Use case <em>Reserve lecture hall</em> (slide giữ nguyên tiếng Anh cho ví dụ này).</p>
+
+    <div class="mt-table" role="table" aria-label="Bản mô tả Use case Reserve lecture hall">
+        <div class="mt-row" role="row"><div class="mt-cell mt-cell-label" role="rowheader">Name</div><div class="mt-cell" role="cell">Reserve lecture hall</div></div>
+        <div class="mt-row" role="row"><div class="mt-cell mt-cell-label" role="rowheader">Short description</div><div class="mt-cell" role="cell">An employee reserves a lecture hall at the university for an event.</div></div>
+        <div class="mt-row" role="row"><div class="mt-cell mt-cell-label" role="rowheader">Precondition</div><div class="mt-cell" role="cell">The employee is authorized to reserve lecture halls.<br>Employee is logged in to the system.</div></div>
+        <div class="mt-row" role="row"><div class="mt-cell mt-cell-label" role="rowheader">Postcondition</div><div class="mt-cell" role="cell">A lecture hall is reserved.</div></div>
+        <div class="mt-row" role="row"><div class="mt-cell mt-cell-label" role="rowheader">Error situations</div><div class="mt-cell" role="cell">There is no free lecture hall.</div></div>
+        <div class="mt-row" role="row"><div class="mt-cell mt-cell-label" role="rowheader">System state in the event of an error</div><div class="mt-cell" role="cell">The employee has not reserved a lecture hall.</div></div>
+        <div class="mt-row" role="row"><div class="mt-cell mt-cell-label" role="rowheader">Actors</div><div class="mt-cell" role="cell">Employee</div></div>
+        <div class="mt-row" role="row"><div class="mt-cell mt-cell-label" role="rowheader">Trigger</div><div class="mt-cell" role="cell">Employee requires a lecture hall.</div></div>
+    </div>
+
+    <p>Hai trường còn lại — <strong>Standard process</strong> và <strong>Alternative processes</strong> — được minh họa trực quan hơn bên dưới. Chạm vào bước <strong>(3)</strong> ở luồng chuẩn để xem luồng thay thế rẽ nhánh từ đâu.</p>
+
+    <div class="mt-flow-wrap">
+        <div class="mt-flow mt-flow-std">
+            <h4 class="mt-flow-title">Standard process</h4>
+            <div class="mt-step" data-std="1"><span class="mt-step-badge">1</span>Employee selects the lecture hall.</div>
+            <div class="mt-step" data-std="2"><span class="mt-step-badge">2</span>Employee selects the date.</div>
+            <div class="mt-step mt-step-branch" data-std="3" tabindex="0" role="button" aria-label="Bước 3, chạm để xem điểm rẽ nhánh"><span class="mt-step-badge">3</span>System confirms that the lecture hall is free.<span class="mt-branch-hint">⟶ nếu KHÔNG, xem (3′)</span></div>
+            <div class="mt-step" data-std="4"><span class="mt-step-badge">4</span>Employee confirms the reservation.</div>
+            <div class="mt-end">Postcondition: a lecture hall is reserved ✓</div>
+        </div>
+        <div class="mt-flow mt-flow-alt">
+            <h4 class="mt-flow-title">Alternative processes</h4>
+            <div class="mt-step mt-step-alt" data-alt="3"><span class="mt-step-badge">3′</span>Lecture hall is not free.</div>
+            <div class="mt-step mt-step-alt" data-alt="4"><span class="mt-step-badge">4′</span>System proposes an alternative lecture hall.</div>
+            <div class="mt-step mt-step-alt" data-alt="5"><span class="mt-step-badge">5′</span>Employee selects the alternative lecture hall and confirms the reservation.</div>
+            <div class="mt-end mt-end-alt">Quay lại Postcondition ✓</div>
+        </div>
+    </div>
+    <p class="mt-flow-note" id="mt-flow-note">Quy trình thay thế mô tả <strong>sự sai lệch</strong> so với quy trình chuẩn — ở đây, sai lệch bắt đầu đúng tại bước (3), khi giảng đường không còn trống.</p>
+
+    <hr class="uc-divider">
+
+    <div class="mt-summary">
+        <h3>Ghi nhớ nhanh</h3>
+        <ul>
+            <li>Mô tả Use case gồm 10 trường: Tên, Mô tả ngắn gọn, Precondition, Postcondition, Error situations, Trạng thái System khi lỗi, Actors, Trigger, Standard process, Alternative processes.</li>
+            <li><strong>Precondition</strong> là điều kiện bắt buộc để thực thi thành công; <strong>Postcondition</strong> là trạng thái System sau khi thành công.</li>
+            <li><strong>Alternative processes</strong> mô tả sự sai lệch so với <strong>Standard process</strong>, thường được đánh số kèm dấu phẩy trên (3′, 4′, 5′) tương ứng với bước mà nó rẽ nhánh.</li>
+        </ul>
+    </div>
+
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+
+    .lesson-content {
+        font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #334155; line-height: 1.75; font-size: clamp(16px, 0.9rem + 0.4vw, 18px);
+        width: 100%; max-width: 860px; margin: 0 auto; padding: 0 16px; box-sizing: border-box;
+        overflow-wrap: break-word; -webkit-text-size-adjust: 100%;
+    }
+    .lesson-content *, .lesson-content *::before, .lesson-content *::after { box-sizing: border-box; }
+    .lesson-content h2, .lesson-content h3, .lesson-content h4 { color: #1E293B; font-weight: 700; line-height: 1.35; margin-top: 1.5em; margin-bottom: 0.5em; }
+    .lesson-content h3 { font-size: clamp(19px, 1.05rem + 0.6vw, 22px); }
+    .lesson-content h4 { font-size: clamp(16px, 0.95rem + 0.3vw, 18px); }
+    .lesson-content p  { margin: 0 0 1em; }
+    .lesson-content ul { margin: 0 0 1em; padding-left: 1.4em; }
+    .lesson-content li { margin-bottom: 0.5em; }
+
+    .uc-lesson-objectives { background-color: #F8FAFC; border-left: 5px solid #3182CE; padding: clamp(14px, 3vw, 20px) clamp(16px, 3.5vw, 24px); margin-bottom: 30px; border-radius: 0 8px 8px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .uc-lesson-objectives h3 { margin-top: 0; color: #1E293B; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: 0.5px; }
+    .uc-lesson-objectives ul { margin-bottom: 0; padding-left: 20px; }
+    .uc-lesson-objectives li { color: #475569; font-weight: 500; }
+    .uc-divider { border: 0; border-top: 2px dashed #CBD5E1; margin: 30px 0; }
+    .mt-tag { display: inline-block; font-size: 13px; font-weight: 700; color: #2B6CB0; background: #EBF8FF; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
+
+    .mt-field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 14px 0; }
+    .mt-field {
+        display: flex; align-items: center; gap: 10px; text-align: left; min-height: 48px; padding: 10px 14px;
+        border: 1.5px solid #CBD5E1; border-radius: 8px; background: #fff; color: #334155; font: inherit; font-size: 14.5px; font-weight: 600;
+        cursor: pointer; transition: border-color .25s, background-color .25s, box-shadow .25s; -webkit-tap-highlight-color: transparent;
+    }
+    .mt-fnum { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; background: #EBF8FF; color: #2B6CB0; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .mt-field[aria-pressed="true"] { border-color: #2B6CB0; background: #EBF8FF; box-shadow: 0 3px 8px rgba(43,108,176,.18); }
+    .mt-field[aria-pressed="true"] .mt-fnum { background: #2B6CB0; color: #fff; }
+    .mt-field:focus-visible { outline: 3px solid #3182CE; outline-offset: 2px; }
+    .mt-info { background: #F8FAFC; border-left: 4px solid #2B6CB0; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 10px 0 4px; font-size: 15.5px; line-height: 1.65; color: #334155; min-height: 3em; }
+
+    .mt-table { border: 1px solid #E2E8F0; border-radius: 10px; overflow: hidden; margin: 14px 0; background: #fff; }
+    .mt-row { display: grid; grid-template-columns: minmax(140px, 0.9fr) 1.6fr; border-top: 1px solid #E2E8F0; }
+    .mt-row:first-child { border-top: none; }
+    .mt-cell { padding: 10px 14px; font-size: 14.5px; line-height: 1.55; }
+    .mt-cell-label { background: #F8FAFC; font-weight: 700; color: #1E293B; border-right: 1px solid #E2E8F0; }
+
+    .mt-flow-wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; margin: 14px 0; align-items: start; }
+    .mt-flow { border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px; background: #fff; }
+    .mt-flow-std { border-top: 4px solid #38A169; }
+    .mt-flow-alt { border-top: 4px solid #DD6B20; }
+    .mt-flow-title { margin: 0 0 10px; font-size: 14.5px; font-family: 'Inter', monospace; color: #64748B; text-transform: uppercase; letter-spacing: .4px; }
+    .mt-step {
+        display: flex; align-items: flex-start; gap: 10px; padding: 9px 10px; border-radius: 8px; font-size: 14.5px; line-height: 1.5;
+        margin-bottom: 6px; background: #F0FFF4; transition: background-color .3s, box-shadow .3s;
+    }
+    .mt-step-alt { background: #FFFAF0; }
+    .mt-step-badge { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; background: #38A169; color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .mt-step-alt .mt-step-badge { background: #DD6B20; }
+    .mt-step-branch { cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; }
+    .mt-step-branch:focus-visible { outline: 3px solid #3182CE; outline-offset: 2px; }
+    .mt-branch-hint { display: block; font-size: 12.5px; color: #DD6B20; font-weight: 600; margin-top: 3px; }
+    .mt-step.is-hl, .mt-step-alt.is-hl { box-shadow: 0 0 0 2.5px #DD6B20 inset; background: #FEEBC8; }
+    .mt-end { margin-top: 8px; padding: 8px 10px; border-radius: 8px; background: #C6F6D5; color: #276749; font-weight: 700; font-size: 13.5px; text-align: center; }
+    .mt-end-alt { background: #FEEBC8; color: #C05621; }
+    .mt-flow-note { font-size: 14.5px; color: #64748B; }
+
+    .mt-summary { background: #F0FFF4; border: 1px solid #C6F6D5; border-left: 5px solid #38A169; border-radius: 8px; padding: 14px 20px 6px; }
+    .mt-summary h3 { margin-top: 0; color: #276749; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: .5px; }
+
+    @media (hover: hover) {
+        .mt-field:hover { border-color: #2B6CB0; }
+        .mt-step-branch:hover { background: #FEEBC8; }
+    }
+    @media (max-width: 768px) {
+        .lesson-content { padding: 0 14px; }
+        .mt-field-grid { grid-template-columns: 1fr; }
+        .mt-row { grid-template-columns: 1fr; }
+        .mt-cell-label { border-right: none; border-bottom: 1px solid #E2E8F0; }
+        .mt-flow-wrap { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+</style>
+
+<script>
+    (function () {
+        var root = document.getElementById('uc-m3b2-root') || document;
+        function $(sel) { return root.querySelector(sel); }
+        function $$(sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+        function onActivate(el, fn) {
+            el.addEventListener('click', fn);
+            el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(e); } });
+        }
+
+        /* 1. Mười trường mô tả */
+        var MT_TEXT = {
+            name: '<strong>Tên (Name):</strong> tên định danh của Use case, ví dụ "Reserve lecture hall".',
+            desc: '<strong>Mô tả ngắn gọn (Short description):</strong> tóm tắt Use case trong một câu.',
+            pre: '<strong>Điều kiện tiên quyết (Precondition):</strong> điều kiện bắt buộc phải đúng để Use case thực thi thành công.',
+            post: '<strong>Điều kiện hậu (Postcondition):</strong> trạng thái của System sau khi Use case thực thi thành công.',
+            err: '<strong>Các tình huống lỗi (Error situations):</strong> các lỗi liên quan đến lĩnh vực sự cố có thể xảy ra.',
+            errstate: '<strong>Trạng thái System khi có lỗi:</strong> System ở trạng thái nào nếu một tình huống lỗi xảy ra.',
+            actors: '<strong>Các Actor giao tiếp:</strong> những Actor nào tham gia vào Use case này.',
+            trigger: '<strong>Trigger:</strong> sự kiện kích hoạt Use case — xem lại bài trước về Internal/External/Temporal.',
+            standard: '<strong>Quy trình chuẩn (Standard process):</strong> các bước riêng lẻ khi mọi thứ diễn ra bình thường.',
+            alt: '<strong>Các quy trình thay thế (Alternative processes):</strong> sự sai lệch so với quy trình chuẩn, ví dụ khi xảy ra lỗi.'
+        };
+        var mtBtns = $$('[data-mt]');
+        var mtInfo = $('#mt-field-info');
+        mtBtns.forEach(function (b) {
+            b.addEventListener('click', function () {
+                mtBtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+                mtInfo.innerHTML = MT_TEXT[b.getAttribute('data-mt')];
+            });
+        });
+
+        /* 2. Rẽ nhánh Standard / Alternative */
+        var branchBtn = $('[data-std="3"]');
+        var altSteps = $$('.mt-step-alt');
+        var note = $('#mt-flow-note');
+        var branched = false;
+        function toggleBranch() {
+            branched = !branched;
+            branchBtn.classList.toggle('is-hl', branched);
+            altSteps.forEach(function (el) { el.classList.toggle('is-hl', branched); });
+            note.innerHTML = branched
+                ? '<strong>Đã làm nổi bật:</strong> ngay khi bước (3) phát hiện giảng đường không còn trống, luồng rẽ sang (3′) → (4′) → (5′) thay vì tiếp tục bước (4) của quy trình chuẩn.'
+                : 'Quy trình thay thế mô tả <strong>sự sai lệch</strong> so với quy trình chuẩn — ở đây, sai lệch bắt đầu đúng tại bước (3), khi giảng đường không còn trống.';
+        }
+        onActivate(branchBtn, toggleBranch);
+    })();
+</script>
+<!-- Kết thúc nội dung bài học uc-m3-b2 -->

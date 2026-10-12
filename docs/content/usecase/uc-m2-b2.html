@@ -1,0 +1,469 @@
+<!-- Bắt đầu nội dung bài học uc-m2-b2 («extend» và Extension Points - slide 11-12) -->
+<div class="lesson-content" id="uc-m2b2-root">
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="ext-person" viewBox="0 0 60 100">
+                <circle cx="30" cy="14" r="11" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
+                <path d="M30 25 V62 M10 40 H50 M30 62 L12 94 M30 62 L48 94" fill="none" stroke="currentColor"
+                      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </symbol>
+            <marker id="ext-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+                <path d="M1 1 L9 5 L1 9" fill="none" stroke="#4A5568" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"></path>
+            </marker>
+        </defs>
+    </svg>
+
+    <div class="uc-lesson-objectives" style="margin-top: 4rem;">
+        <h3>Mục tiêu bài học</h3>
+        <ul>
+            <li>Hiểu quan hệ «extend»: hành vi của B <em>có thể</em> được đưa vào A, và A quyết định B có được thực thi hay không.</li>
+            <li>Phân biệt chiều mũi tên «extend» (từ B tới A) với chiều mũi tên «include» (từ A tới B) đã học ở bài trước.</li>
+            <li>Hiểu Extension point trả lời câu hỏi "Ở đâu", Condition trả lời câu hỏi "Khi nào"; một Use case có thể có nhiều Extension point, tên phải duy nhất.</li>
+        </ul>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>1. Quan hệ «extend» <span class="ext-tag">Slide 11</span></h3>
+    <p>Hành vi của <strong>B</strong> <strong>có thể được đưa vào</strong> <strong>A</strong>. Chính <strong>A quyết định</strong> liệu B có được thực thi hay không — khác với «include», B ở đây <em>không bắt buộc</em>. A và B cũng có thể được thực thi riêng biệt.</p>
+    <p class="ext-note">Để ý chiều mũi tên: với «extend», mũi tên nét đứt đi <strong>từ B (extending use case) tới A (base use case)</strong> — ngược chiều với «include» mà bạn đã học.</p>
+
+    <div class="ext-toggle" role="group" aria-label="Chạy thử quan hệ extend">
+        <button type="button" class="ext-pill" data-g-action="plain" aria-pressed="false">Chạy A, không extend</button>
+        <button type="button" class="ext-pill" data-g-action="withExt" aria-pressed="false">Chạy A, có extend B</button>
+        <button type="button" class="ext-pill" data-g-action="runB" aria-pressed="false">Chạy B riêng</button>
+        <button type="button" class="ext-pill ext-pill-ghost" data-g-action="reset">Đặt lại</button>
+    </div>
+
+    <div class="ext-card">
+        <svg class="ext-svg ext-svg-narrow" viewBox="0 0 480 300" role="group" aria-label="Sơ đồ A extend B: Actor nối với cả A và B, mũi tên extend đi từ B tới A">
+            <line x1="84" y1="140" x2="192" y2="80" stroke="#4A5568" stroke-width="2"></line>
+            <line x1="84" y1="170" x2="192" y2="222" stroke="#4A5568" stroke-width="2"></line>
+
+            <g style="color:#12233e">
+                <use href="#ext-person" x="20" y="100" width="60" height="100"></use>
+                <text x="50" y="224" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Actor</text>
+            </g>
+
+            <g class="ext-uc" id="ext-g-a" tabindex="0" role="button" aria-label="A, base use case. Chạm để xem vai trò">
+                <ellipse cx="270" cy="70" rx="80" ry="34"></ellipse>
+                <text x="270" y="76" text-anchor="middle" font-size="18" font-weight="700" fill="#12233e">A</text>
+            </g>
+            <g class="ext-uc" id="ext-g-b" tabindex="0" role="button" aria-label="B, extending use case. Chạm để xem vai trò">
+                <ellipse cx="270" cy="230" rx="80" ry="34"></ellipse>
+                <text x="270" y="236" text-anchor="middle" font-size="18" font-weight="700" fill="#12233e">B</text>
+            </g>
+
+            <g id="ext-g-arrow-wrap" tabindex="0" role="button" aria-label="Mũi tên extend từ B tới A. Chạm để xem ý nghĩa" class="ext-arrow-wrap">
+                <line x1="270" y1="194" x2="270" y2="104" stroke="transparent" stroke-width="28"></line>
+                <line id="ext-g-arrow" class="ext-arrow" x1="270" y1="194" x2="270" y2="104" marker-end="url(#ext-ah)"></line>
+                <text x="284" y="154" font-size="14" font-style="italic" fill="#12233e">«extend»</text>
+            </g>
+
+            <text x="360" y="76" font-size="13" font-style="italic" fill="#C53030">base use case</text>
+            <text x="356" y="236" font-size="13" font-style="italic" fill="#C53030">extending use case</text>
+        </svg>
+        <p class="ext-key"><span class="ext-dot run"></span> Use case đang được thực thi &nbsp; <span class="ext-dot ext"></span> Hành vi được chèn (extend) vào A</p>
+        <p class="ext-caption" id="ext-g-caption" aria-live="polite"></p>
+    </div>
+
+    <div class="ext-rules">
+        <div class="ext-rule"><strong>Base use case (A)</strong>Quyết định liệu B có được thực thi hay không.</div>
+        <div class="ext-rule"><strong>Extending use case (B)</strong>Có thể được đưa vào A; A và B cũng có thể chạy riêng biệt.</div>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>2. Ví dụ: Reserve lecture hall «extend» Announce course</h3>
+    <p>Trong hệ thống Student Administration, Professor nối với cả hai Use case. <em>Announce course</em> là Base use case, <em>Reserve lecture hall</em> là Use case mở rộng (extending). Khi công bố môn học, giảng viên <strong>có thể</strong> (không bắt buộc) đặt thêm giảng đường.</p>
+
+    <div class="ext-toggle" role="group" aria-label="Chạy thử ví dụ Announce course">
+        <button type="button" class="ext-pill" data-c-action="plain" aria-pressed="false">Chỉ công bố môn học</button>
+        <button type="button" class="ext-pill" data-c-action="withExt" aria-pressed="false">Công bố + đặt giảng đường</button>
+        <button type="button" class="ext-pill" data-c-action="alone" aria-pressed="false">Đặt giảng đường riêng</button>
+        <button type="button" class="ext-pill ext-pill-ghost" data-c-action="reset">Đặt lại</button>
+    </div>
+
+    <div class="ext-card">
+        <svg class="ext-svg ext-svg-narrow" viewBox="0 0 480 270" role="group" aria-label="Sơ đồ Student Administration: Reserve lecture hall extend Announce course">
+            <rect x="130" y="12" width="338" height="246" rx="8" fill="#F8FAFF" stroke="#12233e" stroke-width="2" stroke-dasharray="8 6"></rect>
+            <text x="299" y="36" text-anchor="middle" font-size="14" font-weight="700" fill="#12233e">Student Administration</text>
+
+            <line x1="90" y1="135" x2="203" y2="98" stroke="#4A5568" stroke-width="2"></line>
+            <line x1="90" y1="165" x2="203" y2="198" stroke="#4A5568" stroke-width="2"></line>
+
+            <g style="color:#12233e">
+                <use href="#ext-person" x="26" y="98" width="60" height="100"></use>
+                <text x="56" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Professor</text>
+            </g>
+
+            <g class="ext-uc" id="ext-c-base">
+                <ellipse cx="300" cy="90" rx="100" ry="34"></ellipse>
+                <text x="300" y="96" text-anchor="middle" font-size="15" font-weight="700" fill="#12233e">Announce course</text>
+            </g>
+            <g class="ext-uc" id="ext-c-ext">
+                <ellipse cx="300" cy="205" rx="100" ry="34"></ellipse>
+                <text x="300" y="200" text-anchor="middle" font-size="15" font-weight="700" fill="#12233e">Reserve</text>
+                <text x="300" y="218" text-anchor="middle" font-size="15" font-weight="700" fill="#12233e">lecture hall</text>
+            </g>
+            <line id="ext-c-arrow" class="ext-arrow" x1="300" y1="170" x2="300" y2="124" marker-end="url(#ext-ah)"></line>
+            <text x="314" y="152" font-size="14" font-style="italic" fill="#12233e">«extend»</text>
+        </svg>
+        <p class="ext-caption" id="ext-c-caption" aria-live="polite"></p>
+    </div>
+
+    <hr class="uc-divider">
+
+    <h3>3. Extension Points: "Ở đâu" và "Khi nào" <span class="ext-tag">Slide 12</span></h3>
+    <p>Mỗi Use case cơ sở (base) có thể khai báo nhiều <strong>Extension point</strong> — mỗi điểm trả lời câu hỏi <strong>"Ở đâu"</strong> trong luồng của A thì B được chèn vào. Tên các Extension point <strong>phải là duy nhất</strong>. Câu hỏi <strong>"Khi nào"</strong> được trả lời bằng <strong>Condition</strong>, đặt trong A hoặc là một phần của quan hệ «extend».</p>
+    <p>Ví dụ dưới đây: <em>Announce lecture</em> là base use case với hai Extension point. Chạm vào từng Use case mở rộng để xem Condition và Extension point tương ứng được làm nổi bật.</p>
+
+    <div class="ext-toggle" role="group" aria-label="Chọn use case mở rộng để xem extension point">
+        <button type="button" class="ext-pill" data-ep-pick="reserve" aria-pressed="false">Reserve lecture hall</button>
+        <button type="button" class="ext-pill" data-ep-pick="exam" aria-pressed="false">Announce exam</button>
+        <button type="button" class="ext-pill ext-pill-ghost" data-ep-pick="reset">Đặt lại</button>
+    </div>
+
+    <div class="ext-card">
+        <svg class="ext-svg" viewBox="0 0 520 440" role="group" aria-label="Sơ đồ Extension points: Announce lecture có hai extension point, được extend bởi Reserve lecture hall và Announce exam">
+            <rect x="10" y="10" width="340" height="410" rx="8" fill="#F8FAFF" stroke="#12233e" stroke-width="2" stroke-dasharray="8 6"></rect>
+            <text x="180" y="34" text-anchor="middle" font-size="14" font-weight="700" fill="#12233e">Student Administration</text>
+
+            <g class="ext-uc" id="ext-ep-reserve">
+                <ellipse cx="180" cy="100" rx="112" ry="38"></ellipse>
+                <text x="180" y="96" text-anchor="middle" font-size="15" font-weight="700" fill="#12233e">Reserve</text>
+                <text x="180" y="114" text-anchor="middle" font-size="15" font-weight="700" fill="#12233e">lecture hall</text>
+            </g>
+
+            <g class="ext-uc ext-uc-base" id="ext-ep-base">
+                <ellipse cx="180" cy="248" rx="138" ry="78"></ellipse>
+                <text x="180" y="222" text-anchor="middle" font-size="16" font-weight="700" fill="#12233e">Announce lecture</text>
+                <text x="180" y="244" text-anchor="middle" font-size="12" font-style="italic" fill="#64748B">extension points:</text>
+                <text id="ext-ep-item-exam" x="180" y="264" text-anchor="middle" font-size="13.5" fill="#334155">Enter exam</text>
+                <text id="ext-ep-item-reserve" x="180" y="286" text-anchor="middle" font-size="13.5" fill="#334155">Select lecture hall</text>
+            </g>
+
+            <g class="ext-uc" id="ext-ep-exam">
+                <ellipse cx="180" cy="386" rx="100" ry="34"></ellipse>
+                <text x="180" y="391" text-anchor="middle" font-size="15" font-weight="700" fill="#12233e">Announce exam</text>
+            </g>
+
+            <line id="ext-ep-arrow-reserve" class="ext-arrow" x1="180" y1="138" x2="180" y2="170" marker-end="url(#ext-ah)"></line>
+            <line id="ext-ep-arrow-exam" class="ext-arrow" x1="180" y1="352" x2="180" y2="326" marker-end="url(#ext-ah)"></line>
+
+            <g style="color:#12233e">
+                <use href="#ext-person" x="408" y="168" width="60" height="100"></use>
+                <text x="438" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Professor</text>
+            </g>
+            <line x1="402" y1="208" x2="292" y2="100" stroke="#4A5568" stroke-width="2"></line>
+            <line x1="402" y1="222" x2="318" y2="240" stroke="#4A5568" stroke-width="2"></line>
+            <line x1="402" y1="236" x2="280" y2="386" stroke="#4A5568" stroke-width="2"></line>
+        </svg>
+        <p class="ext-caption" id="ext-ep-caption" aria-live="polite"></p>
+    </div>
+
+    <div class="ext-rules">
+        <div class="ext-rule"><strong>Ở đâu? → Extension point</strong>Điểm đặt trong A, nơi hành vi của B được chèn vào.</div>
+        <div class="ext-rule"><strong>Khi nào? → Condition</strong>Điều kiện trong A hoặc trong chính quan hệ «extend».</div>
+        <div class="ext-rule"><strong>Nhiều Extension point</strong>Một Use case có thể có nhiều Extension point cho các lần extend khác nhau.</div>
+        <div class="ext-rule"><strong>Tên duy nhất</strong>Tên của các Extension point trong một Use case phải là duy nhất.</div>
+    </div>
+
+    <hr class="uc-divider">
+
+    <div class="ext-summary">
+        <h3>Ghi nhớ nhanh</h3>
+        <ul>
+            <li>Với «extend», A (base use case) <strong>quyết định</strong> B (extending use case) có được thực thi hay không; A và B cũng chạy riêng biệt được.</li>
+            <li>Ký hiệu: mũi tên nét đứt «extend», đi <strong>từ B tới A</strong> — ngược chiều với «include» (đi từ A tới B).</li>
+            <li><strong>Extension point</strong> trả lời "Ở đâu"; <strong>Condition</strong> trả lời "Khi nào".</li>
+            <li>Một Use case có thể có nhiều Extension point, và tên các Extension point phải duy nhất.</li>
+            <li>Ví dụ: Reserve lecture hall «extend» Announce course; Announce lecture có hai Extension point được dùng bởi Reserve lecture hall và Announce exam.</li>
+        </ul>
+    </div>
+
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+
+    @keyframes ext-flow { to { stroke-dashoffset: -22; } }
+
+    .lesson-content {
+        font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #334155;
+        line-height: 1.75;
+        font-size: clamp(16px, 0.9rem + 0.4vw, 18px);
+        width: 100%;
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 16px;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        -webkit-text-size-adjust: 100%;
+    }
+    .lesson-content *, .lesson-content *::before, .lesson-content *::after { box-sizing: border-box; }
+    .lesson-content h2, .lesson-content h3, .lesson-content h4 { color: #1E293B; font-weight: 700; line-height: 1.35; margin-top: 1.5em; margin-bottom: 0.5em; }
+    .lesson-content h3 { font-size: clamp(19px, 1.05rem + 0.6vw, 22px); }
+    .lesson-content p  { margin: 0 0 1em; }
+    .lesson-content ul { margin: 0 0 1em; padding-left: 1.4em; }
+    .lesson-content li { margin-bottom: 0.5em; }
+
+    .uc-lesson-objectives {
+        background-color: #F8FAFC;
+        border-left: 5px solid #3182CE;
+        padding: clamp(14px, 3vw, 20px) clamp(16px, 3.5vw, 24px);
+        margin-bottom: 30px;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .uc-lesson-objectives h3 { margin-top: 0; color: #1E293B; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: 0.5px; }
+    .uc-lesson-objectives ul { margin-bottom: 0; padding-left: 20px; }
+    .uc-lesson-objectives li { color: #475569; font-weight: 500; }
+    .uc-divider { border: 0; border-top: 2px dashed #CBD5E1; margin: 30px 0; }
+
+    .ext-tag { display: inline-block; font-size: 13px; font-weight: 700; color: #2B6CB0; background: #EBF8FF; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
+    .ext-note { font-size: 14.5px; color: #64748B; margin: -6px 0 1em; }
+    .ext-card { border: 1px solid #E2E8F0; border-radius: 10px; background: #fff; padding: 12px; margin: 12px 0; }
+    .ext-svg { display: block; width: 100%; height: auto; max-height: 70vh; }
+    .ext-svg-narrow { max-width: 560px; margin: 0 auto; }
+    .ext-caption { margin: 10px 4px 2px; color: #475569; font-size: 15px; line-height: 1.6; min-height: 4.8em; }
+    .ext-key { margin: 6px 4px 0; font-size: 13.5px; color: #64748B; }
+    .ext-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: -1px; border: 2px solid; margin-right: 4px; }
+    .ext-dot.run { background: #C6F6D5; border-color: #38A169; }
+    .ext-dot.ext { background: #FEEBC8; border-color: #DD6B20; }
+
+    .ext-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .ext-pill {
+        min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 1.5px solid #CBD5E1; background: #fff; color: #334155;
+        font: inherit; font-size: 15px; font-weight: 600; line-height: 1.3; cursor: pointer;
+        transition: background-color .25s, border-color .25s, color .25s, box-shadow .25s; -webkit-tap-highlight-color: transparent;
+    }
+    .ext-pill[aria-pressed="true"] { background: #DD6B20; border-color: #DD6B20; color: #fff; box-shadow: 0 3px 8px rgba(221,107,32,.3); }
+    .ext-pill-ghost { color: #475569; }
+    .ext-pill:focus-visible, .ext-uc:focus-visible, .ext-arrow-wrap:focus-visible { outline: 3px solid #3182CE; outline-offset: 2px; }
+
+    .ext-uc { transition: opacity .3s; outline: none; }
+    .ext-uc ellipse { fill: #fff; stroke: #3182CE; stroke-width: 2; transition: fill .3s, stroke .3s, stroke-width .3s; }
+    #ext-g-a, #ext-g-b, .ext-arrow-wrap { cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; }
+    .ext-uc.is-run ellipse { fill: #C6F6D5; stroke: #38A169; stroke-width: 3.5; }
+    .ext-uc.is-ext ellipse { fill: #FEEBC8; stroke: #DD6B20; stroke-width: 3.5; }
+    .ext-uc.is-dim { opacity: .35; }
+    .ext-arrow { stroke: #4A5568; stroke-width: 2; stroke-dasharray: 7 5; transition: stroke .3s, opacity .3s, stroke-width .3s; }
+    .ext-arrow.is-pulse { stroke: #DD6B20; stroke-width: 3.5; animation: ext-flow .8s linear infinite; }
+    .ext-arrow.is-dim { opacity: .3; }
+
+    .ext-ep-highlight { fill: #C53030 !important; font-weight: 700; }
+
+    .ext-rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 14px 0; }
+    .ext-rule { background: #F8FAFC; border: 1px solid #E2E8F0; border-left: 4px solid #DD6B20; border-radius: 8px; padding: 10px 12px; font-size: 15px; line-height: 1.55; }
+    .ext-rule strong { display: block; color: #C05621; margin-bottom: 2px; }
+
+    .ext-summary { background: #F0FFF4; border: 1px solid #C6F6D5; border-left: 5px solid #38A169; border-radius: 8px; padding: 14px 20px 6px; }
+    .ext-summary h3 { margin-top: 0; color: #276749; font-size: clamp(16px, 0.95rem + 0.3vw, 20px); text-transform: uppercase; letter-spacing: .5px; }
+
+    @media (hover: hover) {
+        .ext-pill:hover { border-color: #DD6B20; }
+        .ext-pill[aria-pressed="true"]:hover { background: #C05621; }
+        #ext-g-a:hover ellipse, #ext-g-b:hover ellipse { stroke-width: 3.5; }
+    }
+    @media (max-width: 768px) {
+        .lesson-content { padding: 0 14px; }
+        .ext-svg { max-height: none; }
+        .ext-rules { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+        .ext-pill { padding: 8px 14px; font-size: 14.5px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+</style>
+
+<script>
+    // IIFE - chạy khi runLessonScripts() thực thi; không dùng DOMContentLoaded.
+    (function () {
+        var root = document.getElementById('uc-m2b2-root') || document;
+        function $(sel) { return root.querySelector(sel); }
+        function $$(sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+        function onActivate(el, fn) {
+            el.addEventListener('click', fn);
+            el.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(e); }
+            });
+        }
+        function setPressed(buttons, attr, value) {
+            buttons.forEach(function (b) {
+                b.setAttribute('aria-pressed', b.getAttribute(attr) === value ? 'true' : 'false');
+            });
+        }
+        function clearDiagram(d) {
+            [d.base, d.ext].forEach(function (el) {
+                el.classList.remove('is-run');
+                el.classList.remove('is-ext');
+                el.classList.remove('is-dim');
+            });
+            d.arrow.classList.remove('is-pulse');
+            d.arrow.classList.remove('is-dim');
+        }
+
+        /* ===================================================== */
+        /* 1. Sơ đồ tổng quát A extend B                          */
+        /* ===================================================== */
+        var timers = [];
+        function clearTimers() { timers.forEach(function (t) { clearTimeout(t); }); timers = []; }
+
+        var G = { base: $('#ext-g-a'), ext: $('#ext-g-b'), arrow: $('#ext-g-arrow') };
+        var gCap = $('#ext-g-caption');
+        var gBtns = $$('[data-g-action]');
+        var G_TEXT = {
+            idle: 'Chạm vào A, B hoặc mũi tên, hoặc bấm một nút để chạy thử.',
+            plain: 'A được thực thi mà không cần B. A quyết định không chèn B lần này — điều này không thể xảy ra với «include».',
+            withExt: 'A được thực thi, và tại Extension point, A quyết định chèn thêm hành vi của B vào.',
+            runB: 'Actor cũng nối trực tiếp với B, nên B cũng có thể được thực thi độc lập, không qua A.',
+            tapA: 'A là base use case: quyết định liệu B có được thực thi hay không.',
+            tapB: 'B là extending use case: hành vi của nó có thể được đưa vào A.',
+            tapArrow: 'Mũi tên nét đứt «extend» đi từ B tới A — ngược chiều với «include».'
+        };
+        function gReset() {
+            clearTimers();
+            clearDiagram(G);
+            setPressed(gBtns, 'data-g-action', '');
+            gCap.textContent = G_TEXT.idle;
+        }
+        function gPlain() {
+            clearTimers();
+            clearDiagram(G);
+            setPressed(gBtns, 'data-g-action', 'plain');
+            G.base.classList.add('is-run');
+            G.ext.classList.add('is-dim');
+            G.arrow.classList.add('is-dim');
+            gCap.textContent = G_TEXT.plain;
+        }
+        function gWithExt() {
+            clearTimers();
+            clearDiagram(G);
+            setPressed(gBtns, 'data-g-action', 'withExt');
+            G.base.classList.add('is-run');
+            gCap.textContent = G_TEXT.plain;
+            timers.push(setTimeout(function () {
+                G.arrow.classList.add('is-pulse');
+            }, 700));
+            timers.push(setTimeout(function () {
+                G.ext.classList.add('is-ext');
+                gCap.textContent = G_TEXT.withExt;
+            }, 1500));
+        }
+        function gRunB() {
+            clearTimers();
+            clearDiagram(G);
+            setPressed(gBtns, 'data-g-action', 'runB');
+            G.ext.classList.add('is-run');
+            G.base.classList.add('is-dim');
+            G.arrow.classList.add('is-dim');
+            gCap.textContent = G_TEXT.runB;
+        }
+        function gTap(which) {
+            clearTimers();
+            clearDiagram(G);
+            setPressed(gBtns, 'data-g-action', '');
+            if (which === 'A') { G.base.classList.add('is-run'); gCap.textContent = G_TEXT.tapA; }
+            if (which === 'B') { G.ext.classList.add('is-ext'); gCap.textContent = G_TEXT.tapB; }
+            if (which === 'arrow') { G.arrow.classList.add('is-pulse'); gCap.textContent = G_TEXT.tapArrow; }
+        }
+        gBtns.forEach(function (b) {
+            b.addEventListener('click', function () {
+                var a = b.getAttribute('data-g-action');
+                if (a === 'plain') { gPlain(); } else if (a === 'withExt') { gWithExt(); } else if (a === 'runB') { gRunB(); } else { gReset(); }
+            });
+        });
+        onActivate($('#ext-g-a'), function () { gTap('A'); });
+        onActivate($('#ext-g-b'), function () { gTap('B'); });
+        onActivate($('#ext-g-arrow-wrap'), function () { gTap('arrow'); });
+        gReset();
+
+        /* ===================================================== */
+        /* 2. Ví dụ: Announce course / Reserve lecture hall       */
+        /* ===================================================== */
+        var C = { base: $('#ext-c-base'), ext: $('#ext-c-ext'), arrow: $('#ext-c-arrow') };
+        var cCap = $('#ext-c-caption');
+        var cBtns = $$('[data-c-action]');
+        var C_TEXT = {
+            idle: 'Chọn một cách chạy để xem quan hệ «extend» hoạt động.',
+            plain: 'Professor chạy Announce course mà không đặt giảng đường — hợp lệ, vì extend không bắt buộc.',
+            withExt: 'Professor chạy Announce course và quyết định đặt thêm giảng đường: hành vi của Reserve lecture hall được chèn vào.',
+            alone: 'Professor cũng nối trực tiếp với Reserve lecture hall, nên có thể đặt giảng đường độc lập, không qua Announce course.'
+        };
+        function cSet(state) {
+            clearDiagram(C);
+            setPressed(cBtns, 'data-c-action', state === 'idle' ? '' : state);
+            if (state === 'plain') {
+                C.base.classList.add('is-run');
+                C.ext.classList.add('is-dim');
+                C.arrow.classList.add('is-dim');
+            } else if (state === 'withExt') {
+                C.base.classList.add('is-run');
+                C.ext.classList.add('is-ext');
+                C.arrow.classList.add('is-pulse');
+            } else if (state === 'alone') {
+                C.ext.classList.add('is-run');
+                C.base.classList.add('is-dim');
+                C.arrow.classList.add('is-dim');
+            }
+            cCap.textContent = C_TEXT[state];
+        }
+        cBtns.forEach(function (b) {
+            b.addEventListener('click', function () {
+                var a = b.getAttribute('data-c-action');
+                cSet(a === 'reset' ? 'idle' : a);
+            });
+        });
+        cSet('idle');
+
+        /* ===================================================== */
+        /* 3. Extension points                                    */
+        /* ===================================================== */
+        var epCap = $('#ext-ep-caption');
+        var epBtns = $$('[data-ep-pick]');
+        var EP = {
+            reserve: {
+                uc: $('#ext-ep-reserve'), arrow: $('#ext-ep-arrow-reserve'), item: $('#ext-ep-item-reserve'),
+                text: '"Ở đâu?" → Extension point "Select lecture hall" trong Announce lecture. "Khi nào?" → Condition {Lecture hall free}. Khi đó, Reserve lecture hall được chèn vào tại đúng điểm này.'
+            },
+            exam: {
+                uc: $('#ext-ep-exam'), arrow: $('#ext-ep-arrow-exam'), item: $('#ext-ep-item-exam'),
+                text: '"Ở đâu?" → Extension point "Enter exam" trong Announce lecture. "Khi nào?" → Condition {Data entered}. Khi đó, Announce exam được chèn vào tại đúng điểm này.'
+            }
+        };
+        var epBase = $('#ext-ep-base');
+        function epClear() {
+            Object.keys(EP).forEach(function (k) {
+                EP[k].uc.classList.remove('is-ext');
+                EP[k].arrow.classList.remove('is-pulse');
+                EP[k].item.classList.remove('ext-ep-highlight');
+            });
+            epBase.classList.remove('is-run');
+            epBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+            epCap.textContent = 'Chạm vào một Use case mở rộng ở trên để xem Condition và Extension point của nó.';
+        }
+        function epPick(key) {
+            epClear();
+            if (!EP[key]) { return; }
+            epBase.classList.add('is-run');
+            EP[key].uc.classList.add('is-ext');
+            EP[key].arrow.classList.add('is-pulse');
+            EP[key].item.classList.add('ext-ep-highlight');
+            $('[data-ep-pick="' + key + '"]').setAttribute('aria-pressed', 'true');
+            epCap.textContent = EP[key].text;
+        }
+        epBtns.forEach(function (b) {
+            b.addEventListener('click', function () {
+                var k = b.getAttribute('data-ep-pick');
+                if (k === 'reset') { epClear(); } else { epPick(k); }
+            });
+        });
+        epClear();
+    })();
+</script>
+<!-- Kết thúc nội dung bài học uc-m2-b2 -->

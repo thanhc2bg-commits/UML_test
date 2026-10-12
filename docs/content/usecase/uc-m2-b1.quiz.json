@@ -1,0 +1,146 @@
+{
+  "lessonId": "uc-m2-b1",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong quan hệ «include», hành vi của Included use case được xử lý như thế nào?",
+      "options": [
+        "Bị loại bỏ khỏi Base use case",
+        "Được kế thừa và ghi đè bởi Base use case",
+        "Được tích hợp vào Base use case",
+        "Chỉ được thực thi khi có điều kiện đặc biệt"
+      ],
+      "answer": 2,
+      "explanation": "Hành vi của Use case được sử dụng (Included use case) được tích hợp vào Use case sử dụng (Base use case)."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 10,
+      "question": "Với A «include» B, mũi tên của quan hệ include đi theo chiều nào?",
+      "options": [
+        "Từ A (Base use case) tới B (Included use case)",
+        "Từ B (Included use case) tới A (Base use case)",
+        "Từ Actor tới System Boundary",
+        "Hai chiều giữa A và B"
+      ],
+      "answer": 0,
+      "explanation": "Trong sơ đồ A «include» B, mũi tên đi từ A (Base use case) tới B (Included use case)."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 10,
+      "question": "Quan hệ «include» được vẽ bằng ký hiệu nào?",
+      "options": [
+        "Đường nét liền có mũi tên tam giác rỗng",
+        "Đường nét liền không có mũi tên",
+        "Đường cong nối hai Actor",
+        "Mũi tên nét đứt có nhãn «include»"
+      ],
+      "answer": 3,
+      "explanation": "Quan hệ «include» là mũi tên nét đứt có nhãn «include», đi từ Base use case tới Included use case."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo slide, Base use case (A) có đặc điểm nào?",
+      "options": [
+        "Không bao giờ được Actor sử dụng",
+        "Yêu cầu B để đảm bảo chức năng",
+        "Luôn nằm ngoài System Boundary",
+        "Chỉ được thực thi sau khi B kết thúc riêng"
+      ],
+      "answer": 1,
+      "explanation": "Base use case yêu cầu B (Included use case) để đảm bảo chức năng của mình."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 10,
+      "question": "Theo slide, Included use case (B) có đặc điểm nào?",
+      "options": [
+        "Không bao giờ được Actor nối tới",
+        "Chỉ tồn tại khi A tồn tại",
+        "B cũng có thể được thực thi riêng biệt",
+        "B luôn là Use case trừu tượng"
+      ],
+      "answer": 2,
+      "explanation": "Included use case B cũng có thể được thực thi riêng biệt, nên trong sơ đồ Actor cũng có thể nối trực tiếp tới B."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Student Administration, đâu là Base use case?",
+      "options": [
+        "Announce course",
+        "Assign lecturer",
+        "Query student data",
+        "Issue certificate"
+      ],
+      "answer": 0,
+      "explanation": "Announce course «include» Assign lecturer, nên Announce course là Base use case."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Student Administration, đâu là Included use case?",
+      "options": [
+        "Announce course",
+        "Query student data",
+        "Issue certificate",
+        "Assign lecturer"
+      ],
+      "answer": 3,
+      "explanation": "Assign lecturer là Included use case: hành vi của nó được tích hợp vào Announce course, và Professor cũng nối trực tiếp với nó."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 10,
+      "question": "Ví dụ nào trong slide bị gạch chéo (đánh dấu sai)?",
+      "options": [
+        "Announce course «include» Assign lecturer",
+        "Buy chewing gum «include» Insert coin trong Gumball Machine",
+        "Query student data «include» Issue certificate",
+        "Reserve lecture hall «include» Announce course"
+      ],
+      "answer": 1,
+      "explanation": "Slide gạch chéo ví dụ Gumball Machine, trong đó Buy chewing gum «include» Insert coin."
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "points": 10,
+      "question": "Trong ví dụ Announce course «include» Assign lecturer, Professor được nối tới những Use case nào?",
+      "options": [
+        "Chỉ Announce course",
+        "Chỉ Assign lecturer",
+        "Cả Announce course và Assign lecturer",
+        "Không nối với Use case nào"
+      ],
+      "answer": 2,
+      "explanation": "Trong sơ đồ, Professor nối với cả Announce course và Assign lecturer, vì Assign lecturer cũng có thể được thực thi riêng biệt."
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "points": 10,
+      "question": "Với A «include» B, phát biểu nào sau đây đúng?",
+      "options": [
+        "Hành vi của B được tích hợp vào A",
+        "Hành vi của A được tích hợp vào B",
+        "A và B không liên quan nhau",
+        "B không bao giờ được thực thi riêng"
+      ],
+      "answer": 0,
+      "explanation": "Với A «include» B, A là Base use case và hành vi của B (Included use case) được tích hợp vào A."
+    }
+  ]
+}

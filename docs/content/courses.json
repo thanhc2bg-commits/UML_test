@@ -14,7 +14,7 @@
               "file": "content/usecase/uc-m1-b1.html", "quiz": "content/usecase/uc-m1-b1.quiz.json" },
             { "id": "uc-m1-b2", "title": "Actor", "slides": "6-8", "minutes": 8, "ready": true,
               "file": "content/usecase/uc-m1-b2.html", "quiz": "content/usecase/uc-m1-b2.quiz.json" },
-            { "id": "uc-m1-b3", "title": "Ký hiệu", "slides": "9", "minutes": 4, "ready": false,
+            { "id": "uc-m1-b3", "title": "Ký hiệu", "slides": "9", "minutes": 4, "ready": true,
               "file": "content/usecase/uc-m1-b3.html", "quiz": "content/usecase/uc-m1-b3.quiz.json" }
           ]
         },
@@ -22,7 +22,7 @@
           "id": "uc-m2",
           "title": "Module 2: Các mối quan hệ",
           "lessons": [
-            { "id": "uc-m2-b1", "title": "include", "slides": "10", "minutes": 6, "ready": false,
+            { "id": "uc-m2-b1", "title": "include", "slides": "10", "minutes": 6, "ready": true,
               "file": "content/usecase/uc-m2-b1.html", "quiz": "content/usecase/uc-m2-b1.quiz.json" },
             { "id": "uc-m2-b2", "title": "extend và Extension point", "slides": "11-12", "minutes": 8, "ready": false,
               "file": "content/usecase/uc-m2-b2.html", "quiz": "content/usecase/uc-m2-b2.quiz.json" },

@@ -1,0 +1,118 @@
+{
+  "lessonId": "uc-m1-b3",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "points": 13,
+      "question": "Use case mô tả điều gì của System sắp được phát triển?",
+      "options": [
+        "Cấu trúc cơ sở dữ liệu của System",
+        "Hành vi được mong đợi của System",
+        "Mã nguồn của System",
+        "Giao diện đồ họa của System"
+      ],
+      "answer": 1,
+      "explanation": "Các Use case mô tả hành vi được mong đợi của System sắp được phát triển."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "points": 12,
+      "question": "Kiểu ký hiệu Use case nào sau đây là đúng với slide?",
+      "options": [
+        "Hình elip có tên Use case ghi bên trong",
+        "Hình người có tên Use case ghi bên dưới",
+        "Hình tam giác có tên Use case ghi bên trong",
+        "Hình trụ có tên Use case ghi bên trong"
+      ],
+      "answer": 0,
+      "explanation": "Ký hiệu cơ bản của Use case là hình elip có tên ghi bên trong, ví dụ Query student data. Hình người là ký hiệu của Actor."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "points": 13,
+      "question": "Ở biến thể ký hiệu thứ hai, tên của Use case được ghi ở đâu?",
+      "options": [
+        "Bên trong hình elip",
+        "Bên trong hình chữ nhật",
+        "Bên dưới hình elip để trống",
+        "Trong một Ghi chú (Note) riêng"
+      ],
+      "answer": 2,
+      "explanation": "Ở biến thể thứ hai, hình elip để trống và tên Use case được ghi bên dưới hình elip."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "points": 12,
+      "question": "Biến thể ký hiệu thứ ba của Use case trông như thế nào?",
+      "options": [
+        "Hình elip có hai đường viền",
+        "Hình elip có mũi tên nét đứt bên cạnh",
+        "Hình chữ nhật không có biểu tượng nào",
+        "Hình chữ nhật có tên bên trong và biểu tượng elip nhỏ ở góc"
+      ],
+      "answer": 3,
+      "explanation": "Biến thể thứ ba là hình chữ nhật có tên Use case ghi bên trong, kèm một biểu tượng elip nhỏ ở góc trên bên phải."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "points": 13,
+      "question": "Ba kiểu ký hiệu trong slide có ý nghĩa gì?",
+      "options": [
+        "Mỗi kiểu là một loại Use case khác nhau",
+        "Chúng là các biến thể ký hiệu, cách vẽ khác nhau của cùng một Use case",
+        "Chỉ kiểu thứ nhất được dùng trong sơ đồ Use Case",
+        "Mỗi kiểu dành cho một loại Actor khác nhau"
+      ],
+      "answer": 1,
+      "explanation": "Slide gọi đây là các biến thể ký hiệu: cùng một Use case (ví dụ Query student data) có thể được vẽ theo ba cách."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "points": 12,
+      "question": "Để mô tả ngắn gọn một Use case trên sơ đồ, slide dùng thành phần nào?",
+      "options": [
+        "Một Actor mới nối với Use case",
+        "Một mũi tên «include» tới Use case khác",
+        "Một Ghi chú (Note) nối với Use case bằng đường nét đứt",
+        "Một System Boundary bao quanh Use case"
+      ],
+      "answer": 2,
+      "explanation": "Mô tả ngắn gọn của Use case được viết trong một Ghi chú (Note), nối với Use case bằng đường nét đứt."
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "points": 13,
+      "question": "Trong ví dụ của slide, Ghi chú nối với Use case Query student data có nội dung gì?",
+      "options": [
+        "Authorized users can query student data",
+        "Professor issues certificates",
+        "Students can announce exams",
+        "System sends an e-mail to the student"
+      ],
+      "answer": 0,
+      "explanation": "Ghi chú của Use case Query student data ghi: Authorized users can query student data, tức là người dùng được ủy quyền có thể truy vấn dữ liệu sinh viên."
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "points": 12,
+      "question": "Hình nào sau đây KHÔNG phải là biến thể ký hiệu của Use case?",
+      "options": [
+        "Hình elip có tên bên trong",
+        "Hình elip để trống, tên bên dưới",
+        "Hình chữ nhật có tên bên trong và biểu tượng elip nhỏ ở góc",
+        "Hình người (stick figure)"
+      ],
+      "answer": 3,
+      "explanation": "Hình người là ký hiệu của Actor, không phải của Use case. Ba biến thể ký hiệu của Use case đều dựa trên hình elip hoặc hình chữ nhật kèm biểu tượng elip."
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>spa-test2 (tam thoi)</title>
+<link rel="stylesheet" href="css/course.css">
+<link rel="stylesheet" href="css/animations.css">
+<script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.8/dist/handlebars.min.js"></script>
+</head>
+<body>
+<pre id="out" style="white-space:pre-wrap;font:13px/1.5 monospace;background:#fff;color:#000;padding:8px"></pre>
+<section id="view-lesson" class="view"></section>
+<script src="js/templates.js"></script>
+<script src="js/pages.js"></script>
+<script>
+    var out = [];
+    function log(m) { out.push(m); document.getElementById('out').textContent = out.join('\n'); console.log(m); }
+    window.addEventListener('error', function (e) { log('window.onerror: ' + e.message + ' (dong ' + e.lineno + ')'); });
+
+    var SNIP = [
+        '<!-- Code injected by live-server -->',
+        '<script type="text/javascript">',
+        '\t// <![CDATA[  <-- For SVG support',
+        "\tif ('WebSocket' in window) {",
+        '\t\t(function () {',
+        '\t\t\tfunction refreshCSS() {',
+        '\t\t\t\tvar sheets = [].slice.call(document.getElementsByTagName("link"));',
+        '\t\t\t\tvar head = document.getElementsByTagName("head")[0];',
+        '\t\t\t\tfor (var i = 0; i < sheets.length; ++i) {',
+        '\t\t\t\t\tvar elem = sheets[i];',
+        '\t\t\t\t\thead.removeChild(elem);',
+        '\t\t\t\t\tvar rel = elem.rel;',
+        '\t\t\t\t\tif (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {',
+        "\t\t\t\t\t\tvar url = elem.href.replace(/(&|\\?)_cacheOverride=\\d+/, '');",
+        "\t\t\t\t\t\telem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());",
+        '\t\t\t\t\t}',
+        '\t\t\t\t\thead.appendChild(elem);',
+        '\t\t\t\t}',
+        '\t\t\t}',
+        "\t\t\tvar protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';",
+        "\t\t\tvar address = protocol + window.location.host + window.location.pathname + '/ws';",
+        '\t\t\tvar socket = new WebSocket(address);',
+        "\t\t\tsocket.onmessage = function (msg) { if (msg.data == 'reload') window.location.reload(); else if (msg.data == 'refreshcss') refreshCSS(); };",
+        "\t\t\tconsole.log('Live reload enabled.');",
+        '\t\t})();',
+        '\t}',
+        '\t// ]]>',
+        '</scr' + 'ipt>',
+        ''
+    ].join('\n');
+
+    function inject(src) {
+        var tags = ['</body>', '</svg>', '</head>'];
+        for (var i = 0; i < tags.length; i++) {
+            var idx = src.toLowerCase().indexOf(tags[i]);
+            if (idx >= 0) { return src.slice(0, idx) + SNIP + src.slice(idx); }
+        }
+        return src;
+    }
+
+    var realFetch = window.fetch.bind(window);
+    var injectMode = false;
+    window.fetch = async function (url, opts) {
+        var res = await realFetch(url, opts);
+        if (injectMode && /\.html(\?|$)/.test(String(url))) {
+            var text = await res.text();
+            return new Response(inject(text), { status: res.status, headers: { 'Content-Type': 'text/html' } });
+        }
+        return res;
+    };
+
+    async function trial(label, lessonId, rootId, clickSel, readFn) {
+        var view = document.getElementById('view-lesson');
+        view.innerHTML = '';
+        await pages.renderLesson(lessonId);
+        log('--- ' + label + ' ---');
+        log('co hop loi do: ' + !!view.querySelector('.error-msg') + ' | root: ' + !!document.getElementById(rootId));
+        var el = document.querySelector(clickSel);
+        log('phan tu de bam: ' + !!el);
+        if (el) {
+            el.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+            log('sau khi bam: ' + readFn(el));
+        }
+    }
+
+    var TESTS = [
+        ['uc-m1-b3', 'uc-b3-root', '.b3-uc', function (el) { return 'aria-pressed=' + el.getAttribute('aria-pressed') + ' | caption=' + (document.getElementById('b3-uc-caption') || {}).textContent; }],
+        ['uc-m2-b1', 'uc-m2b1-root', '[data-g-action="runB"]', function (el) { return 'aria-pressed=' + el.getAttribute('aria-pressed') + ' | caption=' + (document.getElementById('inc-g-caption') || {}).textContent; }],
+        ['uc-m1-b2', 'uc-b2-root', '[data-dir-mode="used"]', function (el) { return 'aria-pressed=' + el.getAttribute('aria-pressed') + ' | caption=' + (document.getElementById('b2-dir-caption') || {}).textContent; }]
+    ];
+
+    (async function () {
+        try {
+            for (var k = 0; k < 2; k++) {
+                injectMode = (k === 1);
+                log('=== ' + (injectMode ? 'GIA LAP Live Server chen ma' : 'may chu thuong') + ' ===');
+                for (var t = 0; t < TESTS.length; t++) {
+                    var T = TESTS[t];
+                    await trial(T[0], T[0], T[1], T[2], T[3]);
+                }
+            }
+            // Mo phong render 2 lan lien tiep (route() bi goi lai)
+            injectMode = true;
+            log('=== GOI renderLesson 2 LAN CHONG NHAU ===');
+            var p1 = pages.renderLesson('uc-m1-b3');
+            var p2 = pages.renderLesson('uc-m1-b3');
+            await Promise.all([p1, p2]);
+            var el2 = document.querySelector('.b3-uc');
+            el2.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+            log('sau khi bam: aria-pressed=' + el2.getAttribute('aria-pressed') + ' | so root: ' + document.querySelectorAll('#uc-b3-root').length);
+            log('XONG');
+        } catch (e) { log('LOI: ' + e.message); }
+    })();
+</script>
+</body>
+</html>

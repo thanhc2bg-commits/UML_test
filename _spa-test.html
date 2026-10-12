@@ -1,0 +1,103 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>spa-test (tam thoi)</title>
+<pre id="out" style="white-space:pre-wrap;font:13px/1.5 monospace"></pre>
+<div id="view"></div>
+<script>
+    var out = [];
+    function log(m) { out.push(m); document.getElementById('out').textContent = out.join('\n'); console.log(m); }
+    window.addEventListener('error', function (e) { log('window.onerror: ' + e.message + ' (dong ' + e.lineno + ')'); });
+
+    // Sao chep nguyen van tu docs/js/pages.js
+    function prepareLessonContent(source) {
+        const doc = new DOMParser().parseFromString(source, 'text/html');
+        const scripts = [...doc.querySelectorAll('script')].map(script => script.textContent || '');
+        doc.querySelectorAll('script').forEach(element => element.remove());
+        return { html: doc.body.innerHTML, scripts };
+    }
+    function runLessonScripts(scripts, container) {
+        scripts.forEach(source => {
+            if (!source.trim()) return;
+            const script = document.createElement('script');
+            script.textContent = source;
+            container.appendChild(script);
+            script.remove();
+        });
+    }
+
+    // Doan ma ma Live Server chen vao truoc the dong dau tien trong danh sach: </body>, </svg>, </head>
+    var LIVE_SERVER_SNIPPET = [
+        '<!-- Code injected by live-server -->',
+        '<script type="text/javascript">',
+        '\t// <![CDATA[  <-- For SVG support',
+        "\tif ('WebSocket' in window) {",
+        '\t\t(function () {',
+        "\t\t\tvar protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';",
+        "\t\t\tvar address = protocol + window.location.host + window.location.pathname + '/ws';",
+        '\t\t\tvar socket = new WebSocket(address);',
+        "\t\t\tsocket.onmessage = function (msg) { if (msg.data == 'reload') window.location.reload(); };",
+        "\t\t\tconsole.log('Live reload enabled.');",
+        '\t\t})();',
+        '\t}',
+        '\t// ]]>',
+        '</scr' + 'ipt>',
+        ''
+    ].join('\n');
+
+    function withInjection(src) {
+        var tags = ['</body>', '</svg>', '</head>'];
+        for (var i = 0; i < tags.length; i++) {
+            var idx = src.toLowerCase().indexOf(tags[i]);
+            if (idx >= 0) { return { text: src.slice(0, idx) + LIVE_SERVER_SNIPPET + src.slice(idx), tag: tags[i] }; }
+        }
+        return { text: src, tag: null };
+    }
+
+    async function run(label, file, rootId, clickSel, readFn, injected) {
+        log('--- ' + label + (injected ? ' [GIA LAP Live Server chen ma]' : ' [may chu thuong]') + ' ---');
+        var src = await (await fetch(file)).text();
+        if (injected) {
+            var r = withInjection(src);
+            log('chen truoc: ' + r.tag);
+            src = r.text;
+        }
+        const c = prepareLessonContent(src);
+        log('so script tach duoc: ' + c.scripts.length + ' | do dai: ' + c.scripts.map(s => s.length).join(', '));
+        c.scripts.forEach(function (s, i) {
+            try { new Function(s); log('  Function() script[' + i + ']: hop le'); }
+            catch (e) { log('  Function() script[' + i + ']: LOI ' + e.message); }
+        });
+        const view = document.getElementById('view');
+        view.innerHTML = c.html;
+        runLessonScripts(c.scripts, view);
+        log('root ton tai: ' + !!document.getElementById(rootId));
+        const el = document.querySelector(clickSel);
+        log('phan tu de bam ton tai: ' + !!el);
+        if (el) {
+            el.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+            log('sau khi bam: ' + readFn(el));
+        }
+        view.innerHTML = '';
+    }
+
+    var TESTS = [
+        ['uc-m1-b3', 'docs/content/usecase/uc-m1-b3.html', 'uc-b3-root', '.b3-uc',
+            function (el) { return 'aria-pressed=' + el.getAttribute('aria-pressed') + ' | caption=' + (document.getElementById('b3-uc-caption') || {}).textContent; }],
+        ['uc-m2-b1', 'docs/content/usecase/uc-m2-b1.html', 'uc-m2b1-root', '[data-g-action="runB"]',
+            function (el) { return 'aria-pressed=' + el.getAttribute('aria-pressed') + ' | caption=' + (document.getElementById('inc-g-caption') || {}).textContent; }],
+        ['uc-m1-b2', 'docs/content/usecase/uc-m1-b2.html', 'uc-b2-root', '[data-dir-mode="used"]',
+            function (el) { return 'aria-pressed=' + el.getAttribute('aria-pressed') + ' | caption=' + (document.getElementById('b2-dir-caption') || {}).textContent; }]
+    ];
+
+    (async function () {
+        try {
+            for (var k = 0; k < 2; k++) {
+                for (var t = 0; t < TESTS.length; t++) {
+                    var T = TESTS[t];
+                    await run(T[0], T[1], T[2], T[3], T[4], k === 1);
+                }
+            }
+            log('XONG');
+        } catch (e) { log('LOI: ' + e.message); }
+    })();
+</script>
